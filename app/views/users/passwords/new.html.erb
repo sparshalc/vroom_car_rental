@@ -1,16 +1,32 @@
-<h2>Forgot your password?</h2>
+<section>
+  <div class="row">
+    <div class="col-lg-6 col-12 col-sm-12 col-md-6 primary m-auto" style="height: 100vh;">
+      <%= render 'users/partial/halfscreen', text: 'Get back on the road in <br>no time!'%>
+    </div>
+    <div class="col-lg-6 col-12 col-sm-12 col-md-6">
+      <div class="d-flex justify-content-center flex-column align-items-center" style="height: 100vh;">
+        <div>
+          <h1 class="fw-bolder">Forgot password?</h1>
+        </div>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+          <%= render "users/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+          </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <div class="actions mt-3">
+            <%= f.submit "Send me reset password instructions", class: 'btn btn-dark' %>
+          </div>
+
+          <hr class="mt-4 mb-4">
+          <span>Incase you recalled your password!!</span>
+          <div>
+            <%= render "users/shared/links" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</section>
