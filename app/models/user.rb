@@ -4,6 +4,8 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
+  enum role: { user: 0, seller: 1, admin: 2 }
+
   validate :avatar_content_type, if: :avatar_attached?
 
   def avatar_content_type
