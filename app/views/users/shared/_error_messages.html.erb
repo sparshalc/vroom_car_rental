@@ -2,7 +2,7 @@
   <div id="error_explanation" data-turbo-cache="false">
     <div class="alert alert-danger">
       <% resource.errors.full_messages.each do |message| %>
-        <small class="text-danger"><%= message %>.</small>
+        <small class="text-danger"><%= message %>. <br></small>
       <% end %>
     </div>
     <hr>
