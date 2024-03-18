@@ -98,6 +98,7 @@ GEM
     crass (1.0.6)
     cssbundling-rails (1.4.0)
       railties (>= 6.0.0)
+    database_cleaner (1.99.0)
     date (3.3.4)
     debug (1.9.1)
       irb (~> 1.10)
@@ -108,8 +109,16 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    diff-lcs (1.5.1)
     drb (2.2.1)
     erubi (1.12.0)
+    factory_bot (6.4.6)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.4.3)
+      factory_bot (~> 6.4)
+      railties (>= 5.0.0)
+    faker (3.2.3)
+      i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.4)
@@ -218,12 +227,31 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.6)
+    rspec-core (3.13.0)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-rails (6.1.1)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      railties (>= 6.1)
+      rspec-core (~> 3.12)
+      rspec-expectations (~> 3.12)
+      rspec-mocks (~> 3.12)
+      rspec-support (~> 3.12)
+    rspec-support (3.13.1)
     rubyzip (2.3.2)
     selenium-webdriver (4.18.1)
       base64 (~> 0.2)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    shoulda-matchers (3.1.3)
+      activesupport (>= 4.0.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -270,15 +298,20 @@ DEPENDENCIES
   bootsnap
   capybara
   cssbundling-rails
+  database_cleaner (~> 1.5)
   debug
   devise
+  factory_bot_rails
+  faker (~> 3.2)
   jbuilder
   jsbundling-rails
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.3, >= 7.1.3.2)
   redis (>= 4.0.1)
+  rspec-rails
   selenium-webdriver
+  shoulda-matchers (~> 3.0)
   sprockets-rails
   stimulus-rails
   turbo-rails
