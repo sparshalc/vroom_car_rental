@@ -1,0 +1,29 @@
+.logos {
+  display: flex;
+  overflow: hidden;
+  background-color: white;
+}
+
+.logos-slide {
+  white-space: nowrap;
+  display: inline-block;
+  animation: 10s slide infinite linear;
+}
+
+.logos-slide img {
+  width: 200px;
+  margin: 0px 40px;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0%);
+  } 
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.logos:hover .logos-slide {
+  animation-play-state: paused;
+}

@@ -18,6 +18,9 @@
     <div id="flash" class="flash">
       <%= render "partials/flash" %>
     </div>
+    <% if current_user %>
+      <%= render 'partials/navbar' %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
