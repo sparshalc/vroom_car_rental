@@ -1,0 +1,45 @@
+.flash {
+  position: fixed;
+  top: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999999999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-s);
+  max-width: 100%;
+  width: max-content;
+  padding: 0 var(--space-m);
+}
+
+.flash__message {
+  color: white;
+  padding: 10px 50px;
+  animation: appear-then-fade 4s both;
+/* From https://css.glass */
+background: linear-gradient(rgba(82, 41, 144, 0.572), #270d4e);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(10.7px);
+-webkit-backdrop-filter: blur(10.7px);
+}
+
+@keyframes appear-then-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
