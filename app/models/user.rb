@@ -3,12 +3,18 @@ class User < ApplicationRecord
         :recoverable, :rememberable, :validatable
 
   has_one_attached :avatar
+  has_many :messages
+  has_many :rooms
 
   enum role: { user: 0, seller: 1, admin: 2 }
 
   validate :avatar_content_type, if: :avatar_attached?
   validates :full_name, presence: true, uniqueness: { message: "has already been taken try again with a new one." }
   validate :phone_number_format
+
+  def seller_or_admin?
+    self.admin? || self.seller?
+  end
 
   private
 

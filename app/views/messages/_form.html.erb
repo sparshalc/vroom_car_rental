@@ -1,0 +1,6 @@
+<div class="form-group">
+  <%= form_with(model: [@room ,@message], remote: true, class: "d-flex gap-2" ) do |f| %>
+    <%= f.text_field :content, id: 'chat-text', class: "form-control", autocomplete: 'off' %>
+    <%= f.submit data: { disable_with: false, autofocus: true}, class: "btn btn-dark" %>
+  <% end %>
+</div>

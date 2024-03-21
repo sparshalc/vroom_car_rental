@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     passwords: 'users/passwords'
   }
 
+  resources :rooms do
+    resources :messages
+  end
+
   root "pages#home"
 
   get "up" => "rails/health#show", as: :rails_health_check

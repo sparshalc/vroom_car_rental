@@ -1,0 +1,4 @@
+<%= turbo_stream.prepend "rooms" do %>
+  <%= render 'rooms/room', room: @room %>
+<% end %>
+<%= render_turbo_stream_flash_messages %>

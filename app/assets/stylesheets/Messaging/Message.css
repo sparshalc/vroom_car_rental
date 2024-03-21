@@ -1,0 +1,47 @@
+.col-border{
+  border-right: 1px solid rgb(130, 130, 130);
+  height: 80vh;
+}
+.msg_form{
+  position: fixed;
+  bottom: 0;
+  width: 80vw;
+  padding: 10px;
+}
+#messages{
+  height: 75vh;
+  overflow: scroll;
+}
+.message-box{
+  background-color: grey;
+  display: inline-block;
+  padding: 15px;
+  border-radius: 5px;
+  color: white;
+  margin-bottom: 10px;
+}
+::-webkit-scrollbar{
+  width: 1px;
+}
+.bi-check-all{
+  font-size: 20px;
+}
+
+.dot{
+  position: relative;
+}
+.dot::before{
+  position: absolute;
+  bottom: 5px;
+  right: -15px;
+  border-radius: 50%;
+  transform: translate(50%, 50%);
+  background-color: #00dc1d;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  width: 15px;
+  height: 15px;
+  content: '';
+}
+.btn {
+  border: 0 !important;
+}

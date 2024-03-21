@@ -1,0 +1,6 @@
+<div id="<%= dom_id(user) %>">
+  <div class="d-flex flex-column align-items-center">
+    <%= image_tag(user_avatar(user), alt: "DP", width:"42", height:"42", class: "rounded-circle") %><span class="dot"></span>
+    <small class="fw-light"><%= user.full_name %></small>
+  </div>
+</div>

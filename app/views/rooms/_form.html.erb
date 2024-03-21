@@ -1,0 +1,9 @@
+<%= form_with(model: room) do |form| %>
+  <div>
+    <%= form.text_field :name, class:'form-control' %>
+    <%= form.hidden_field :user_id, value: current_user.id, id: 'room_user_id',  class:'form-control' %>
+  </div>
+  <div>
+    <%= form.submit class: 'btn btn-dark-subtle w-100 mt-2 btn-sm'%>
+  </div>
+<% end %>
