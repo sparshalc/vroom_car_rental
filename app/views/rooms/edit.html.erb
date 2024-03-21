@@ -1,0 +1,5 @@
+<div class="container">
+  <%= turbo_frame_tag @room do %>
+    <%= render "form", room: @room %>
+  <% end %>
+</div>

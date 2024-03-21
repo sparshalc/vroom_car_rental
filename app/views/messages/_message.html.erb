@@ -1,0 +1,7 @@
+<div class="cont-<%= message.user.id %>">
+  <div class="message-box msg-<%= message.user.id %> " >
+    <h6 class="fw-bold"><%= message.content %></h6>
+    <small class="fw-light"><i class="bi bi-check-all "></i><%= message.user.email %> • <%= time_ago_in_words(message.created_at) + ' ago'%>
+    </small>
+  </div>
+</div>
