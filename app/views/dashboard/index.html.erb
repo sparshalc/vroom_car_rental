@@ -10,11 +10,12 @@
   </div>
 </div>
 
-<%= link_to "new", new_car_path, data: { turbo_frame: dom_id(Car.new) } %>
-<%= turbo_frame_tag Car.new %>
+<h1 class="mb-0 text-center mt-5">Manage Cars</h1>
+<hr>
+<%= link_to "new", new_car_path, data: { controller: 'bs-modal' } %>
 <div class="mt-5 container-fluid">
   <div id="cars" class="d-flex gap-4 justify-content-center align-items-center flex-wrap">
-    <% @cars.limit(6).each do |car| %>
+    <% @cars.each do |car| %>
       <%= render car %>
     <% end %>
   </div>
