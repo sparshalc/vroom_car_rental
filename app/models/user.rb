@@ -3,6 +3,8 @@ class User < ApplicationRecord
         :recoverable, :rememberable, :validatable
 
   has_one_attached :avatar
+  has_many :messages
+  has_many :rooms
 
   has_many :messages, dependent: :destroy
   has_many :comments, dependent: :destroy

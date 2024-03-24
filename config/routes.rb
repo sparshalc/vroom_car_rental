@@ -15,7 +15,8 @@ Rails.application.routes.draw do
 
   root "pages#home"
 
-  get "up" => "rails/health#show", as: :rails_health_check
-
   get 'dashboard', to: 'dashboard#index'
+
+  get "up" => "rails/health#show", as: :rails_health_check
+  get '*path' => redirect('/404.html')
 end
