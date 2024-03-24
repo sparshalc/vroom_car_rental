@@ -18,5 +18,6 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#index'
 
   get "up" => "rails/health#show", as: :rails_health_check
-  get '*path' => redirect('/404.html')
+
+  get '*path', to: redirect('/404.html'), constraints: lambda { |req| !req.path.start_with?('/rails/active_storage') }
 end

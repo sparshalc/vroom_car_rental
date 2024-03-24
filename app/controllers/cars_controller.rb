@@ -2,6 +2,7 @@ class CarsController < ApplicationController
   before_action :set_car, only: %i[ show edit update destroy ]
   before_action :verify_seller_or_admin, except: %i[show index ]
   before_action :verify_corrent_user,only: %i[edit update destroy]
+  rescue_from ActionController::RoutingError, with: :redirect_to_error_page
 
   def index
     @q = Car.ransack(params[:q])
@@ -50,8 +51,13 @@ class CarsController < ApplicationController
   end
 
   private
+
     def set_car
       @car = Car.find(params[:id])
+    end
+
+    def car_params
+      params.require(:car).permit(:brand, :name, :model, :color, :mileage, :availability, :location, :rental_price, :insurance, :image, :user_id)
     end
 
     def verify_corrent_user
@@ -62,7 +68,7 @@ class CarsController < ApplicationController
       raise ActionController::RoutingError.new('Not Found') unless current_user.seller_or_admin?
     end
 
-    def car_params
-      params.require(:car).permit(:brand, :name, :model, :color, :mileage, :availability, :location, :rental_price, :insurance, :image, :user_id)
+    def redirect_to_error_page(exception)
+      redirect_to '/404.html'
     end
 end
