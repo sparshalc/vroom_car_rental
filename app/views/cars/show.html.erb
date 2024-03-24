@@ -1,0 +1,69 @@
+<div class="container mt-5">
+  <div class="row shadow p-5">
+    <div class="col-md-7">
+      <h2 class="featurette-heading lh-1 fw-bold"><%= @car.name %></span></h2>
+      <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
+      <h2 class="card-title fw-bolder btn btn-dark btn-lg text-white">Rs. <%= @car.rental_price %><small class="fw-light">/hr</small></h2>
+    </div>
+    <div class="col-md-5">
+      <%= image_tag(@car.image, class: "img-fluid mx-auto", width: '1000px', height: 'auto') %>
+    </div>
+  </div>  
+
+  <div class="row mt-5 shadow p-2 mb-5">
+    <div class="col-lg-4 rounded mt-3">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted fw-bold">Car Details</span>
+      </h4>
+      <ul class="list-group mb-3">
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Brand</h6>
+            <small class="text-muted"><%= @car.brand %></small>
+          </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Model</h6>
+            <small class="text-muted"><%= @car.model %></small>
+          </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between bg-light">
+          <h6 class="my-0">Availabe</h6>
+          <small><%= @car.availability %></small>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">Color</h6>
+          </div>
+            <small style="color: <%= @car.color %>"><%= @car.color %></small>
+        </li>
+        <li class="list-group-item d-flex justify-content-between bg-light">
+          <h6 class="my-0">Mileage</h6>
+          <small><%= @car.mileage %> Km/hr</small>
+        </li>
+        <li class="list-group-item d-flex justify-content-between bg-light">
+          <h6 class="my-0">Location</h6>
+          <small><%= @car.location %></small>
+        </li>
+        <li class="list-group-item d-flex justify-content-between bg-light">
+          <h6 class="my-0">Insurance</h6>
+          <small><%= @car.insurance %></small>
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-8 rounded col-md-12 mt-3">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted fw-bold">Comments</span>
+      </h4>
+      <div id="comment-form">
+        <%= render 'comments/form' %>
+      </div>
+      <div id="comments">
+        <% @comments.each do |comment| %>
+          <%= render 'comments/comment', comment: comment %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

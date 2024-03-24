@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_19_184430) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_23_182100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,7 +45,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_19_184430) do
   create_table "cars", force: :cascade do |t|
     t.string "brand"
     t.string "model"
-    t.integer "year"
     t.string "color"
     t.integer "mileage"
     t.boolean "availability"
@@ -56,7 +55,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_19_184430) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["user_id"], name: "index_cars_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id", null: false
+    t.bigint "car_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_id"], name: "index_comments_on_car_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -95,6 +105,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_19_184430) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cars", "users"
+  add_foreign_key "comments", "cars"
+  add_foreign_key "comments", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
   add_foreign_key "rooms", "users"

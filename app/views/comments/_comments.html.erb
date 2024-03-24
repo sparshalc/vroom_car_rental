@@ -1,0 +1,8 @@
+<div id="comment-form">
+  <%= render 'comments/form' %>
+</div>
+<div id="comments">
+  <% @comments.each do |comment| %>
+    <%= render 'comments/comment', comment: comment %>
+  <% end %>
+</div>

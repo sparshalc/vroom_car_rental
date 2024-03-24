@@ -1,0 +1,21 @@
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title fs-2 mb-0" id="offcanvasExampleLabel">Dashboard</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="conainer">
+      <%= link_to 'Cars', cars_path %>
+    </div>
+  </div>
+</div>
+
+<%= link_to "new", new_car_path, data: { turbo_frame: dom_id(Car.new) } %>
+<%= turbo_frame_tag Car.new %>
+<div class="mt-5 container-fluid">
+  <div id="cars" class="d-flex gap-4 justify-content-center align-items-center flex-wrap">
+    <% @cars.limit(6).each do |car| %>
+      <%= render car %>
+    <% end %>
+  </div>
+</div>

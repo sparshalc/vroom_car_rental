@@ -6,6 +6,11 @@ class User < ApplicationRecord
   has_many :messages
   has_many :rooms
 
+  has_many :messages, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :rooms, dependent: :destroy
+  has_many :cars, dependent: :destroy
+
   enum role: { user: 0, seller: 1, admin: 2 }
 
   validate :avatar_content_type, if: :avatar_attached?

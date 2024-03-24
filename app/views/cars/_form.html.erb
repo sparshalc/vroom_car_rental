@@ -1,0 +1,99 @@
+<%= turbo_frame_tag car do %>
+  <div class="container col-xl-10 col-xxl-8 px-4">
+    <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-lg-7 text-center text-lg-start">
+        <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Vertically centered hero sign-up form</h1>
+        <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+      </div>
+      <div class="col-md-10 mx-auto col-lg-5">
+        <%= form_with(model: car, class: "p-4 p-md-5 border rounded-3 bg-body-tertiary") do |form| %>
+          <% if car.errors.any? %>
+            <div style="color: red">
+              <h2><%= pluralize(car.errors.count, "error") %> prohibited this car from being saved:</h2>
+
+              <ul>
+                <% car.errors.each do |error| %>
+                  <li><%= error.full_message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="mb-3">
+            <%= form.label :name, class: "form-label", style: "display: block" %>
+            <%= form.text_field :name, class: "form-control" %>
+          </div>
+
+          <div class="row">
+            <div class="col-lg">
+              <div class="mb-3">
+                <%= form.label :brand, class: "form-label", style: "display: block" %>
+                <%= form.text_field :brand, class: "form-control" %>
+              </div>
+            </div>
+            <div class="col-lg">
+              <div class="mb-3">
+                <%= form.label :model, class: "form-label", style: "display: block" %>
+                <%= form.text_field :model, class: "form-control" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6">
+            <div class="mb-3">
+              <%= form.label :mileage_per_km, class: "form-label", style: "display: block" %>
+              <%= form.number_field :mileage, class: "form-control" %>
+            </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="mb-3">
+                <%= form.label :color, class: "form-label", style: "display: block" %>
+                <%= form.text_field :color, class: "form-control", type: 'color' %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="mb-3">
+                <%= form.label :availability, class: "form-label", style: "display: block" %>
+                <%= form.check_box :availability, class: "form-check-input" %>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="mb-3">
+                <%= form.label :insurance, class: "form-label", style: "display: block" %>
+                <%= form.check_box :insurance, class: "form-check-input" %>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="mb-3">
+            <%= form.label :location, class: "form-label", style: "display: block" %>
+            <%= form.text_field :location, class: "form-control" %>
+          </div>
+
+          <div class="mb-3">
+            <%= form.label :rental_price, class: "form-label", style: "display: block" %>
+            <%= form.text_field :rental_price, class: "form-control" %>
+          </div>
+
+          <div class="mb-3">
+            <%= form.label :image, class: "form-label", style: "display: block" %>
+            <%= form.file_field :image, class: "form-control" %>
+          </div>
+
+          <div class="mb-3">
+            <%= form.hidden_field :user_id, value: current_user.id, class: "form-control" %>
+          </div>
+
+          <div class="mb-3">
+            <%= form.submit class: "btn btn-dark w-100" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

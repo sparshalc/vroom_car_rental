@@ -27,13 +27,33 @@
     }
   </style>
 
+  <style>
+    <%= ".msg-#{current_user&.id}" %> {
+      background-color: #007bff !important;
+      padding: 15px;
+      color: white;
+      border-radius: 5px;
+      float: right;
+    }
+    <%= ".cont-#{current_user&.id}" %> {
+      display: flex;
+      justify-content: flex-end;
+    }
+  </style>
+
   <body>
-    <div id="flash" class="flash">
+    <div id="flash" class="flash">  
       <%= render "partials/flash" %>
     </div>
-    <% if current_user %>
+
+    <% if is_dashboard_path? %>
+      <%= render 'partials/sidebar' %>
+    <% end %>
+
+    <% unless is_devise_path? || is_dashboard_path? %>
       <%= render 'partials/navbar' %>
     <% end %>
+
     <%= yield %>
   </body>
 </html>
