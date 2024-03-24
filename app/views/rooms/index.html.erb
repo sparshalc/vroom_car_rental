@@ -1,0 +1,65 @@
+<%= turbo_stream_from "online_users", channel: OnlineChannel %>
+<div class="row p-4">
+  <div class="col-lg-2 col-12 col-sm-12 col-md-2 col-border ">
+    <div class="user_details">
+      <p class="fw-light">Logged in as: <br>
+        <span class="fw-bold m-0"><%= current_user.email %></span>
+      </p>
+    </div>
+    <hr>
+    <p class="text-center">Users Online <i class="bi bi-person-circle"></i> </p>
+    <div id="users-list" class="d-flex gap-2" style="overflow-x: scroll;">
+      <% @users.each do |user| %>
+        <%= render 'partials/user', user: user %>
+      <% end %>
+    </div>
+    <hr>
+    <% if current_user.seller_or_admin? %>
+      <div id="new-room">
+        <%= render 'rooms/form', room: @new_room %>
+      </div>
+      <hr>
+    <% end %>
+    <p class="text-center ">Rooms</p>
+    <%= turbo_stream_from "rooms" %>
+    <div id="rooms">
+      <% @rooms.each do |room| %>
+        <%= render room %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-lg-10 col-12 col-sm-12 col-md-10">
+    <% if @room %>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex flex-column">
+          <h3 class="fw-bold display-6" id="<%= dom_id(@room, 'name') %>">
+            <%= @room.name %>
+          </h3>
+          <small class="h6 fw-light"><i class="bi bi-person-fill h6"></i><%= @room.user.email %></small>
+        </div>
+        <br>
+        <p class="text-muted fw-normal">
+          <i class="bi bi-alarm"></i> Created <%= time_ago_in_words(@room.created_at) + ' ago' %>
+          <br>
+          <i class="bi bi-chat"></i><b><%= pluralize(@room.messages.count, 'message') %> </b>
+        </p>
+      </div>
+      <hr>
+      <%= turbo_stream_from @room %>
+      <div id="messages" data-scroll-target="container" data-controller="scroll" >
+        <% @messages.each do |message| %>
+          <%= render 'messages/message', message: message %>
+        <% end %>
+      </div>
+      <div class="msg_form">
+        <%= render 'messages/form'%>
+      </div>
+    <% else %>
+      <div class="container d-flex justify-content-center align-items-center flex-column" style="height: 80vh;">
+        <i class="bi bi-plus-square-dotted display-1 text-muted"></i>
+        <h1 class="text-muted fw-bold mt-4">Join a room and get started!</h1>
+        <p class="text-muted fw-light">Start your conversation by entering a room.</p>
+      </div>
+    <% end %>
+  </div>
+</div>

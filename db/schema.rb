@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_17_165048) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_23_182100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,51 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_17_165048) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "cars", force: :cascade do |t|
+    t.string "brand"
+    t.string "model"
+    t.string "color"
+    t.integer "mileage"
+    t.boolean "availability"
+    t.string "location"
+    t.decimal "rental_price"
+    t.boolean "insurance"
+    t.string "image"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.index ["user_id"], name: "index_cars_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id", null: false
+    t.bigint "car_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_id"], name: "index_comments_on_car_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_rooms_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -59,4 +104,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_17_165048) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cars", "users"
+  add_foreign_key "comments", "cars"
+  add_foreign_key "comments", "users"
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "messages", "users"
+  add_foreign_key "rooms", "users"
 end

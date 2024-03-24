@@ -1,0 +1,17 @@
+<div class="container">
+  <%= search_form_for @q, data: { turbo_frame: 'search', turbo_action: 'advance', method: "get" } do |f| %>
+    <div class="d-flex gap-2">
+      <%= f.search_field :name_cont, onkeyup: 'this.form.requestSubmit();', class: 'form-control', placeholder: 'Search by name' %>
+      <%= f.submit class: 'btn btn-dark' %>
+    </div>
+  <% end %>
+  <div class="mt-5">
+    <%= turbo_frame_tag 'search' do %>
+      <div id="cars" class="d-flex gap-4 justify-content-center align-items-center flex-wrap" data-turbo="false">
+        <% @cars.each do |car| %>
+          <%= render car %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

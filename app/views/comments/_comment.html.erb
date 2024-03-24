@@ -1,0 +1,19 @@
+<%= turbo_frame_tag dom_id(comment) do %>
+  <div class="d-flex justify-content-between mt-5">
+    <div class="comment-details d-flex">
+      <div class="flex-shrink-0"><%= image_tag(user_avatar(comment.user), width: "32px", class: 'rounded-circle border')%></div>
+      <div class="ms-3">
+        <div><%= comment.user.email %> <small class="fw-light mx-1"> (<%= time_ago_in_words(comment.created_at) + ' ago'%>)</small></div>
+        <span class="fw-bold"><%= comment.title %></span>
+      </div>
+    </div>
+    <% if is_correct_user(comment)%>
+      <div class="comment-action">
+        <%= button_to car_comment_path(@car.id, comment.id), class: 'btn btn-danger btn-sm mx-3 ',method: :delete, data: {'turbo-method': :delete} do %>
+          <i class="bi bi-trash"></i>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <hr>
+<% end %>

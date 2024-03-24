@@ -1,0 +1,9 @@
+<%= turbo_frame_tag room do %>
+  <p class="p-2 text-center btn-lg primary rounded text-white">
+    <%= link_to room.name, room, class: 'text-white text-decoration-none', data: {turbo_frame: '_top'} %>
+  </p>
+  <% if @active_user == room.user.id %>
+    <%= render 'rooms/room_actions', room: room %>
+  <% end %>
+  <hr>
+<% end %>

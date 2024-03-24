@@ -1,0 +1,7 @@
+<%= turbo_stream.prepend "comments" do %>
+  <%= render 'comments/comment', comment: @comment%>
+<% end %>
+<%= turbo_stream.update "comment-form" do %>
+  <%= render 'comments/form'%>
+<% end %>
+<%= render_turbo_stream_flash_messages %>
