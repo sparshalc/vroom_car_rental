@@ -1,0 +1,21 @@
+<tr id="<%= dom_id(car) %>">
+  <th scope="row"><%= car.id %></th>
+  <td><%= car.name %></td>
+  <td><%= car.model %></td>
+  <td><%= car.rental_price %></td>
+  <td><%= car.is_available? %></td>
+  <td><%= car.location  %></td>
+  <td>
+    <div class="d-flex gap-2">
+      <%= link_to car_path(car), class: 'btn btn-primary' do %>
+        <i class="bi bi-eye-fill"></i>
+      <% end %>
+      <%= link_to edit_car_path(car), class: 'btn btn-success', data: { controller: 'bs-modal' } do %>
+        <i class="bi bi-pencil-fill"></i>
+      <% end %>
+      <%= button_to car_path(car), class: 'btn btn-danger', method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
+        <i class="bi bi-trash"></i>
+      <% end %>
+    </div>
+  </td>
+</tr>

@@ -1,22 +1,96 @@
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title fs-2 mb-0" id="offcanvasExampleLabel">Dashboard</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+<%= render 'partials/offcanvas' %>
+
+<div class="container mb-0 mt-5">
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="user_details">
+      <h1 class="fw-bold">Dashboard</h1>
+      <p class="text-muted"><%= current_user.email %></p>
+    </div>
+    <div class="user_avatar">
+      <%= image_tag(user_avatar(current_user), width: '80', height: '80', class: 'rounded-circle border')%>
+    </div>
   </div>
-  <div class="offcanvas-body">
-    <div class="conainer">
-      <%= link_to 'Cars', cars_path %>
+  <hr>
+  <div class="row mt-5">
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                Cars Count</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">2K</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-calendar fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                Comments Count</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">100</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-danger shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                Followers </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">24</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-comments fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                Following</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">500+</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-comments fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row mt-5 mb-5">
+    <div class="col-lg-6">
+      <div class="card p-3 mt-2">
+        <p class="text-muted">Cars(In Linechart)</p>
+        <%= line_chart @cars.group_by_day(:created_at, range: 1.week.ago...Time.now).count %>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card p-3 mt-2">
+        <p class="text-muted">Cars(In Piechart)</p>
+        <%= pie_chart @cars.group_by_day(:created_at, range: 1.week.ago...Time.now).count %>
+      </div>
     </div>
   </div>
 </div>
 
-<h1 class="mb-0 text-center mt-5">Manage Cars</h1>
-<hr>
-<%= link_to "new", new_car_path, data: { controller: 'bs-modal' } %>
-<div class="mt-5 container-fluid">
-  <div id="cars" class="d-flex gap-4 justify-content-center align-items-center flex-wrap">
-    <% @cars.each do |car| %>
-      <%= render car %>
-    <% end %>
-  </div>
-</div>
