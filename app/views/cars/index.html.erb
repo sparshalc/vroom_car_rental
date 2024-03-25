@@ -7,7 +7,7 @@
   <% end %>
   <div class="mt-5">
     <%= turbo_frame_tag 'search' do %>
-      <div id="cars" class="d-flex gap-4 justify-content-center align-items-center flex-wrap" data-turbo="false">
+      <div class="d-flex gap-4 justify-content-center align-items-center flex-wrap" data-turbo="false">
         <% @cars.each do |car| %>
           <%= render car %>
         <% end %>

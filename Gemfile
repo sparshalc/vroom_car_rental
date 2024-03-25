@@ -71,3 +71,7 @@ end
 
 gem "devise"
 gem "ransack"
+
+gem "chartkick", "~> 5.0"
+
+gem "groupdate", "~> 6.4"

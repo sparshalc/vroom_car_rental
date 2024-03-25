@@ -1,0 +1,23 @@
+<%= render 'partials/offcanvas' %>
+<div class="container">
+  <h1 class="mb-0 text-center mt-5">Manage Cars</h1>
+  <hr>
+  <table class="table mt-5">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Modal</th>
+      <th scope="col">Rental Price</th>
+      <th scope="col">Available</th>
+      <th scope="col">Location</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody id="cars">
+    <% @cars.each do |car| %>
+      <%= render 'dashboard/car_row', car: car %>
+    <% end %>
+  </tbody>
+</table>
+</div>

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   root "pages#home"
 
   get 'dashboard', to: 'dashboard#index'
+  get 'dashboard/cars', to: 'dashboard#cars'
 
   get "up" => "rails/health#show", as: :rails_health_check
 

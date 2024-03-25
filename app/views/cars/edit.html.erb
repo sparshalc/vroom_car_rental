@@ -1,1 +1,3 @@
-<%= render "form", car: @car %>
+<%= turbo_frame_tag @car do %>
+  <%= render "form", car: @car %>
+<% end %>

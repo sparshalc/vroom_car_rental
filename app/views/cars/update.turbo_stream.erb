@@ -1,4 +1,3 @@
 <%= turbo_stream.prepend "cars" do%>
   <% render 'dashboard/car_row', car: @car %>
 <% end %>
-<%= turbo_stream.update Car.new, '' %>
