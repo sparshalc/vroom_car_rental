@@ -77,6 +77,10 @@ Rails.application.configure do
   # Sends password reset link to user if (he/she) forgets password.
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-  config.hosts << "1031-2400-1a00-b030-203b-333f-b4a-7a3a-1f91.ngrok-free.app"
-  config.hosts << "1031-2400-1a00-b030-203b-333f-b4a-7a3a-1f91.ngrok-free.app"
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = { :address => '127.0.0.1', :port => 1025 }
+
+  config.action_mailer.raise_delivery_errors = false
+
 end

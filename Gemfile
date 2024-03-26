@@ -70,8 +70,15 @@ group :test do
 end
 
 gem "devise"
+
 gem "ransack"
 
 gem "chartkick", "~> 5.0"
 
 gem "groupdate", "~> 6.4"
+
+gem 'devise_invitable', '~> 2.0.0'
+
+gem 'inline_svg'
+
+gem "mailcatcher", "~> 0.2.4"

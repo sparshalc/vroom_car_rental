@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
-    passwords: 'users/passwords'
+    passwords: 'users/passwords',
+    invitations: 'users/invitations'
   }
 
   resources :rooms do
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'dashboard#index'
   get 'dashboard/cars', to: 'dashboard#cars'
+  get 'dashboard/users', to: 'dashboard#users'
 
   get "up" => "rails/health#show", as: :rails_health_check
 
