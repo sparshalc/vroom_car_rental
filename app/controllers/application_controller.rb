@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def routing_exception
+    raise ActionController::RoutingError.new('Routing Error')
+  end
+
   def redirect_to_error_page(exception)
     redirect_to '/404.html'
   end

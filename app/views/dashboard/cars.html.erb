@@ -1,6 +1,9 @@
 <%= render 'partials/offcanvas' %>
 <div class="container">
-  <h1 class="mb-0 text-center mt-5">Manage Cars</h1>
+  <div class="d-flex justify-content-between align-items-center mt-5">
+    <h1 class="text-center fw-bold">Manage Cars</h1>
+    <%= link_to 'Add Car', new_car_path, class: 'btn btn-dark', data: { controller: 'bs-modal' } %>
+  </div>
   <hr>
   <table class="table mt-5">
   <thead>
@@ -11,6 +14,7 @@
       <th scope="col">Rental Price</th>
       <th scope="col">Available</th>
       <th scope="col">Location</th>
+      <th scope="col">Image</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>

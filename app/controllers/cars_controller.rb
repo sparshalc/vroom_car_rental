@@ -60,10 +60,10 @@ class CarsController < ApplicationController
     end
 
     def verify_corrent_user
-      raise ActionController::RoutingError.new('Not Found') unless current_user.id == @car.user_id || current_user.admin?
+      routing_exception unless current_user.id == @car.user_id || current_user.admin?
     end
 
     def verify_seller_or_admin
-      raise ActionController::RoutingError.new('Not Found') unless current_user.seller_or_admin?
+      routing_exception unless current_user.seller_or_admin?
     end
 end
