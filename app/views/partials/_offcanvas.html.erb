@@ -7,11 +7,11 @@
       <hr>
       <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-          <%= link_to "My Garage", dashboard_cars_path, class: 'btn btn-dark w-100 text-start' %>
+          <%= link_to "My Garage", dashboard_cars_path, class: "#{active_link("dashboard", "btn btn-dark", "btn", active_action="cars")} w-100 text-start" %>
         </li>
         <% if current_user.admin? %>
           <li class="nav-item mt-3">
-            <%= link_to "Users", dashboard_users_path, class: 'btn btn-dark w-100 text-start' %>
+            <%= link_to "Users", dashboard_users_path, class: "#{active_link("dashboard", "btn btn-dark", "btn", active_action="users")} w-100 text-start" %>
           </li>
         <% end %>
       </ul>
