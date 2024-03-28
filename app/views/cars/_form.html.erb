@@ -13,9 +13,19 @@
         </div>
       <% end %>
 
-      <div class="mb-3">
-        <%= form.label :name, class: "form-label", style: "display: block" %>
-        <%= form.text_field :name, class: "form-control" %>
+      <div class="row">
+        <div class="col-lg">
+          <div class="mb-3">
+            <%= form.label :name, class: "form-label", style: "display: block" %>
+            <%= form.text_field :name, class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-lg">
+          <div class="mb-3">
+            <%= form.label :type, class: "form-label", style: "display: block" %>
+            <%= form.select(:car_type, Car.car_types.keys.map { |type| [type.humanize, type] }, {}, { class: 'form-control' }) %>
+          </div>
+        </div>
       </div>
 
       <div class="row">

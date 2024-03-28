@@ -1,11 +1,11 @@
 <tr id="<%= dom_id(car) %>">
   <th scope="row"><%= car.id %></th>
   <td><%= car.name %></td>
-  <td><%= car.model %></td>
   <td>Rs. <%= car.rental_price %></td>
   <td><%= car.is_available? %></td>
   <td><%= car.location  %></td>
   <td><%= car.user.full_name  %></td>
+  <td><%= car.car_type  %></td>
   <td><%= car.policies.count  %></td>
   <td><%= image_tag(car.image, width: '50px')  %></td>
   <td>

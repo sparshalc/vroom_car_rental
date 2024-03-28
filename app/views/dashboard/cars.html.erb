@@ -5,25 +5,27 @@
     <%= link_to 'Add Car', new_car_path, class: 'btn btn-dark', data: { controller: 'bs-modal' } %>
   </div>
   <hr>
-  <table class="table mt-5">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Modal</th>
-      <th scope="col">Rental Price</th>
-      <th scope="col">Available</th>
-      <th scope="col">Location</th>
-      <th scope="col">User</th>
-      <th scope="col">Policies</th>
-      <th scope="col">Image</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody id="cars">
-    <% @cars.each do |car| %>
-      <%= render 'dashboard/car_row', car: car %>
-    <% end %>
-  </tbody>
-</table>
+  <div class="table-responsive mt-5">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Rental Price</th>
+          <th scope="col">Available</th>
+          <th scope="col">Location</th>
+          <th scope="col">User</th>
+          <th scope="col">Type</th>
+          <th scope="col">Policies</th>
+          <th scope="col">Image</th>
+          <th scope="col">Actions/Policy</th>
+        </tr>
+      </thead>
+      <tbody id="cars">
+        <% @cars.each do |car| %>
+          <%= render 'dashboard/car_row', car: car %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
