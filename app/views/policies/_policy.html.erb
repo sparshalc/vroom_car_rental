@@ -1,0 +1,19 @@
+<div id="<%= dom_id(policy, :car) %>">
+  <div class="policy primary text-white p-3 mt-3 rounded">
+    <div class="d-flex justify-content-between align-items center">
+      <div class="text">
+        <h5 class="fw-bold">
+        <%= policy.title %>
+        </h5>
+        <small>Implemented from <b><%= time_ago_in_words(policy.created_at) + ' ago' %></b></small>
+      </div>
+      <% if correct_user_or_admin(@car) %>
+        <div class="actions">
+          <%= button_to car_policy_path(@car, policy), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'You sure?'}, class: 'text-white btn mt-3' do %>
+            <%= inline_svg_tag('svg/trash') %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

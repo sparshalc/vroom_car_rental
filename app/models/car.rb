@@ -2,6 +2,7 @@ class Car < ApplicationRecord
   belongs_to :user
 
   has_many :comments,dependent: :destroy
+  has_many :policies,dependent: :destroy
   has_one_attached :image
 
   def self.ransackable_attributes(auth_object = nil)

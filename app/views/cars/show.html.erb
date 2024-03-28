@@ -50,6 +50,10 @@
           <h6 class="my-0">Insurance</h6>
           <small><%= @car.insurance %></small>
         </li>
+        <li class="list-group-item d-flex justify-content-between bg-light">
+          <h6 class="my-0">Policies</h6>
+          <small><%= link_to 'View Policies', car_policies_path(@car), data: { controller: 'bs-modal'} %></small>
+        </li>
       </ul>
     </div>
     <div class="col-lg-8 rounded col-md-12 mt-3">

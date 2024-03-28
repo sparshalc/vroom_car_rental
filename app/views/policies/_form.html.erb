@@ -1,0 +1,32 @@
+<%= turbo_frame_tag policy do %>
+  <%= form_with(model: [@car, @car.policies.build], url: car_policies_path(@car), local: true) do |form| %>
+    <% if @policy.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(@policy.errors.count, "error") %> prohibited this policy from being saved:</h2>
+
+        <ul>
+          <% @policy.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= form.label :title, style: "display: block" %>
+      <%= form.text_field :title, class: 'form-control', value: params[:title] %>
+    </div>
+
+    <div>
+      <%= form.hidden_field :car_id, value: @car.id %>
+    </div>
+
+    <div>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+    </div>
+
+    <div>
+      <%= form.submit class: 'btn btn-dark w-100 mt-3' %>
+    </div>
+  <% end %>
+<% end %>

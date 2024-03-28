@@ -1,0 +1,9 @@
+<%= turbo_stream.prepend "policies" do%>
+  <%= render 'policies/policy', policy: @policy  %>
+<% end %>
+
+<%= turbo_stream.prepend "cars" do%>
+  <% render 'dashboard/car_row', car: @car %>
+<% end %>
+
+<%= turbo_stream.update Policy.new, '' %>

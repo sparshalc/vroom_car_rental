@@ -10,7 +10,7 @@
     <% if is_correct_user(comment)%>
       <div class="comment-action">
         <%= button_to car_comment_path(@car.id, comment.id), class: 'btn btn-danger btn-sm mx-3 ',method: :delete, data: {'turbo-method': :delete} do %>
-          <i class="bi bi-trash"></i>
+          <%= inline_svg_tag('svg/trash') %>
         <% end %>
       </div>
     <% end %>
