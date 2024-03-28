@@ -1,0 +1,5 @@
+.turbo-progress-bar{
+  height: 5px;
+  background: rgb(13,17,23);
+  background: linear-gradient(90deg, rgba(13,17,23,1) 0%, rgb(55, 60, 66) 100%); 
+}

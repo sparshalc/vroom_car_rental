@@ -26,4 +26,12 @@ module ApplicationHelper
   def correct_user_or_admin(model)
     current_user.id == model.user_id || current_user.admin?
   end
+
+  def active_link(active_controller, active_class, not_active, active_action="index")
+    if params[:controller] == "#{active_controller}" && params[:action] == "#{active_action}"
+      "#{active_class}"
+    else
+      "#{not_active}"
+    end
+  end
 end

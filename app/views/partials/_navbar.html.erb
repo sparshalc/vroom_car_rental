@@ -4,6 +4,10 @@
       <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
         <%= link_to image_tag('VROOM.png', style: 'filter: brightness(100) invert(1);', width: '80', height: 'auto'), root_path %>
       </a>
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mx-3 justify-content-center mb-md-0">
+        <li><%= link_to 'Dashboard', dashboard_path, class: 'nav-link px-3 link-body-emphasis' %></li>
+        <li><%= link_to 'Cars', cars_path, class: "#{active_link("cars", "fw-bold", "")} nav-link px-2 link-body-emphasis" %></li>
+      </ul>
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
       </ul>
