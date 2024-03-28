@@ -10,6 +10,7 @@ class CarsController < ApplicationController
 
   def show
     @comments = @car.comments.all
+    @car.update(views: @car.views + 1)
   end
 
   def new

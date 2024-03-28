@@ -1,11 +1,14 @@
 <div class="container mt-5">
   <div class="row shadow p-5">
     <div class="col-md-7">
-      <h2 class="featurette-heading lh-1 fw-bold"><%= @car.name %></span></h2>
+      <div class="d-flex justify-content-between align-items-center text-center">
+        <h2 class="featurette-heading fw-bold"><%= @car.name %></h2>
+      </div>
       <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
       <h2 class="card-title fw-bolder btn btn-dark btn-lg text-white">Rs. <%= @car.rental_price %><small class="fw-light">/hr</small></h2>
     </div>
     <div class="col-md-5">
+        <p class="text-muted text-end"><%= inline_svg_tag('svg/eye', width: '22px', height: '22px') %><span class="mx-1 mb-2"><%= pluralize(@car.views, 'view') %></span></p>
       <%= image_tag(@car.image, class: "img-fluid mx-auto", width: '1000px', height: 'auto') %>
     </div>
   </div>  
