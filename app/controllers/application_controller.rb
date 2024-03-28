@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
-  rescue_from ActionController::RoutingError, with: :redirect_to_error_page
-
   before_action :authenticate_user!
+
+  rescue_from ActionController::RoutingError, with: :redirect_to_error_page
 
   private
 

@@ -1,0 +1,5 @@
+<%= turbo_stream.remove(dom_id(@policy, :car)) %>
+
+<%= turbo_stream.prepend "cars" do%>
+  <% render 'dashboard/car_row', car: @car %>
+<% end %>

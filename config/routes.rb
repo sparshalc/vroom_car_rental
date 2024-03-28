@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :cars do
     resources :comments
+    resources :policies, except: %i[edit update show]
   end
 
   devise_for :users, controllers: {

@@ -5,17 +5,22 @@
   <td>Rs. <%= car.rental_price %></td>
   <td><%= car.is_available? %></td>
   <td><%= car.location  %></td>
+  <td><%= car.user.full_name  %></td>
+  <td><%= car.policies.count  %></td>
   <td><%= image_tag(car.image, width: '50px')  %></td>
   <td>
     <div class="d-flex gap-2">
       <%= link_to car_path(car), class: 'btn btn-dark' do %>
-        <i class="bi bi-eye-fill"></i>
+        <%= inline_svg_tag('svg/eye') %>
       <% end %>
       <%= link_to edit_car_path(car), class: 'btn btn-dark', data: { controller: 'bs-modal' } do %>
-        <i class="bi bi-pencil-fill"></i>
+        <%= inline_svg_tag('svg/pen') %>
+      <% end %>
+      <%= link_to car_policies_path(car), class: 'btn btn-dark', data: { controller: 'bs-modal'} do %>
+        <i class="bi bi-journal-text"></i>
       <% end %>
       <%= button_to car_path(car), class: 'btn btn-danger', method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
-        <i class="bi bi-trash"></i>
+        <%= inline_svg_tag('svg/trash') %>
       <% end %>
     </div>
   </td>
