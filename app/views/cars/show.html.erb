@@ -1,11 +1,14 @@
 <div class="container mt-5">
   <div class="row shadow p-5">
     <div class="col-md-7">
-      <h2 class="featurette-heading lh-1 fw-bold"><%= @car.name %></span></h2>
+      <div class="d-flex justify-content-between align-items-center text-center">
+        <h2 class="featurette-heading fw-bold"><%= @car.name %></h2>
+      </div>
       <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
       <h2 class="card-title fw-bolder btn btn-dark btn-lg text-white">Rs. <%= @car.rental_price %><small class="fw-light">/hr</small></h2>
     </div>
     <div class="col-md-5">
+        <p class="text-muted text-end"><%= inline_svg_tag('svg/eye', width: '22px', height: '22px') %><span class="mx-1 mb-2"><%= pluralize(@car.views, 'view') %></span></p>
       <%= image_tag(@car.image, class: "img-fluid mx-auto", width: '1000px', height: 'auto') %>
     </div>
   </div>  
@@ -16,17 +19,9 @@
         <span class="text-muted fw-bold">Car Details</span>
       </h4>
       <ul class="list-group mb-3">
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <div>
-            <h6 class="my-0">Brand</h6>
-            <small class="text-muted"><%= @car.brand %></small>
-          </div>
-        </li>
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <div>
-            <h6 class="my-0">Model</h6>
-            <small class="text-muted"><%= @car.model %></small>
-          </div>
+        <li class="list-group-item d-flex justify-content-between bg-light">
+          <h6 class="my-0">Brand</h6>
+          <small><%= @car.brand %></small>
         </li>
         <li class="list-group-item d-flex justify-content-between bg-light">
           <h6 class="my-0">Availabe</h6>
@@ -49,6 +44,10 @@
         <li class="list-group-item d-flex justify-content-between bg-light">
           <h6 class="my-0">Insurance</h6>
           <small><%= @car.insurance %></small>
+        </li>
+        <li class="list-group-item d-flex justify-content-between bg-light">
+          <h6 class="my-0">Type</h6>
+          <small><%= @car.car_type %></small>
         </li>
         <li class="list-group-item d-flex justify-content-between bg-light">
           <h6 class="my-0">Policies</h6>

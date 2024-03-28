@@ -5,6 +5,19 @@ class Car < ApplicationRecord
   has_many :policies,dependent: :destroy
   has_one_attached :image
 
+  enum car_type: {
+    sedan: 0,
+    suv: 1,
+    coupe: 2,
+    convertible: 3,
+    hatchback: 4,
+    station_wagon: 5,
+    minivan: 6,
+    truck: 7,
+    electric_vehicle: 8,
+    hybrid_vehicle: 9
+  }
+
   def self.ransackable_attributes(auth_object = nil)
     ["availability", "brand", "color", "created_at", "id", "id_value", "image", "insurance", "location", "mileage", "model", "name", "rental_price", "updated_at", "user_id"]
   end
