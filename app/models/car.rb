@@ -19,7 +19,7 @@ class Car < ApplicationRecord
   }
 
   def self.ransackable_attributes(auth_object = nil)
-    ["availability", "brand", "color", "created_at", "id", "id_value", "image", "insurance", "location", "mileage", "model", "name", "rental_price", "updated_at", "user_id"]
+    ["availability", "brand", "color", "created_at", "id", "id_value", "image", "insurance", "location", "mileage", "model", "name", "rental_price", "car_type", "updated_at", "user_id"]
   end
 
   def self.ransackable_associations(auth_object = nil)
@@ -30,4 +30,11 @@ class Car < ApplicationRecord
     self.availability ? 'available' : 'not-available'
   end
 
+  def price
+    "Rs. #{self.rental_price.to_i}/day"
+  end
+
+  def mileage_in_km
+    "#{self.mileage} km/hr"
+  end
 end

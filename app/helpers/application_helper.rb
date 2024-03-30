@@ -19,8 +19,8 @@ module ApplicationHelper
     model.user_id == current_user.id
   end
 
-  def class_for_available(car)
-    car.availability ? 'bg-success' : 'bg-danger'
+  def class_for_available(car, base_class="bg")
+    car.availability ? "#{base_class}-success" : "#{base_class}-danger"
   end
 
   def correct_user_or_admin(model)
