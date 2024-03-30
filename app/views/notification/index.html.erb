@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center mt-5">
+    <div class="notification_title">
+      <h3 class="fw-bold">Notifications</h3>
+      <p class="text-muted fw-light ">All your recent notifications will pop here!</p>
+    </div>
+    <div class="notification_icon">
+      <%= inline_svg_tag('svg/bell', width: '30px', height: 'auto') %>
+    </div>
+  </div>
+  <hr class="mb-5">
+  <%= render 'notification/notifications' %>
+    <div class="text-center mt-4">
+      <%= link_to 'Return Home', cars_path, class: 'btn btn-dark' %>
+    </div>
+</div>

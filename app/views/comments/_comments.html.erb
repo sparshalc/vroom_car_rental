@@ -1,8 +1,7 @@
-<div id="comment-form">
-  <%= render 'comments/form' %>
+<%= turbo_frame_tag "comments_#{dom_id(car)}" do %>
+  <div id="comments">
+    <% @car.comments.each do |comment| %>
+      <%= render 'comments/comment', comment: comment %>
+    <% end %>
 </div>
-<div id="comments">
-  <% @comments.each do |comment| %>
-    <%= render 'comments/comment', comment: comment %>
-  <% end %>
-</div>
+<% end %>
