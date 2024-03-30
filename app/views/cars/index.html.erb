@@ -1,17 +1,55 @@
-<div class="container">
-  <%= search_form_for @q, data: { turbo_frame: 'search', turbo_action: 'advance', method: "get" } do |f| %>
-    <div class="d-flex gap-2">
-      <%= f.search_field :name_cont, onkeyup: 'this.form.requestSubmit();', class: 'form-control', placeholder: 'Search by name' %>
-      <%= f.submit class: 'btn btn-dark' %>
-    </div>
-  <% end %>
-  <div class="mt-5">
-    <%= turbo_frame_tag 'search' do %>
-      <div class="d-flex gap-4 justify-content-center align-items-center flex-wrap" data-turbo="false">
-        <% @cars.each do |car| %>
-          <%= render car %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 col-lg-3">
+      <div class="position-sticky mt-4" style="top: 2rem;">
+        <h4>Refine Your Search</h4>
+        <hr>
+        <%= search_form_for @q, data: { turbo_frame: 'search', turbo_action: 'advance'} do |f| %>
+          <div class="d-flex flex-column gap-2">
+            <%= f.label :name %>
+            <%= f.search_field :name_cont, onkeyup: 'this.form.requestSubmit();', class: 'form-control', placeholder: 'Search by car name' %>
+
+            <%= f.label :location %>
+            <%= f.search_field :location_cont, onkeyup: 'this.form.requestSubmit();', class: 'form-control', placeholder: 'Search by car location' %>
+
+            <%= f.label :availability %>
+            <%= f.select :availability_eq, [['Select car availability', '']] + Car.pluck(:availability).uniq, {}, class: 'form-control' %>
+
+            <%= f.label :car_type %>
+            <%= f.select :car_type_eq, [['Select an car type', '']] + Car.pluck(:car_type).uniq, {}, class: 'form-control' %>
+
+            <%= f.label :insurance %>
+            <%= f.select :insurance_eq, [['Select car with insurance', '']] + Car.pluck(:insurance).uniq, {}, class: 'form-control' %>
+
+            <%= f.label :brand %>
+            <%= f.select :brand_eq, [['Select car brands', '']] + Car.pluck(:brand).uniq, {}, class: 'form-control' %>
+
+            <%= f.label :rental_price %>
+            <%= f.search_field :rental_price_eq, class: 'form-control' %>
+
+            <%= f.submit class: 'btn btn-dark mt-2 mb-3' %>
+          </div>
         <% end %>
       </div>
-    <% end %>
+    </div>
+    <div class="col-md-12 col-lg-9">
+      <%= turbo_frame_tag 'search' do %>
+        <% if params[:q].present? %>
+          <div class="d-flex justify-content-between align-items-center mt-4">
+            <div class="search_result">
+              <span class="text-muted"><%= @cars.count %> Search Results found</span>
+            </div>
+            <div class="search_clear">
+              <%= link_to 'Clear Results', cars_path, class: 'btn btn-dark-outline border', data: { turbo_frame: '_top' } %>
+            </div>
+          </div>
+        <% end %>
+        <div class="mt-2" data-turbo="false">
+          <% @cars.each do |car| %>
+            <%= render car %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
