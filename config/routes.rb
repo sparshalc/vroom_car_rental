@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  get 'notifications', to: 'notification#index', as: 'notifications'
+
   resources :cars do
     resources :comments
     resources :policies, except: %i[edit update show]

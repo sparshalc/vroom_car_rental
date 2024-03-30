@@ -1,0 +1,8 @@
+<% if current_user %>
+  <%= turbo_stream_from "notifications_#{user.id}" %>
+  <%= turbo_frame_tag "notifications_#{user.id}" do %>
+    <% @notifications.each do |notification| %>
+      <%= render notification, user: notification.to_notification.creator, car: notification.to_notification.car, unread: notification.unread? %>
+    <% end %>
+  <% end %>
+<% end %>

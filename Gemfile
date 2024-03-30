@@ -82,3 +82,5 @@ gem 'devise_invitable', '~> 2.0.0'
 gem 'inline_svg'
 
 gem "mailcatcher", "~> 0.2.4"
+
+gem "noticed", "~> 1.6"

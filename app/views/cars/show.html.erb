@@ -59,6 +59,7 @@
       <h4 class="d-flex justify-content-between align-items-center mb-3">
         <span class="text-muted fw-bold">Comments</span>
       </h4>
+      <%= turbo_stream_from "comments_#{dom_id(@car)}" %>
       <div id="comment-form">
         <%= render 'comments/form' %>
       </div>

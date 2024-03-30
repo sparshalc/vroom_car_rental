@@ -1,8 +1,9 @@
+<div id="user-id" class="d-none"><%= user_signed_in? ?  current_user.id : '' %></div>
 <header class="p-3 mb-3 border-bottom">
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
       <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-        <%= link_to image_tag('VROOM.png', style: 'filter: brightness(100) invert(1);', width: '80', height: 'auto'), root_path %>
+        <%= link_to image_tag('VROOM.png', style: 'filter: brightness(100) invert(1);', width: '95', height: 'auto'), root_path %>
       </a>
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mx-3 justify-content-center mb-md-0">
         <li><%= link_to 'Dashboard', dashboard_path, class: 'nav-link px-3 link-body-emphasis' %></li>
@@ -11,8 +12,17 @@
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
       </ul>
-
       <% if current_user%>
+        <ul class="nav nav-pills gap-4 mx-4">
+          <li class="nav-item">
+            <%= link_to notifications_path, class: 'position-relative white', data: { controller: 'bs-modal'} do%>
+              <i class="bi h4 text-dark <%= active_link("notification", " bi-bell-fill", " bi-bell", "index") %> "></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="notification_count_<%= current_user.id%>">
+                <%= current_user.notifications.count %>
+              </span>
+            <% end %>
+          </li>
+        </ul>
         <div class="dropdown text-end">
           <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             <%= image_tag(user_avatar(current_user), width: '32', height: '32', class: 'rounded-circle')%>
