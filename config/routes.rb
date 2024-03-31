@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get 'notifications', to: 'notification#index', as: 'notifications'
+  delete 'notifications', to: 'notification#destroy_all'
 
   resources :cars do
     resources :comments

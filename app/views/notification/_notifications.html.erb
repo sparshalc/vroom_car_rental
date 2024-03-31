@@ -1,0 +1,10 @@
+<div class="container">
+  <%= turbo_frame_tag "notifications" do %>
+    <%= render "notifications/notifications", user: current_user %>
+  <% end %>
+  <% if @notifications.present? %>
+    <div class="text-center">
+      <%= button_to 'Clear All Notifications', notifications_path, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete all notifications?' }, class: 'btn btn-danger btn-sm mt-3' %>
+    </div>
+  <% end %>
+</div>

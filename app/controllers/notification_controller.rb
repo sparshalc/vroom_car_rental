@@ -5,4 +5,13 @@ class NotificationController < ApplicationController
       current_user.notifications.mark_as_read!
     end
   end
+
+  def destroy_all
+    Notification.destroy_all
+
+    respond_to do |format|
+      format.turbo_stream { flash.now[:notice] = "Notification cleared!" }
+    end
+  end
+
 end
