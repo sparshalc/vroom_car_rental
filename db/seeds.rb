@@ -1,4 +1,5 @@
 User.delete_all
+Car.delete_all
 
 User.create(
   email: 'user@vroom.com',
@@ -26,3 +27,24 @@ User.create(
   phone_number: '9845454545',
   full_name: 'VROOM ADMIN'
 )
+
+25.times do
+  c = Car.new(
+    brand: Faker::Vehicle.make,
+    name: Faker::Vehicle.model,
+    model: Faker::Vehicle.model,
+    color: Faker::Vehicle.color,
+    mileage: Faker::Vehicle.mileage,
+    availability: Faker::Boolean.boolean,
+    location: Faker::Address.city,
+    rental_price: Faker::Number.between(from: 50, to: 500),
+    insurance: Faker::Boolean.boolean,
+    car_type: Car.car_types.keys.sample,
+    user_id: User.last.id
+  )
+
+  image_file = UnsplashImage.tempfile(size: '500x500', tags: 'car')
+  c.image.attach(io: image_file, filename: 'image.jpg', content_type: 'image/jpeg')
+
+  c.save
+end

@@ -3,6 +3,8 @@ class Car < ApplicationRecord
 
   has_many :comments,dependent: :destroy
   has_many :policies,dependent: :destroy
+  has_many :bookings, dependent: :destroy
+
   has_one_attached :image
 
   enum car_type: {
@@ -27,7 +29,13 @@ class Car < ApplicationRecord
   end
 
   def is_available?
+    return 'booked' if self.booked?
+
     self.availability ? 'available' : 'not-available'
+  end
+
+  def booked?
+    bookings.where(status: 'accepted').present?
   end
 
   def price

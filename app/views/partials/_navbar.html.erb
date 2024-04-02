@@ -7,8 +7,10 @@
       </a>
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mx-3 justify-content-center mb-md-0">
         <li><%= link_to 'Home', root_path, class: "#{active_link("pages", "fw-bold", " ", "home")} nav-link px-3 link-body-emphasis" %></li>
-        <li><%= link_to 'Dashboard', dashboard_path, class: 'nav-link px-3 link-body-emphasis' %></li>
         <li><%= link_to 'Cars', cars_path, class: "#{active_link("cars", "fw-bold", "")} nav-link px-2 link-body-emphasis" %></li>
+        <% if current_user && current_user.seller_or_admin?%>
+          <li><%= link_to 'Dashboard', dashboard_path, class: 'nav-link px-3 link-body-emphasis' %></li>
+        <% end %>
       </ul>
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">

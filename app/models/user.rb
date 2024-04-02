@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :policies, dependent: :destroy
   has_many :messages, dependent: :destroy
+  has_many :bookings, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :rooms, dependent: :destroy
   has_many :cars, dependent: :destroy

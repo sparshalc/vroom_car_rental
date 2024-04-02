@@ -1,12 +1,20 @@
 class PoliciesController < ApplicationController
-
   before_action :set_car
   before_action :set_policy, only: %i[destroy]
   before_action :verify_corrent_user_or_admin,only: %i[new create]
 
   def index
     @policies = Policy.all
+
+    respond_to do |format|
+      if request.headers['Accept']&.include?('text/vnd.turbo-stream.html')
+        format.turbo_stream
+      else
+        routing_exception
+      end
+    end
   end
+
 
   def new
     @policy = Policy.new

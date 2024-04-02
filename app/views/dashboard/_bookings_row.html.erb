@@ -1,0 +1,17 @@
+<tr id="<%= dom_id(booking) %>">
+  <th scope="row"><%= booking.id %></th>
+  <td><%= booking.start_date %></td>
+  <td><%= booking.end_date %></td>
+  <td><%= booking.duration_in_days %></td>
+  <td><%= image_tag(booking.car.image, width: '40px', class: 'rounded-circle') %> <%= booking.car.name %></td>
+  <td><%= booking.user.email %></td>
+  <td><%= booking.car.user.email %></td>
+  <td>
+    <%= form_with(model: booking, url: car_booking_path(booking.car.id, booking), method: :patch, remote: true) do |form| %>
+      <div class=" gap-1 d-flex">
+        <%= form.select :status, Booking.statuses.keys, {}, class: "form-control #{status_background(booking)}" %>
+        <%= form.submit 'Update', class: 'btn btn-dark btn-sm' %>
+      </div>
+    <% end %>
+  </td>
+</tr>

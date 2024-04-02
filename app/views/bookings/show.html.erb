@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @booking %>
+
+<div>
+  <%= link_to "Edit this booking", edit_car_booking_path(@booking) %> |
+  <%= link_to "Back to bookings", car_bookings_path %>
+
+  <%= button_to "Destroy this booking", car_booking_path, method: :delete %>
+</div>

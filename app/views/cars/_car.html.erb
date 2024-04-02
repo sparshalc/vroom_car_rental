@@ -1,10 +1,10 @@
-<div class="row p-4 g-0 border rounded overflow-hidden justify-content-between align-items-center flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+<div class="row p-4 g-0 border rounded overflow-hidden justify-content-between align-items-center flex-md-row mb-4 shadow-sm h-md-250 position-relative <%= car.booked? ? 'bg-danger-subtle' : '' %>">
   <div class="col d-flex gap-5 position-static">
     <div class="car_basics_details d-flex justify-content-center align-items-center">
       <%= link_to image_tag(car.image, width: "200", height: "auto"), car_path(car), class: 'text-decoration-none text-dark' %>
     </div>
     <div class="car_details d-none d-sm-block">
-      <span class="badge text-<%= class_for_available(car, 'bg') %>"><%= car.is_available? %></span>
+      <span class="badge text-<%= car.booked? ? 'bg-danger' : class_for_available(car, 'bg') %>"><%= car.is_available? %></span>
       <h3 class="mb-2 mt-2 display-6"><%= link_to car.name, car_path(car), class: 'text-decoration-none text-dark' %></h3>
       <p class="mb-2 text-muted"><i class="bi bi-speedometer2"></i> <%= car.mileage_in_km %></p>
       <p class="mb-2 text-muted"><i class="bi bi-ev-front"></i> <%= car.car_type %></p>
@@ -12,8 +12,10 @@
     </div>
   </div>
   <div class="col-auto">
-    <h3 class="fw-bold"><%= car.price %></h3>
-    <button class="w-100 btn btn-dark mt-4">Book Now</button>
-    <small class="text-muted">*T & C applied</small>
+    <% unless car.booked? || !car.availability?  %>
+      <h3 class="fw-bold"><%= car.price %></h3>
+      <%= link_to 'Book Now', new_car_booking_path(car),class: 'w-100 btn btn-dark mt-4', data: { turbo_frame: '_top', controller: 'bs-modal' } %>
+      <small class="text-muted">*T & C applied</small>
+    <% end %>
   </div>
 </div>
