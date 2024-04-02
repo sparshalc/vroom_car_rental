@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :find_car, only: %i[new create destroy]
+  before_action :set_car, only: %i[new create destroy]
 
   def new
     @comment = @car.comments.new
@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
 
   private
 
-  def find_car
+  def set_car
     @car = Car.find(params[:car_id])
   end
 

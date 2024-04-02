@@ -14,6 +14,11 @@
             <%= link_to "Users", dashboard_users_path, class: "#{active_link("dashboard", "btn btn-dark", "btn", active_action="users")} w-100 text-start" %>
           </li>
         <% end %>
+        <% if current_user.seller_or_admin? %>
+          <li class="nav-item mt-3">
+            <%= link_to "Bookings", dashboard_bookings_path, class: "#{active_link("dashboard", "btn btn-dark", "btn", active_action="bookings")} w-100 text-start" %>
+          </li>
+        <% end %>
       </ul>
       <hr>
       <div class="dropdown">

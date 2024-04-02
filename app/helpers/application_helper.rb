@@ -34,4 +34,10 @@ module ApplicationHelper
       "#{not_active}"
     end
   end
+
+  def status_background(status)
+    return '' if status.pending?
+
+    status.accepted? ? 'bg-success text-white' : 'bg-danger text-white'
+  end
 end

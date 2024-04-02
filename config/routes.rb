@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-
   get 'notifications', to: 'notification#index', as: 'notifications'
   delete 'notifications', to: 'notification#destroy_all'
 
   resources :cars do
+    resources :bookings
     resources :comments
     resources :policies, except: %i[edit update show]
   end
@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#index'
   get 'dashboard/cars', to: 'dashboard#cars'
   get 'dashboard/users', to: 'dashboard#users'
+  get 'dashboard/bookings', to: 'dashboard#bookings'
 
   get "up" => "rails/health#show", as: :rails_health_check
 

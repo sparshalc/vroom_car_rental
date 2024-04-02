@@ -84,3 +84,7 @@ gem 'inline_svg'
 gem "mailcatcher", "~> 0.2.4"
 
 gem "noticed", "~> 1.6"
+
+gem "faker", "~> 3.3"
+
+gem "unsplash_image"

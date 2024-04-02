@@ -1,0 +1,46 @@
+<%= form_with(model: current_user.bookings.build, url: car_bookings_path(@car)) do |form| %>
+  <% if @booking.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+
+      <ul>
+        <% @booking.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mt-2">
+    <%= form.label :start_date, style: "display: block" %>
+    <%= form.datetime_field :start_date, class: 'form-control' %>
+  </div>
+
+  <div class="mt-2">
+    <%= form.label :end_date, style: "display: block" %>
+    <%= form.datetime_field :end_date, class: 'form-control' %>
+  </div>
+
+  <div class="mt-2">
+    <%= form.label :pickup_location, style: "display: block" %>
+    <%= form.text_field :pickup_location, class: 'form-control' %>
+  </div>
+
+  <div class="mt-2">
+    <%= form.label :drop_location, style: "display: block" %>
+    <%= form.text_field :drop_location, class: 'form-control' %>
+  </div>
+
+  <div class="mt-2">
+    <%= form.label :comment, style: "display: block" %>
+    <%= form.text_area :comment, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.hidden_field :car_id, value: params[:car_id] %>
+  </div>
+
+  <div>
+    <%= form.submit class: 'btn btn-dark w-100 mt-2' %>
+  </div>
+<% end %>

@@ -5,7 +5,7 @@ class CarsController < ApplicationController
 
   def index
     @q = Car.ransack(params[:q])
-    @cars = @q.result(distinct: true)
+    @cars = @q.result(distinct: true).order('Created_at DESC')
   end
 
   def show
@@ -14,10 +14,18 @@ class CarsController < ApplicationController
   end
 
   def new
-    @car = Car.new
+    if format_turbo_stream
+      @car = Car.new
+    else
+      routing_exception
+    end
   end
 
   def edit
+    if format_turbo_stream
+    else
+      routing_exception
+    end
   end
 
   def create
@@ -66,5 +74,9 @@ class CarsController < ApplicationController
 
     def verify_seller_or_admin
       routing_exception unless current_user.seller_or_admin?
+    end
+
+    def format_turbo_stream
+      request.headers['Accept']&.include?('text/vnd.turbo-stream.html')
     end
 end
