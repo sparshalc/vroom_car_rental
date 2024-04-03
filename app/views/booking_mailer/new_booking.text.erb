@@ -1,0 +1,15 @@
+New Car Booking Notification
+
+Hello <%= @user.email %>,
+
+A new booking has been made for one of your cars.
+
+Booking Details:
+- User: <%= @booking.user.email %>
+- Car: <%= @booking.car.name %>
+- Status: <%= @booking.status %>
+- Duration: <%= @booking.duration_in_days %>
+- Start Date: <%= @booking.start_date %>
+- End Date: <%= @booking.end_date %>
+
+Please coordinate with the user regarding this booking.
