@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   delete 'notifications', to: 'notification#destroy_all'
 
   resources :cars do
-    resources :bookings
+    resources :bookings, except: %i[index]
     resources :comments
     resources :policies, except: %i[edit update show]
   end
@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     passwords: 'users/passwords',
     invitations: 'users/invitations'
   }
+
+  get 'bookings', to: 'user#bookings'
 
   resources :rooms do
     resources :messages

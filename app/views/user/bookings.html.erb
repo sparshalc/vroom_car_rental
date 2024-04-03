@@ -3,7 +3,6 @@
   <div class="row justify-content-center">
     <div class="col text-center ">
       <h1 class="fw-bold mt-5">Manage Bookings</h1>
-      <small class="text-muted">*bookings for car that already exists gets rejected.</small>
     </div>
   </div>
   <hr>
@@ -18,14 +17,14 @@
               <th scope="col">End Date</th>
               <th scope="col">Duration</th>
               <th scope="col">Car Details</th>
-              <th scope="col">Requested User</th>
               <th scope="col">Requested To</th>
               <th scope="col">Status</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody id="bookings">
             <% @bookings.each do |booking| %>
-              <%= render 'bookings_row', booking: booking %>
+              <%= render 'user/bookings', booking: booking %>
             <% end %>
           </tbody>
         </table>

@@ -1,10 +1,8 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: %i[ show edit update destroy ]
   before_action :set_car, only: %i[ new index ]
-
-  def index
-    @bookings = Booking.all
-  end
+  before_action :check_user_bookings, only: %i[ create ]
+  before_action :verify_corrent_user, only: %i[ show edit update destroy ]
 
   def show
   end
@@ -42,21 +40,32 @@ class BookingsController < ApplicationController
     @booking.destroy!
 
     respond_to do |format|
-      format.html { redirect_to car_bookings_path, notice: "Booking was successfully destroyed." }
+      format.turbo_stream { flash.now[:notice] = "Booking Removed!" }
     end
   end
 
   private
 
-    def set_car
-      @car = Car.find(params[:car_id])
+  def check_user_bookings
+    car_id = params[:booking][:car_id]
+    if current_user.bookings.exists?(car_id: car_id)
+      redirect_to cars_path, notice: "You've already requested to book this car."
     end
+  end
 
-    def set_booking
-      @booking = Booking.find(params[:id])
-    end
+  def verify_corrent_user
+    routing_exception unless current_user.id == @booking.user.id || current_user.admin?
+  end
 
-    def booking_params
-      params.require(:booking).permit(:start_date, :end_date, :pickup_location, :drop_location, :status, :comment, :duration, :car_id)
-    end
+  def set_car
+    @car = Car.find(params[:car_id])
+  end
+
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
+
+  def booking_params
+    params.require(:booking).permit(:start_date, :end_date, :pickup_location, :drop_location, :status, :comment, :car_id)
+  end
 end

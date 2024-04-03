@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>New Car Booking Notification</title>
+</head>
+<body>
+  <h2>New Car Booking Notification</h2>
+  <p>Hello <%= @user.email %>,</p>
+  <p>A new booking has been made for one of your cars.</p>
+  <p><strong>Booking Details:</strong></p>
+  <ul>
+    <li><strong>User:</strong> <%= @booking.user.email %></li>
+    <li><strong>Car:</strong> <%= @booking.car.name %></li>
+    <li><strong>Status:</strong> <%= @booking.status %></li>
+    <li><strong>Duration:</strong> <%= @booking.duration_in_days %></li>
+    <li><strong>Start Date:</strong> <%= @booking.start_date %></li>
+    <li><strong>End Date:</strong> <%= @booking.end_date %></li>
+  </ul>
+  
+  <p><a href="http://localhost:3000/dashboard/bookings/">Click here</a> to view and update the booking status</p>
+</body>
+</html>
