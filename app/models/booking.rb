@@ -11,6 +11,7 @@ class Booking < ApplicationRecord
   before_validation :calculate_duration, on: :create
   after_create_commit :send_booking_mail
   after_update_commit :update_availability, :check_booking_status, :send_booking_status_mail
+  after_destroy_commit :update_availability
 
   def send_booking_mail
     users_to_notify = [car.user]
@@ -37,6 +38,7 @@ class Booking < ApplicationRecord
   end
 
   def update_availability
+    return car.update(availability: true) unless self.persisted?
     car.update(availability: !accepted?)
   end
 

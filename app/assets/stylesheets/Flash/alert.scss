@@ -17,12 +17,10 @@
   color: white;
   padding: 10px 50px;
   animation: appear-then-fade 4s both;
-/* From https://css.glass */
-background: linear-gradient(rgba(82, 41, 144, 0.572), #270d4e);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(10.7px);
--webkit-backdrop-filter: blur(10.7px);
+  background: linear-gradient(rgba(82, 41, 144, 0.572), #270d4e);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10.7px);
 }
 
 @keyframes appear-then-fade {

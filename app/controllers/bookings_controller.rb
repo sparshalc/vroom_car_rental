@@ -54,7 +54,7 @@ class BookingsController < ApplicationController
   end
 
   def verify_corrent_user
-    routing_exception unless current_user.id == @booking.user.id || current_user.admin?
+    routing_exception unless current_user.id == @booking.car.user.id || current_user.admin?
   end
 
   def set_car
