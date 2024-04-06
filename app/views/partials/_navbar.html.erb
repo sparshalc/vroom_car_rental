@@ -1,46 +1,54 @@
-<div id="user-id" class="d-none"><%= user_signed_in? ?  current_user.id : '' %></div>
-<header class="p-3 mb-3 border-bottom">
-  <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-        <%= link_to image_tag('VROOM.png', style: 'filter: brightness(100) invert(1);', width: '95', height: 'auto'), root_path %>
-      </a>
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mx-3 justify-content-center mb-md-0">
-        <li><%= link_to 'Home', root_path, class: "#{active_link("pages", "fw-bold", " ", "home")} nav-link px-3 link-body-emphasis" %></li>
-        <li><%= link_to 'Cars', cars_path, class: "#{active_link("cars", "fw-bold", "")} nav-link px-2 link-body-emphasis" %></li>
+<nav class="navbar navbar-expand-lg glassmorphism fixed-top mb-5">
+  <div class="container p-2">
+    <%= link_to image_tag('vroom/logo', width: '150px', class: 'navbar-brand'), root_path %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse text-end" id="navbarSupportedContent"> 
+      <ul class="navbar-nav mb-lg-0 gap-2 ms-auto"> 
+        <li class="nav-item">
+          <%= link_to root_path, class: "nav-link d-flex justify-content-center align-items-center gap-2 #{ active_link("pages", "fw-bold", "", "home") }" do %>
+            <i class="bi <%= active_link("pages", "bi-houses-fill", " bi-houses", "home")%> fs-5"></i> Home
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to cars_path, class: "nav-link d-flex justify-content-center align-items-center gap-2 #{ active_link("cars", "fw-bold", "", "index") }" do %>
+            <i class="bi <%= active_link("cars", "bi-truck-front-fill", "bi-truck-front", "index")%> fs-5"></i> Cars
+          <% end %>
+        </li>
         <% if current_user && current_user.seller_or_admin?%>
-          <li><%= link_to 'Dashboard', dashboard_path, class: 'nav-link px-3 link-body-emphasis' %></li>
-        <% end %>
-      </ul>
-
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-      </ul>
-      
-      <% if current_user%>
-        <ul class="nav nav-pills gap-4 mx-4">
           <li class="nav-item">
-            <%= link_to notifications_path, class: 'position-relative white', data: { controller: 'bs-modal'} do%>
-              <i class="bi h4 text-dark <%= active_link("notification", " bi-bell-fill", " bi-bell", "index") %> "></i>
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="notification_count_<%= current_user.id%>">
-                <%= current_user.notifications.count %>
-              </span>
+            <%= link_to dashboard_path, class: 'nav-link d-flex justify-content-center align-items-center gap-2' do %>
+              <i class="bi bi-gear fs-5"></i> Dashboard
             <% end %>
           </li>
-        </ul>
-        <div class="dropdown text-end">
-          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <%= image_tag(user_avatar(current_user), width: '32', height: '32', class: 'rounded-circle')%>
-          </a>
-          <ul class="dropdown-menu text-small">
-            <li><%= link_to 'Edit Profile', edit_user_registration_path, class: 'dropdown-item' %></li>
-            <li><hr class="dropdown-divider"></li>
-            <%= button_to 'Logout', destroy_user_session_path, class: 'text-danger dropdown-item', method: :delete, data: { turbo_method: :delete, turbo_confirm: 'You sure?' } %>
-          </ul>
-        </div>
-      <% else %>
-        <%= link_to 'Login', new_user_session_path, class: 'btn btn-dark' %>
-        <%= link_to 'Signup', new_user_registration_path, class: 'btn btn-dark mx-2'%>
-      <% end %>
+          <li class="nav-item">
+            <%= link_to notifications_path, data: { controller: 'bs-modal'} , class: "nav-link d-flex justify-content-center align-items-center gap-2 " do %>
+              <i class="<%= active_link("notification", " bi-bell-fill", " bi-bell", "index")%> fs-5"></i> Notifications
+            <% end %>
+          </li>
+        <% end %>
+        <% if current_user %>
+        <li class="nav-item d-flex justify-content-center align-items-center">
+          <div class="dropdown">
+            <a href="#" class="nav-link d-block link-body-emphasis text-decoration-none dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= image_tag(user_avatar(current_user), width: '32', height: '32', class: 'rounded-circle')%>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end text-small" aria-labelledby="navbarDropdown">
+              <li><%= link_to 'Edit Profile', edit_user_registration_path, class: 'dropdown-item text-muted' %></li>
+              <li><hr class="dropdown-divider"></li>
+              <%= button_to 'Logout', destroy_user_session_path, class: 'text-danger dropdown-item text-danger', method: :delete, data: { turbo_method: :delete, turbo_confirm: 'You sure?' } %>
+            </ul>
+          </div>
+        </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to root_path, class: 'nav-link btn btn-success text-white' do %>
+              <i class="bi bi-rocket-takeoff"></i> Get Started
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
     </div>
   </div>
-</header>
+</nav>

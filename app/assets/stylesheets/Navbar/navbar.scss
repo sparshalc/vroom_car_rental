@@ -1,0 +1,19 @@
+.nav-item {
+  a {
+    color: #475569;
+    font-size: 17px;
+    &:hover {
+      color: #0B2D88;
+    }
+  }
+}
+.navbar_margin{
+  margin-top: 75px;
+}
+.dropdown-menu{
+  background: rgba(255, 255, 255, 0.523);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
