@@ -1,191 +1,213 @@
-<% content_for(:title, 'VROOM') %>
+<% content_for(:title, 'Drive your adventure - VROOM') %>
 
-<section class="shadow-sm">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-6 d-flex align-items-center justify-content-center flex-column text-center">
-        <h1 class="fw-bold display-2">Drive Your <b style="color: #6426CE;">Dreams</b> <br> with VROOM</h1>
-        <p class="mt-1 text-muted">Experience the Thrill of the Open Road with DriveLux. <br>Choose from our premium selection of luxury vehicles and explore <br> the world in style. Book Now and Discover the Ultimate Driving Experience.</p>
-        <div class="d-flex gap-2">
+<div class="bg-primary">
+  <div class="container col-xxl-12 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+
+      <div class="col-10 col-sm-8 col-lg-6">
+        <%= image_tag('cars/car9', class: 'd-block mx-lg-auto img-fluid', width: '800px', height: 'auto')%>
+      </div>
+
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold lh-2 text-white">Driving Dreams, One Rental at a Time</h1>
+        <p class="lead text-white">From bustling city streets to remote countryside escapes, our seamless platform connects you to the perfect ride for every adventure. </p>
+        <hr class="text-white">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
           <% if current_user %>
-            <button class="btn btn-dark mt-4">Browse Cars</button>
-            <button class="btn btn-dark mt-4">More</button>
+            <%= link_to new_user_session_path, class: 'btn btn-primary text-primary fs-5 btn-lg w-100 px-4 me-md-2 btn btn-light p-2 fw-bold' do %>
+              <i class="bi bi-rocket-takeoff fa-beat-fade"></i> Get Started</button>
+            <% end %>
+          <% else %>
+            <%= link_to new_user_session_path, class: 'btn btn-primary text-primary fs-5 btn-lg w-100 px-4 me-md-2 btn btn-light p-2 fw-bold' do %>
+              <i class="bi bi-box-arrow-in-right fa-beat-fade"></i> Start Booking</button>
+            <% end %>
           <% end %>
         </div>
       </div>
-      <div class="col-lg-6 d-flex align-items-center justify-content-center mt-4">
-        <%= image_tag('cars/purple.png', class: 'img-fluid') %>
-      </div>
+
     </div>
   </div>
-</section>
+</div>
 
-<section class="ftco-section ftco-no-pt ftco-no-pb">
-  <div class="logos container-fluid">
-    <% 2.times do %>
-      <div class="logos-slide">
-        <%= image_tag('logos/audi.png')%>
-        <%= image_tag('logos/ford.png')%>
-        <%= image_tag('logos/honda.png')%>
-        <%= image_tag('logos/hyundai.png')%>
-        <%= image_tag('logos/jeep.png')%>
-        <%= image_tag('logos/kia.png')%>
-        <%= image_tag('logos/maserati.png')%>
-        <%= image_tag('logos/porsche.png')%>
-        <%= image_tag('logos/subaru.png')%>
+<div class="container px-4 py-3 mt-4" id="featured-3">
+  <h1 class="pb-2 border-bottom main_header">Service Highlights</h1>
+  <div class="row mt-3 row-cols-1 row-cols-lg-3 g-3">
+
+    <div class="col">
+      <div class="feature col text-center card p-3">
+        <div class="feature-icon d-flex p-2 rounded align-items-center justify-content-center bg-primary fs-2 mb-3">
+          <i class="bi bi-car-front text-white" style="font-size: 6rem;"></i>
+        </div>
+        <h4 class="p-2 fs-5 fw-bold rounded bg-primary text-white">Vehicle Selection</h4>
+        <p>Allow users to browse and select from a variety of vehicles including cars, SUVs, vans, trucks, and luxury vehicles</p>
       </div>
-    <% end %>
+    </div>
+
+    <div class="col">
+      <div class="feature col text-center card p-3">
+        <div class="feature-icon d-flex p-2 rounded align-items-center justify-content-center bg-orange fs-2 mb-3">
+          <i class="bi bi-fingerprint text-white" style="font-size: 6rem;"></i>
+        </div>
+        <h4 class="p-2 fs-5 fw-bold rounded bg-orange text-white">Safety and Security</h4>
+        <p>Prioritize safety with features such as vehicle inspection reports, emergency & contact information.</p>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="feature col text-center card p-3">
+        <div class="feature-icon d-flex p-2 rounded align-items-center justify-content-center bg-success fs-2 mb-3">
+          <i class="bi bi-person-circle text-white" style="font-size: 6rem;"></i>
+        </div>
+        <h4 class="p-2 fs-5 fw-bold rounded bg-success text-white">Account Management</h4>
+        <p> Easily manage your account details, update personal information, and track loyalty rewards or membership benefits for frequent users</p>
+      </div>
+    </div>
+
   </div>
-</section>
+</div>
 
-<section class="p-4">
-  <div class="mt-5">
-    <div class="row primary">
-      <div class="col-lg-8 col-12 col-sm-12 col-md-12 p-5">
-        <h1 class="text-white">Renting a car is now <br> at your <span class="fw-bold">fingertips.</span></h1>
-        <form action="" class="mt-5">
-          <div class="row">
-            <div class="col-lg-6">
-              <input type="text" class="form-control mt-3" placeholder="Enter your name">
-            </div>
-            <div class="col-lg-6">
-              <input type="text" class="form-control mt-3" placeholder="Enter your email">
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col-lg-6">
-              <input type="datetime-local" class="form-control mt-3">
-            </div>
-            <div class="col-lg-6">
-              <input type="datetime-local" class="form-control mt-3">
-            </div>
-          </div>
-          <br>
-          <button class="btn btn-dark w-100 mt-3">Search</button>
-        </form>
-      </div>
-      <div class="col-lg-4 col-12 col-sm-12 col-md-12 mt-5 d-flex justify-content-center align-items-center">
-        <%= image_tag('cars/car3.png', class: 'img-fluid mt-5') %>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="mt-5 shadow-sm p-3">
-  <h1 class="display-4 text-center fw-bold">From Supercar to Royale Ride</h1>
-  <h3 class="fw-normal text-muted mb-3 text-center">We've Got You Covered.<div></div></h3>
-  <div class="d-md-flex flex-md-equal justify-content-center w-100 my-md-3 ps-md-3 mb-4">
-    <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-      <div class="my-3 p-3">
-        <h2 class="display-5">BMW</h2>
-        <p class="lead">Bayerische Motoren Werke Aktiengesellschaft.</p>
-      </div>
-      <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 250px; border-radius: 21px 21px 0 0;">
-        <%= image_tag('cars/bmw.png', width: '300px') %>
-      </div>
-    </div>
-  
-    <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-      <div class="my-3 p-3">
-        <h2 class="display-5">BMW</h2>
-        <p class="lead">Bayerische Motoren Werke Aktiengesellschaft.</p>
-      </div>
-      <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 250px; border-radius: 21px 21px 0 0;">
-        <%= image_tag('cars/car3.png', width: '300px') %>
-      </div>
-    </div>
-  
-    <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-      <div class="my-3 p-3">
-        <h2 class="display-5">BMW</h2>
-        <p class="lead">Bayerische Motoren Werke Aktiengesellschaft.</p>
-      </div>
-      <div class="bg-body shadow-sm mx-auto" style="width: 80%; height: 250px; border-radius: 21px 21px 0 0;">
-        <%= image_tag('cars/rr.png', width: '300px') %>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
-      <div class="col-md-6 p-lg-5 mx-auto my-5">
-        <h1 class="display-3 fw-bold">Rent Smarter, Live Better.</h1>
-        <h3 class="fw-normal text-muted mb-3">From Search to Settle-In, We've Got You Covered.</h3>
-        <div class="d-flex gap-3 justify-content-center lead fw-normal">
-          <a class="icon-link" href="#">
-            Learn more
-            <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
-          </a>
-          <a class="icon-link" href="#">
-            Buy
-            <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
-          </a>
+<div class="bg-primary">
+  <div class="container my-5 rounded">
+    <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3">
+      <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+        <h1 class="display-4 fw-bold lh-2 text-white">Renting a car now at your fingerprint.</h1>
+        <p class="lead text-white mt-2 mb-2">Unlock the freedom of mobility with VROOM, where renting a car is as effortless as a touch of your fingerprint. Seamlessly navigate your journey with our user-friendly app, putting the power to explore in the palm of your hand.</p>
+        <div class="mb-4 mb-lg-3">
+          <%= link_to cars_path, class: 'btn btn-primary text-primary fs-5 btn-lg w-100 px-4 me-md-2 btn btn-light p-2 fw-bold' do %>
+            <i class="bi bi-truck fa-beat-fade"></i> Discover
+          <% end %>
         </div>
       </div>
-      <div class="product-device shadow-sm d-none d-md-block"></div>
-    <div class="product-device product-device-2 shadow-sm d-none d-md-block">
-      <%= image_tag('cars/royalcar.png', width: '800px')%>
-    </div>
-  </div>
-</section>
-
-<section class="mt-5">
-  <div class="container-fluid flex-column d-flex justify-content-center align-items-center"
-        style="background-image: url(<%= asset_path 'car.jpg' %>); 
-        background-size: cover;
-        object-fit: cover; 
-        height: 50vh;
-        ">
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <h1 class="mb-0 fw-bold text-white">TAKE IT FOR A SPIN?</h1>
-        <p class="text-white fw-light fs-3 mt-3"> OFFERING QUICK AND EFFICIENT SERVICE TO KEEP YOU ON THE ROAD</p>
-      </div>
-    </div>
-    <div class="row mt-4">
-      <div class="col-md-12 d-flex align-items-center justify-content-center">
-        <div class="telephone_logo">
-          <i class="bi bi-telephone-outbound-fill display-1" style="color: #6426CE;"></i>
-        </div>
-        <div class="telephone_text mx-3">
-          <h1 class="fw-bold text-white display-4">+977-985050505050</h1>
-        </div>
+      <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden d-flex justify-content-center align-items-center">
+          <%= image_tag('cars/frame', class: 'rounded-lg-3 img-fluid', width: '300px') %>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<section style="height: 100px;">
-</section>
-
-<section>
-  <div class="px-4 py-5 my-5 text-center">
-      <%= image_tag('cars/frame.png',class: "d-block mx-auto mb-4", width: "300", height: "auto") %>
-      <h1 class="display-5 fw-bold text-body-emphasis">Book rides with single click!</h1>
-      <div class="col-lg-6 mx-auto">
-        <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
-      </div>
-  </div>
-</section>
-
-<section style="height: auto; margin-top: 100px;"">
-  <div class="container-fluid">
-    <div class="d-flex justify-content-center align-items-center">
+<div class="container px-3 py-3">
+  <section class="ftco-section ftco-no-pt ftco-no-pb">
+    <h1 class="pb-2 border-bottom main_header container">Associated Brands</h1>
+    <div class="logos container-fluid mt-3">
       <% 2.times do %>
-        <div class="logos">
-          <div class="logos-slide d-flex">
-            <h1 class="fw-bold" style="font-size: 15vw;">VROOM</h1>
-            <h1 class="fw-bold" style="font-size: 15vw;">VROOM</h1>
-            <h1 class="fw-bold" style="font-size: 15vw;">VROOM</h1>
-            <h1 class="fw-bold" style="font-size: 15vw;">VROOM</h1>
-            <h1 class="fw-bold" style="font-size: 15vw;">VROOM</h1>
-            <h1 class="fw-bold" style="font-size: 15vw;">VROOM</h1>
-            <h1 class="fw-bold" style="font-size: 15vw;">VROOM</h1>
-          </div>
+        <div class="logos-slide">
+          <%= image_tag('logos/audi.png')%>
+          <%= image_tag('logos/ford.png')%>
+          <%= image_tag('logos/honda.png')%>
+          <%= image_tag('logos/hyundai.png')%>
+          <%= image_tag('logos/jeep.png')%>
+          <%= image_tag('logos/kia.png')%>
+          <%= image_tag('logos/maserati.png')%>
+          <%= image_tag('logos/porsche.png')%>
+          <%= image_tag('logos/subaru.png')%>
         </div>
       <% end %>
-      <%= image_tag('cars/jeep.png', class: 'position-absolute img-fluid w-50')%>
+    </div>
+  </section>
+</div>
+
+<div class="bg-primary">
+  <div class="container my-5 rounded">
+    <div class="row p-4 pb-0 pe-lg-0 pt-lg-2 align-items-center rounded-3">
+      <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+        <h1 class="display-4 fw-bold lh-2 text-white"><%= Car.count %>+ Cars</h1>
+        <p class="lead text-white mt-2 mb-2">Welcome to Vroom, where automotive excellence meets customer satisfaction. As a premier online car retailer, we are dedicated to transforming the car-buying experience. Our journey began with a vision to simplify and enhance the process of purchasing a vehicle....</p>
+        <div class="mb-4 mb-lg-3">
+          <%= link_to cars_path, class: 'btn btn-primary text-primary fs-5 btn-lg w-100 px-4 me-md-2 btn btn-light p-2 fw-bold' do %>
+            <i class="bi bi-eye fa-beat-fade"></i> View all
+          <% end %>
+        </div>
+      </div>
+      <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden d-flex justify-content-center align-items-center p-4">
+        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000">
+          <div class="carousel-inner">
+            <% @car.each_with_index do |car, index| %>
+              <div class="carousel-item <%= index.zero? ? 'active' : '' %>">
+                <%= image_tag(car.image, class: "d-block w-100") %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</section>
+</div>
+
+<div class="container mt-3 mt-4">
+  <h1 class="pb-2 main_header border-bottom mb-3">Frequently Asked Questions</h1>
+  <div class="accordion" id="accordionPanelsStayOpenExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+          How do I book a car with Vroom?
+        </button>
+      </h2>
+      <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+        <div class="accordion-body">
+          <strong>To book a car with Vroom, follow these simple steps:</strong> Visit our website or mobile app, select your desired location and rental dates, choose the car that suits your needs, and proceed with the booking by entering your details. It's quick and easy!
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+          Can I modify or cancel my booking?
+        </button>
+      </h2>
+      <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+        <div class="accordion-body">
+          <strong>Yes, you can modify or cancel your booking:</strong> Log in to your Vroom account, go to your bookings, and follow the instructions to make changes or cancel your reservation. Please review our cancellation policy for more details.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+          What payment methods do you accept?
+        </button>
+      </h2>
+      <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+        <div class="accordion-body">
+          <strong>We accept various payment methods:</strong> You can pay for your booking using credit cards, debit cards, or other online payment options available on our platform. Rest assured, your transactions are secure.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="bg-primary">
+  <div class="container my-5">
+    <div class="row rounded">
+      <div class="col-lg-7">
+        <div class="p-5 text-center">
+          <h1 class="text-white fw-bold">Subscribe to our Newsletter</h1>
+          <div class="mt-5">
+            <div class="d-flex justify-content-center align-items-center mb-4">
+              <input type="email" class="form-control" placeholder="Enter your email">
+            </div>
+            <button class="btn btn-success text-white p-3 w-100" type="button">
+              <i class="bi bi-save fa-beat-fade"></i> Subscribe now
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 d-flex justify-content-center align-items-center">
+        <div class="m-auto">
+          <%= image_tag('vroom/logo', width: '300px', class: 'mb-3 p-3 d-lg-block d-none img-fluid', style: 'background-color: white; mix-blend-mode: lighten;') %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container px-0">
+  <h1 class="pb-2 border-bottom main_header container">Explore our location</h1>
+  <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-lg-12 text-center text-lg-start">
+          <div class="embed-responsive embed-responsive-16by9">
+              <iframe id="mapIframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.168154184681!2d85.32819117630332!3d27.7120939761798!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb196de5da5741%3A0x652792640c70ede9!2sHerald%20College%20Kathmandu!5e0!3m2!1sen!2snp!4v1712347493812!5m2!1sen!2snp" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="embed-responsive-item"></iframe>
+          </div>
+      </div>
+  </div>
+</div>

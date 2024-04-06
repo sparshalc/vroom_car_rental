@@ -29,7 +29,7 @@ class Car < ApplicationRecord
   end
 
   def is_available?
-    return 'booked' if self.booked?
+    return self.update(availability: false) && 'booked' if self.booked?
 
     self.availability ? 'available' : 'not-available'
   end

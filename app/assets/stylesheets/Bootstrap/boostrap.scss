@@ -1,0 +1,55 @@
+.glassmorphism{
+  background: rgba(255, 255, 255, 0.39);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.9px);
+  -webkit-backdrop-filter: blur(8.9px);
+}
+
+.btn-success{
+  background-color: #22C55E;
+  color: white;
+  &:hover{
+    background-color: #1db053;
+  }
+}
+
+.btn-danger{
+  background: linear-gradient(266deg, rgba(131,6,6,1) 0%, rgb(194, 15, 15) 100%); 
+  color: white;
+  &:hover{
+    background: linear-gradient(266deg, rgb(174, 11, 11) 0%, rgb(149, 11, 11) 100%); 
+  }
+}
+
+.bg-primary{
+  background: rgb(10,44,132);
+  background: linear-gradient(266deg, rgba(10,44,132,1) 0%, rgba(57,37,230,1) 100%); 
+}
+
+.bg-orange{
+  background: rgb(249,115,22);
+  background: linear-gradient(266deg, rgba(249,115,22,1) 0%, rgba(185,82,11,1) 100%); 
+}
+
+.main_header{
+  background: linear-gradient(266deg, rgba(10,44,132,1) 0%, rgba(57,37,230,1) 100%); 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+@keyframes fa-beat-fade {
+  0% {
+    opacity: 1; 
+  }
+  50% {
+    opacity: 0.5; 
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fa-beat-fade {
+  animation: fa-beat-fade 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite; /* Adjusted duration and timing function */
+}

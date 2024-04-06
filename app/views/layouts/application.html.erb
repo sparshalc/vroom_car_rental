@@ -3,6 +3,7 @@
   <head>
     <title><%= content_for(:title) || 'DRIVE THE BEST - VROOM' %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= favicon_link_tag asset_path('vroom/logoMain') %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -54,11 +55,13 @@
       <%= render 'partials/offcanvas_btn' %>
     <% end %>
 
-    <% unless is_devise_path? || is_dashboard_path? %>
+    <% unless is_dashboard_path? %>
       <%= render 'partials/navbar' %>
     <% end %>
 
-    <%= yield %>
+    <div class="<%= is_dashboard_path? ? '' : 'navbar_margin' %>">
+      <%= yield %>
+    </div>
 
     <%= turbo_frame_tag "remote_modal" %>
 
