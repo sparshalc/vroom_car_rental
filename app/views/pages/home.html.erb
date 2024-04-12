@@ -123,7 +123,7 @@
           <div class="carousel-inner">
             <% @car.each_with_index do |car, index| %>
               <div class="carousel-item <%= index.zero? ? 'active' : '' %>">
-                <%= image_tag(car.image, class: "d-block w-100") %>
+                <%= image_tag(car.image.first, class: "d-block w-100") %>
               </div>
             <% end %>
           </div>

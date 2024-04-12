@@ -5,7 +5,7 @@ class Car < ApplicationRecord
   has_many :policies,dependent: :destroy
   has_many :bookings, dependent: :destroy
 
-  has_one_attached :image
+  has_many_attached :image
 
   enum car_type: {
     sedan: 0,

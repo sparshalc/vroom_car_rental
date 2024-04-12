@@ -1,0 +1,21 @@
+.swiper-button-prev,
+.swiper-button-next{
+  background: white;
+  border-radius: 50%;
+  font-size: 20px !important;
+  opacity: 50%;
+}
+.swiper-button-prev:hover,
+.swiper-button-next:hover{
+  opacity: 100%;
+}
+.swiper-button-next::after,
+.swiper-button-prev::after{
+  font-size: 20px !important;
+  color:  rgb(10,44,132);
+}
+.swiper-slide{
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}

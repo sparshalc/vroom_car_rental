@@ -8,8 +8,18 @@
       <h2 class="card-title"><%= link_to 'Book Now', new_car_booking_path(@car.id), class: 'btn btn-dark btn-lg text-white' %></h2>
     </div>
     <div class="col-md-5">
-        <p class="text-muted text-end"><%= inline_svg_tag('svg/eye', width: '22px', height: '22px') %><span class="mx-1 mb-2"><%= pluralize(@car.views, 'view') %></span></p>
-      <%= image_tag(@car.image, class: "img-fluid mx-auto", width: '1000px', height: 'auto') %>
+      <p class="text-muted text-end"><%= inline_svg_tag('svg/eye', width: '22px', height: '22px') %><span class="mx-1 mb-2"><%= pluralize(@car.views, 'view') %></span></p>
+      <div class="swiper car_basics_details">
+        <div class="swiper-wrapper">
+          <% @car.image.each do |image| %>
+            <a href="<%= car_path(@car) %>" class="swiper-slide">
+              <%= image_tag(image, width: '1000px', height: 'auto', class: "img-fluid mx-auto") %>
+            </a>
+          <% end %>
+        </div>
+        <div class="swiper-button-prev rounded"></div>
+        <div class="swiper-button-next rounded"></div>
+      </div>
     </div>
   </div>  
 
