@@ -7,7 +7,7 @@
   <td><%= car.user.full_name  %></td>
   <td><%= car.car_type  %></td>
   <td><%= car.policies.count  %></td>
-  <td><%= image_tag(car.image, width: '50px', class: 'rounded-circle') %></td>
+  <td><%= image_tag(car.image.first, width: '50px', class: 'rounded-circle') %></td>
   <td>
     <div class="d-flex gap-2">
       <%= link_to car_path(car), class: 'btn btn-dark' do %>

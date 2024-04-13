@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="d-flex justify-content-between align-items-center">
     <h1 class="fw-bold text-center text-decoration-underline">Add Policy (<%= link_to @car.name,car_path(@car), class: 'text-decoration-none text-dark' %>)</h1>
-    <%= image_tag(@car.image, width: '300px', height: 'auto') %>
+    <%= image_tag(@car.image.first, width: '300px', height: 'auto') %>
   </div>
   <div class="mt-5">
     <%= turbo_frame_tag @policy do %>

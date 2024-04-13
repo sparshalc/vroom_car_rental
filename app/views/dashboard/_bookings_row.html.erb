@@ -3,7 +3,7 @@
   <td><%= booking.start_date %></td>
   <td><%= booking.end_date %></td>
   <td><%= booking.duration_in_days %></td>
-  <td><%= image_tag(booking.car.image, width: '40px', class: 'rounded-circle') %> <%= booking.car.name %></td>
+  <td><%= image_tag(booking.car.image.first, width: '40px', class: 'rounded-circle') %> <%= booking.car.name %></td>
   <td><%= booking.user.email %></td>
   <td><%= booking.car.user.email %></td>
   <td>

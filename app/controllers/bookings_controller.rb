@@ -1,11 +1,8 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: %i[ show edit update destroy ]
-  before_action :set_car, only: %i[ new index ]
+  before_action :set_booking, only: %i[edit update destroy ]
+  before_action :set_car, only: %i[ new  ]
   before_action :check_user_bookings, only: %i[ create ]
-  before_action :verify_corrent_user, only: %i[ show edit update destroy ]
-
-  def show
-  end
+  before_action :verify_corrent_user, only: %i[edit update destroy ]
 
   def new
     @booking = Booking.new

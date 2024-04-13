@@ -17,7 +17,7 @@ class CarsTest < ApplicationSystemTestCase
     check "Availability" if @car.availability
     fill_in "Brand", with: @car.brand
     fill_in "Color", with: @car.color
-    fill_in "Image", with: @car.image
+    fill_in "Image", with: @car.image.first
     check "Insurance" if @car.insurance
     fill_in "Location", with: @car.location
     fill_in "Mileage", with: @car.mileage
@@ -38,7 +38,7 @@ class CarsTest < ApplicationSystemTestCase
     check "Availability" if @car.availability
     fill_in "Brand", with: @car.brand
     fill_in "Color", with: @car.color
-    fill_in "Image", with: @car.image
+    fill_in "Image", with: @car.image.first
     check "Insurance" if @car.insurance
     fill_in "Location", with: @car.location
     fill_in "Mileage", with: @car.mileage

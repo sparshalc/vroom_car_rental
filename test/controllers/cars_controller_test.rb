@@ -17,7 +17,7 @@ class CarsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create car" do
     assert_difference("Car.count") do
-      post cars_url, params: { car: { availability: @car.availability, brand: @car.brand, color: @car.color, image: @car.image, insurance: @car.insurance, location: @car.location, mileage: @car.mileage, model: @car.model, rental_price: @car.rental_price, user_id: @car.user_id, year: @car.year } }
+      post cars_url, params: { car: { availability: @car.availability, brand: @car.brand, color: @car.color, image: @car.image.first, insurance: @car.insurance, location: @car.location, mileage: @car.mileage, model: @car.model, rental_price: @car.rental_price, user_id: @car.user_id, year: @car.year } }
     end
 
     assert_redirected_to car_url(Car.last)
@@ -34,7 +34,7 @@ class CarsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update car" do
-    patch car_url(@car), params: { car: { availability: @car.availability, brand: @car.brand, color: @car.color, image: @car.image, insurance: @car.insurance, location: @car.location, mileage: @car.mileage, model: @car.model, rental_price: @car.rental_price, user_id: @car.user_id, year: @car.year } }
+    patch car_url(@car), params: { car: { availability: @car.availability, brand: @car.brand, color: @car.color, image: @car.image.first, insurance: @car.insurance, location: @car.location, mileage: @car.mileage, model: @car.model, rental_price: @car.rental_price, user_id: @car.user_id, year: @car.year } }
     assert_redirected_to car_url(@car)
   end
 
