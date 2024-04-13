@@ -1,10 +1,10 @@
 <div class="row p-4 g-0 border rounded overflow-hidden justify-content-between align-items-center flex-md-row mb-4 shadow-sm h-md-250 position-relative <%= car.booked? ? 'bg-danger-subtle' : '' %>">
-  <div class="col-lg-4 d-flex">
+  <div class="col-lg-4 d-flex justify-content-center align-items-center">
     <div class="swiper car_basics_details">
       <div class="swiper-wrapper">
         <% car.image.each do |image| %>
           <a href="<%= car_path(car) %>" class="swiper-slide">
-            <%= image_tag(image, width: "250", height: "auto", class: "img-fluid") %>
+            <%= image_tag(image, width: "200", height: "auto", class: "img-fluid") %>
           </a>
         <% end %>
       </div>

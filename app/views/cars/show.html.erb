@@ -13,7 +13,7 @@
         <div class="swiper-wrapper">
           <% @car.image.each do |image| %>
             <a href="<%= car_path(@car) %>" class="swiper-slide">
-              <%= image_tag(image, width: '1000px', height: 'auto', class: "img-fluid mx-auto") %>
+              <%= image_tag(image, width: '500px', height: 'auto', class: "img-fluid mx-auto w-50") %>
             </a>
           <% end %>
         </div>
