@@ -54,11 +54,7 @@
       <%= render "partials/flash" %>
     </div>
 
-    <% if is_dashboard_path? %>
-      <%= render 'partials/offcanvas_btn' %>
-    <% end %>
-
-    <% unless is_dashboard_path? %>
+    <% unless is_dashboard_path?  %>
       <%= render 'partials/navbar' %>
     <% end %>
 

@@ -55,9 +55,9 @@
     <div>
       <div class="error-text">
         <h1 class="accident-happen">Accidents happen!</h1>
-        <img src="./car_crash.png" alt="car-crash" class="car-crash-img">
+        <img src="./car.svg" alt="car-crash" class="car-crash-img" width="50px">
         <p class="accident-page fw-bold">Just like this page!</p>
-        <p id="redirect-message">Redirecting to home in <b>6</b> seconds.</p>
+        <p id="redirect-message">Navigating back to the main road <b>6</b> seconds.</p>
       </div>
     </div>
   </div>
@@ -67,7 +67,7 @@
     const redirectMessage = document.getElementById('redirect-message');
 
     function updateTimer() {
-      redirectMessage.innerHTML = `Redirecting to home in <b>${seconds}</b> seconds.`;
+      redirectMessage.innerHTML = `Navigating back to the main road in <b>${seconds}</b> seconds.`;
       seconds--;
 
       if (seconds < 0) {

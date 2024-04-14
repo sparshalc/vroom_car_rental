@@ -1,0 +1,10 @@
+<div class="p-5 text-center bg-body-tertiary rounded-3">
+  <%= inline_svg_tag("svg/#{svg_name}", width: '260px') %>
+  <h1 class="main_header mb-2"><%= title %></h1>
+  <p class="col-lg-8 mx-auto fs-5 text-muted">
+    <%= paragraph %>
+  </p>
+  <% if invite_user %>
+    <%= link_to 'Invite User', new_user_invitation_path, class: 'btn btn-primary', data: { controller: 'bs-modal'} %>
+  <% end %>
+</div>

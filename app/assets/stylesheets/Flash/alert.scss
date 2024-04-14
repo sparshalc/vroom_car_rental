@@ -17,10 +17,10 @@
   color: white;
   padding: 10px 50px;
   animation: appear-then-fade 4s both;
-  background: linear-gradient(rgba(82, 41, 144, 0.572), #270d4e);
+  background: linear-gradient(266deg, rgba(10,44,132,1) 0%, rgba(56, 37, 230, 0.719) 100%); 
   border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10.7px);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 @keyframes appear-then-fade {

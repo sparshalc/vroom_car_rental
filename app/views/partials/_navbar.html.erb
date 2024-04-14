@@ -1,3 +1,4 @@
+<div id="user-id" class="d-none"><%= user_signed_in? ? current_user.id : '' %></div>
 <nav class="navbar navbar-expand-lg glassmorphism fixed-top mb-5">
   <div class="container p-2">
     <%= link_to image_tag('vroom/logo', width: '150px', class: 'navbar-brand'), root_path %>
@@ -18,13 +19,12 @@
         </li>
         <% if current_user && current_user.seller_or_admin?%>
           <li class="nav-item">
-            <%= link_to dashboard_path, class: 'nav-link d-flex justify-content-center align-items-center gap-2' do %>
-              <i class="bi bi-gear fs-5"></i> Dashboard
-            <% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to notifications_path, data: { controller: 'bs-modal'} , class: "nav-link d-flex justify-content-center align-items-center gap-2 " do %>
-              <i class="<%= active_link("notification", " bi-bell-fill", " bi-bell", "index")%> fs-5"></i> Notifications
+            <%= link_to notifications_path, class: 'nav-link d-flex justify-content-center align-items-center', data: { controller: 'bs-modal'} do%>
+              <i class="bi h4 <%= active_link("notification", " bi-bell-fill", " bi-bell", "index") %> "></i>
+                <span class="translate-middle badge rounded-pill bg-primary" id="notification_count_<%= current_user.id%>">
+                  <%= current_user.notifications.count %>
+                </span>
+              </i>
             <% end %>
           </li>
         <% end %>
@@ -43,7 +43,7 @@
         </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to root_path, class: 'nav-link btn btn-success text-white' do %>
+            <%= link_to new_user_registration_path, class: 'nav-link btn btn-success text-white' do %>
               <i class="bi bi-rocket-takeoff"></i> Get Started
             <% end %>
           </li>
