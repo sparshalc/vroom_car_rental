@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
 
   root "pages#home"
+  get '/guides', to: 'pages#guides', as: 'guides'
 
   get 'dashboard', to: 'dashboard#index'
   get 'dashboard/cars', to: 'dashboard#cars'

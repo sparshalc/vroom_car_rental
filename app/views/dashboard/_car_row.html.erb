@@ -10,16 +10,16 @@
   <td>
     <div class="d-flex gap-2">
       <%= link_to car_path(car), class: 'btn btn-dark' do %>
-        <%= inline_svg_tag('svg/eye') %>
+        <%= inline_svg_tag('svg/eye.svg') %>
       <% end %>
       <%= link_to edit_car_path(car), class: 'btn btn-dark', data: { controller: 'bs-modal' } do %>
-        <%= inline_svg_tag('svg/pen') %>
+        <%= inline_svg_tag('svg/pen.svg') %>
       <% end %>
       <%= link_to car_policies_path(car), class: 'btn btn-dark', data: { controller: 'bs-modal'} do %>
         <i class="bi bi-journal-text"></i>
       <% end %>
       <%= button_to car_path(car), class: 'btn btn-danger', method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
-        <%= inline_svg_tag('svg/trash') %>
+        <%= inline_svg_tag('svg/trash.svg') %>
       <% end %>
     </div>
   </td>
