@@ -1,8 +1,8 @@
 <div class="d-flex gap-2 justify-content-center">
   <%= button_to room_path(room), method: :delete, class: 'btn btn-sm btn-danger', data: { turbo_confirm: 'You sure? '}  do %>
-    <%= inline_svg_tag('svg/trash') %>
+    <%= inline_svg_tag('svg/trash.svg') %>
   <% end %>
   <%= link_to edit_room_path(room), class: 'btn btn-success btn-sm w-100' do%>
-  <%= inline_svg_tag('svg/pen') %>
+  <%= inline_svg_tag('svg/pen.svg') %>
   <% end %>
 </div>

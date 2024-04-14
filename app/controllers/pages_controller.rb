@@ -3,4 +3,6 @@ class PagesController < ApplicationController
   def home
     @car = Car.limit(3)
   end
+
+  def guides; end
 end

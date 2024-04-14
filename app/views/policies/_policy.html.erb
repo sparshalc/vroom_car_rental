@@ -10,7 +10,7 @@
       <% if correct_user_or_admin(@car) %>
         <div class="actions">
           <%= button_to car_policy_path(@car, policy), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'You sure?'}, class: 'text-white btn mt-3' do %>
-            <%= inline_svg_tag('svg/trash') %>
+            <%= inline_svg_tag('svg/trash.svg') %>
           <% end %>
         </div>
       <% end %>

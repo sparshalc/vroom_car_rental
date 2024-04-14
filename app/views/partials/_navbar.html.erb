@@ -1,7 +1,7 @@
 <div id="user-id" class="d-none"><%= user_signed_in? ? current_user.id : '' %></div>
 <nav class="navbar navbar-expand-lg glassmorphism fixed-top mb-5">
   <div class="container p-2">
-    <%= link_to image_tag('vroom/logo', width: '150px', class: 'navbar-brand'), root_path %>
+    <%= link_to image_tag('vroom/logo.png', width: '150px', class: 'navbar-brand'), root_path %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -17,6 +17,11 @@
             <i class="bi <%= active_link("cars", "bi-truck-front-fill", "bi-truck-front", "index")%> fs-5"></i> Cars
           <% end %>
         </li>
+        <li class="nav-item">
+          <%= link_to guides_path, class: "nav-link d-flex justify-content-center align-items-center gap-2 #{ active_link("pages", "fw-bold", "", "guides") }" do %>
+            <i class="bi <%= active_link("pages", "bi-journal-bookmark-fill", "bi-journal-bookmark", "guides")%> fs-5"></i> Guides
+          <% end %>
+        </li>
         <% if current_user && current_user.seller_or_admin?%>
           <li class="nav-item">
             <%= link_to notifications_path, class: 'nav-link d-flex justify-content-center align-items-center', data: { controller: 'bs-modal'} do%>
@@ -29,18 +34,18 @@
           </li>
         <% end %>
         <% if current_user %>
-        <li class="nav-item d-flex justify-content-center align-items-center">
-          <div class="dropdown">
-            <a href="#" class="nav-link d-block link-body-emphasis text-decoration-none dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <%= image_tag(user_avatar(current_user), width: '32', height: '32', class: 'rounded-circle')%>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end text-small" aria-labelledby="navbarDropdown">
-              <li><%= link_to 'Edit Profile', edit_user_registration_path, class: 'dropdown-item text-muted' %></li>
-              <li><hr class="dropdown-divider"></li>
-              <%= button_to 'Logout', destroy_user_session_path, class: 'text-danger dropdown-item text-danger', method: :delete, data: { turbo_method: :delete, turbo_confirm: 'You sure?' } %>
-            </ul>
-          </div>
-        </li>
+          <li class="nav-item d-flex justify-content-center align-items-center">
+            <div class="dropdown">
+              <a href="#" class="nav-link d-block link-body-emphasis text-decoration-none dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <%= image_tag(user_avatar(current_user), width: '32', height: '32', class: 'rounded-circle')%>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end text-small" aria-labelledby="navbarDropdown">
+                <li><%= link_to 'Edit Profile', edit_user_registration_path, class: 'dropdown-item text-muted' %></li>
+                <li><hr class="dropdown-divider"></li>
+                <%= button_to 'Logout', destroy_user_session_path, class: 'text-danger dropdown-item text-danger', method: :delete, data: { turbo_method: :delete, turbo_confirm: 'You sure?' } %>
+              </ul>
+            </div>
+          </li>
         <% else %>
           <li class="nav-item">
             <%= link_to new_user_registration_path, class: 'nav-link btn btn-success text-white' do %>
