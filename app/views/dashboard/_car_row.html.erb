@@ -2,9 +2,8 @@
   <th scope="row"><%= car.id %></th>
   <td><%= car.name %></td>
   <td>Rs. <%= car.rental_price %></td>
-  <td><%= car.is_available? %></td>
+  <td><span class="badge text-bg-success text-<%= car.booked? ? 'bg-danger' : class_for_available(car, 'bg') %>"><%= car.is_available? %></span></td>
   <td><%= car.location  %></td>
-  <td><%= car.user.full_name  %></td>
   <td><%= car.car_type  %></td>
   <td><%= car.policies.count  %></td>
   <td><%= image_tag(car.image.first, width: '50px', class: 'rounded-circle') %></td>

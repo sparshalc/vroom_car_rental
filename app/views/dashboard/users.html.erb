@@ -1,30 +1,37 @@
-<%= render 'partials/offcanvas' %>
-<div class="container">
-  <div class="d-flex justify-content-between align-items-center mt-5">
-    <h1 class="text-center fw-bold">Manage Users</h1>
-    <%= link_to 'Invite User', new_user_invitation_path, class: 'btn btn-dark', data: { controller: 'bs-modal'} %>
+<div class="wrapper" data-controller="sidebar">
+  <%= render 'partials/sidebar' %>
+  <div class="main">
+    <%= render 'partials/dashboard_navbar' %>
+
+    <main class="content px-3 py-2">
+      <div class="container" style="margin-top: 100px;">
+        <div class="d-flex justify-content-between align-items-center mt-5">
+          <%= render 'partials/header', title: 'Manage Users', paragraph: "Welcome to the Manage Bookings section of Vroom. Here, as an admin, you have full control over your bookings.", svg_name: 'users', invite_user: true %>
+        </div>
+        <hr class="mt-3 mb-3">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Email</th>
+              <th scope="col">Users Cars</th>
+              <th scope="col">Avatar</th>
+              <th scope="col">Invited</th>
+            </tr>
+          </thead>
+          <tbody id="users">
+            <% @users.each do |user| %>
+              <tr id="<%= dom_id(user) %>">
+                <th scope="row"><%= user.id %></th>
+                <td><%= user.email %></td>
+                <td><%= user.cars.count %></td>
+                <td><%= image_tag(user_avatar(user), width: '30px', class: 'rounded-circle border') %></td>
+                <td><%= user.created_by_invite? %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </main>
   </div>
-  <hr>
-  <table class="table mt-5">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Email</th>
-      <th scope="col">Users Cars</th>
-      <th scope="col">Avatar</th>
-      <th scope="col">Invited</th>
-    </tr>
-  </thead>
-  <tbody id="users">
-    <% @users.each do |user| %>
-      <tr id="<%= dom_id(user) %>">
-        <th scope="row"><%= user.id %></th>
-        <td><%= user.email %></td>
-        <td><%= user.cars.count %></td>
-        <td><%= image_tag(user_avatar(user), width: '30px', class: 'rounded-circle border') %></td>
-        <td><%= user.created_by_invite? %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 </div>

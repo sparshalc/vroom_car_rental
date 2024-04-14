@@ -1,0 +1,31 @@
+<aside id="sidebar" class="navbar_primary  shadow-lg">
+  <div class="text-end">
+    <button class="btn text-white" type="button">
+      <i class="bi bi-x-lg navbar-toggler-icon"></i>
+    </button>
+  </div>
+  <div>
+    <div class="sidebar-logo">
+    <%= link_to image_tag('VROOM.png', style: 'filter: brightness(0) invert(1);', width: '150', height: 'auto'), dashboard_path %>
+    </div>
+    <ul class="navbar-nav mt-5"> 
+      <li class="nav-item">
+        <%= link_to dashboard_cars_path, class: "nav-link text-white d-flex justify-content-start mx-5 align-items-center gap-2 #{ active_link("dashboard", "fw-bold", "", "cars") }" do %>
+          <i class="bi <%= active_link("dashboard", "bi-houses-fill", " bi-houses", "cars")%> fs-5"></i> Cars
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to dashboard_bookings_path, class: "nav-link text-white mt-3 d-flex justify-content-start mx-5 align-items-center gap-2 #{ active_link("cars", "fw-bold", "", "index") }" do %>
+          <i class="bi <%= active_link("dashboard", "bi-truck-front-fill", "bi-truck-front", "bookings")%> fs-5"></i> Bookings
+        <% end %>
+      </li>
+      <% if current_user.admin? %>
+        <li class="nav-item">
+          <%= link_to dashboard_users_path, class: "nav-link text-white mt-3 d-flex justify-content-start mx-5 align-items-center gap-2 #{ active_link("cars", "fw-bold", "", "index") }" do %>
+            <i class="bi <%= active_link("dashboard", "bi bi-people-fill", "bi bi-people", "users")%> fs-5"></i> Users
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</aside>

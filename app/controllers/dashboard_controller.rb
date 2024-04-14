@@ -1,17 +1,15 @@
 class DashboardController < ApplicationController
-  before_action :verify_admin_or_seller, only: %i[index cars bookings]
-  before_action :verify_admin, only: %i[users]
-  before_action :car_collection, only: %i[index]
+  before_action :require_admin_or_seller, only: [:index, :cars, :bookings]
+  before_action :require_admin, only: [:users]
 
   def index
+    load_cars_and_bookings
+    @car_with_highest_views = @cars.max_by(&:views)
+    @cars_not_available = @cars.where(availability: false)
   end
 
   def cars
-    if current_user.admin?
-      @cars = Car.all
-    else
-      @cars = current_user.cars.all
-    end
+    load_cars
   end
 
   def users
@@ -19,33 +17,38 @@ class DashboardController < ApplicationController
   end
 
   def bookings
-    if current_user.admin?
-      @bookings = Booking.all.order('Created_at ASC')
-    else
-      @bookings = Booking.joins(:car).where(cars: { user_id: current_user.id }).order("Updated_at DESC")
-    end
+    load_bookings
   end
-
 
   private
 
-  def total_cars
+  def load_cars_and_bookings
     if current_user.admin?
       @cars = Car.all
+      @bookings = Booking.all
     else
       @cars = current_user.cars
+      @bookings = Booking.joins(:car).where(cars: { user_id: current_user.id })
     end
   end
 
-  def car_collection
-    @cars = Car.all
+  def load_cars
+    @cars = current_user.admin? ? Car.all : current_user.cars
   end
 
-  def verify_admin_or_seller
+  def load_bookings
+    @bookings = if current_user.admin?
+                  Booking.all.order(created_at: :asc)
+                else
+                  Booking.joins(:car).where(cars: { user_id: current_user.id }).order(updated_at: :desc)
+                end
+  end
+
+  def require_admin_or_seller
     routing_exception unless current_user.seller_or_admin?
   end
 
-  def verify_admin
+  def require_admin
     routing_exception unless current_user.admin?
   end
 end

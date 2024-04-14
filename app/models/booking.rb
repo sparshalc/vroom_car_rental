@@ -22,7 +22,7 @@ class Booking < ApplicationRecord
   end
 
   def send_booking_status_mail
-    if (status == "accepted" || status == "rejected")
+    if (booking_accepted? || booking_rejected?)
       BookingStatusJob.perform_now(self)
     end
   end
@@ -38,8 +38,17 @@ class Booking < ApplicationRecord
   end
 
   def update_availability
-    return car.update(availability: true) unless self.persisted?
+    return car.update(availability: true) unless self.persisted? || self.booking_rejected?
+
     car.update(availability: !accepted?)
+  end
+
+  def booking_accepted?
+    status == "accepted"
+  end
+
+  def booking_rejected?
+    status == "rejected"
   end
 
   def calculate_duration

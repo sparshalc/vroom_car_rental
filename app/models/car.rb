@@ -30,12 +30,21 @@ class Car < ApplicationRecord
 
   def is_available?
     return self.update(availability: false) && 'booked' if self.booked?
+    return self.update(availability: true) && 'available' if self.is_rejected? || self.is_pending?
 
     self.availability ? 'available' : 'not-available'
   end
 
   def booked?
     bookings.where(status: 'accepted').present?
+  end
+
+  def is_rejected?
+    bookings.where(status: 'rejected').present?
+  end
+
+  def is_pending?
+    bookings.where(status: 'pending').present?
   end
 
   def price

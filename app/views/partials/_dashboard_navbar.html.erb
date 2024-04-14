@@ -1,0 +1,23 @@
+  <nav class="navbar navbar-expand-lg navbar_primary fixed-top mb-5">
+    <button class="btn btn-lg text-white" type="button">
+      <i class="bi bi-list fs-3"></i>
+    </button>
+    <div class="mx-3 text-white d-flex justify-content-center flex-column align-items-start">
+      <h3 class="fw-bold">Dashboard</h3>
+      <small class="text-white"><%= current_user.email %></small>
+    </div>
+    <ul class="navbar-nav mb-lg-0 gap-2 ms-auto"> 
+      <li class="nav-item d-flex justify-content-center align-items-center">
+        <div class="dropdown">
+          <a class="nav-link d-block link0-body-emphasis text-decoration-none dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <%= image_tag(user_avatar(current_user), width: '32', height: '32', class: 'rounded-circle') %>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end text-small" aria-labelledby="navbarDropdown">
+            <li><%= link_to 'Edit Profile', edit_user_registration_path, class: 'dropdown-item text-muted' %></li>
+            <li><hr class="dropdown-divider"></li>
+            <%= button_to 'Logout', destroy_user_session_path, class: 'text-danger dropdown-item text-danger', method: :delete, data: { turbo_method: :delete, turbo_confirm: 'You sure?' } %>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </nav>

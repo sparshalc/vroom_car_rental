@@ -1,96 +1,130 @@
-<%= render 'partials/offcanvas' %>
+<div class="wrapper" data-controller="sidebar">
+  <%= render 'partials/sidebar' %>
+  <div class="main">
+    <%= render 'partials/dashboard_navbar' %>
 
-<div class="container mb-0 mt-5">
-  <div class="d-flex justify-content-between align-items-center">
-    <div class="user_details">
-      <h1 class="fw-bold">Dashboard</h1>
-      <p class="text-muted"><%= current_user.email %></p>
-    </div>
-    <div class="user_avatar">
-      <%= image_tag(user_avatar(current_user), width: '80', height: '80', class: 'rounded-circle border')%>
-    </div>
-  </div>
-  <hr>
-  <div class="row mt-5">
-    <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-primary shadow h-100 py-2">
-        <div class="card-body">
-          <div class="row no-gutters align-items-center">
-            <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                Cars Count</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @cars.count %></div>
+    <main class="content px-3 py-2">
+      <div class="container" style="margin-top: 100px;">
+        <div class="mb-0 mt-5">
+          <div class="bg-primary rounded">
+            <div class="row p-4 mt-5">
+              <div class="d-flex justify-content-between p-2 align-items-center border-bottom mb-4">
+                <h2 class="pb-2 text-white fw-bold">Overall Analysis</h2>
+                <i class="bi bi-speedometer2 fs-1 text-white"></i>
+              </div>
+              <% @cars_count = @cars.count %>
+              <% @views_count = @cars.sum(:views) %>
+              <% @followers_count = 24 %>
+              <% @following_count = "500+" %>
+
+              <% card_data = [
+                { type: 'primary', title: 'Cars Count', value: @cars_count, icon: 'fas fa-calendar' },
+                { type: 'success', title: 'Views Count', value: @views_count, icon: 'fas fa-dollar-sign' },
+                { type: 'danger', title: 'Followers', value: @followers_count, icon: 'fas fa-comments' },
+                { type: 'warning', title: 'Following', value: @following_count, icon: 'fas fa-comments' }
+              ] %>
+
+              <% card_data.each do |card| %>
+                <div class="col-xl-3 col-md-6 mb-4">
+                  <div class="card border-left-<%= card[:type] %> shadow h-100 py-2">
+                    <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                          <div class="text-xs fw-bold text-<%= card[:type] %> text-uppercase mb-1"><%= card[:title] %></div>
+                          <div class="h5 mb-0 fw-bold fs-2 text-gray-800"><%= card[:value] %></div>
+                        </div>
+                        <div class="col-auto">
+                          <i class="<%= card[:icon] %> fa-2x text-gray-300"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
             </div>
-            <div class="col-auto">
-              <i class="fas fa-calendar fa-2x text-gray-300"></i>
+          </div>
+          
+          <div class="row mt-5 mb-5">
+            <h2 class="pb-2 border-bottom main_header mb-4">Cars Analytics</h2>
+            <div class="col-lg-6">
+              <div class="card p-3 mt-2">
+                <p class="text-muted">Cars (In Linechart)</p>
+                <%= line_chart @cars.group_by_day(:created_at, range: 1.week.ago...Time.now).count %>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="card p-3 mt-2">
+                <p class="text-muted">Cars (In Piechart)</p>
+                <%= pie_chart @cars.group_by_day(:created_at, range: 1.week.ago...Time.now).count %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-5 mb-5">
+            <h2 class="pb-2 border-bottom main_header mb-4">Your Cars</h2>
+            <div class="col-lg-12">
+              <div class="row row-cols-1 row-cols-lg-3 g-3">
+                <div class="col-lg-6">
+                  <% if @cars_not_available.present? %>
+                    <div class="feature col text-center card p-3">
+                      <div class="feature-icon d-flex p-2 rounded align-items-center justify-content-center bg-success fs-2 mb-3 overflow-hidden">
+                        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000">
+                          <div class="carousel-inner">
+                            <% @cars_not_available.each_with_index do |car, index| %>
+                              <div class="carousel-item <%= index.zero? ? 'active' : '' %>">
+                                <%= image_tag(car.image.first, width: '300px', height: 'auto') %>
+                              </div>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                      <h4 class="p-2 fs-5 fw-bold rounded bg-success text-white">Bring them back?</h4>
+                    </div>
+                  <% else %>
+                    <div class="p-4 mb-4 card bg-success">
+                      <i class="bi bi-radioactive fs-2 text-white"></i>
+                      <small class="text-white">No Cars Found!</small>
+                    </div>
+                  <% end %>
+                </div>
+
+                <div class="col-lg-6">
+
+                  <div class="feature col text-center card p-3">
+                    <div class="feature-icon d-flex p-2 rounded align-items-center justify-content-center bg-primary fs-2 mb-3 overflow-hidden">
+                      <% if @car_with_highest_views.present? %>
+                        <%= link_to image_tag(@car_with_highest_views.image.first, width: '300px'), car_path(@car_with_highest_views.id) %>
+                      <% else %>
+                        <div class="p-5 mb-4 card" style="background-color: red;">
+                          <i class="bi bi-radioactive fs-2 text-white"></i>
+                          <small class="text-white">No Cars Found!</small>
+                        </div>
+                      <% end %>
+                    </div>
+                    <h4 class="p-2 fs-5 fw-bold rounded bg-primary text-white">Most Viewed</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-5 mb-5">
+            <h2 class="pb-2 border-bottom main_header mb-4">Total Bookings</h2>
+            <div class="col-lg-6">
+              <div class="card p-3 mt-2">
+                <p class="text-muted">Booking (In Linechart)</p>
+                <%= line_chart @bookings.group_by_day(:created_at, range: 1.week.ago...Time.now).count %>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="card p-3 mt-2">
+                <p class="text-muted">Booking (In Piechart)</p>
+                <%= pie_chart @bookings.group_by_day(:created_at, range: 1.week.ago...Time.now).count %>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-success shadow h-100 py-2">
-        <div class="card-body">
-          <div class="row no-gutters align-items-center">
-            <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                Views Count</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @cars.sum(:views) %></div>
-            </div>
-            <div class="col-auto">
-              <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-danger shadow h-100 py-2">
-        <div class="card-body">
-          <div class="row no-gutters align-items-center">
-            <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                Followers </div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800">24</div>
-            </div>
-            <div class="col-auto">
-              <i class="fas fa-comments fa-2x text-gray-300"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-warning shadow h-100 py-2">
-        <div class="card-body">
-          <div class="row no-gutters align-items-center">
-            <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                Following</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800">500+</div>
-            </div>
-            <div class="col-auto">
-              <i class="fas fa-comments fa-2x text-gray-300"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="row mt-5 mb-5">
-    <div class="col-lg-6">
-      <div class="card p-3 mt-2">
-        <p class="text-muted">Cars(In Linechart)</p>
-        <%= line_chart @cars.group_by_day(:created_at, range: 1.week.ago...Time.now).count %>
-      </div>
-    </div>
-    <div class="col-lg-6">
-      <div class="card p-3 mt-2">
-        <p class="text-muted">Cars(In Piechart)</p>
-        <%= pie_chart @cars.group_by_day(:created_at, range: 1.week.ago...Time.now).count %>
-      </div>
-    </div>
+    </main>
   </div>
 </div>
-
