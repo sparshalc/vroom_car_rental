@@ -28,7 +28,7 @@ User.create(
   full_name: 'VROOM ADMIN'
 )
 
-25.times do
+10.times do
   c = Car.new(
     brand: Faker::Vehicle.make,
     name: Faker::Vehicle.model,
@@ -48,3 +48,6 @@ User.create(
 
   c.save
 end
+
+
+# TODO Add Flactpck gem

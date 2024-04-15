@@ -1,83 +1,131 @@
-<div class="container mt-5">
-  <div class="row shadow p-5">
-    <div class="col-md-7">
-      <div class="d-flex justify-content-between align-items-center text-center">
-        <h2 class="featurette-heading fw-bold"><%= @car.name %></h2>
-      </div>
-      <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
-      <h2 class="card-title"><%= link_to 'Book Now', new_car_booking_path(@car.id), class: 'btn btn-dark btn-lg text-white' %></h2>
-    </div>
-    <div class="col-md-5">
-      <p class="text-muted text-end"><%= inline_svg_tag('svg/eye.svg', width: '22px', height: '22px') %><span class="mx-1 mb-2"><%= pluralize(@car.views, 'view') %></span></p>
-      <div class="swiper car_basics_details">
-        <div class="swiper-wrapper">
-          <% @car.image.each do |image| %>
-            <a href="<%= car_path(@car) %>" class="swiper-slide">
-              <%= image_tag(image, width: '500px', height: 'auto', class: "img-fluid mx-auto w-50") %>
-            </a>
+<section class="py-5">
+  <div class="container">
+    <div class="row gx-5">
+      <aside class="col-lg-6">
+        <div class="rounded-4 mb-3 d-flex justify-content-center" data-controller="lightbox">
+          <%= image_tag(@car.image.first, id: "main-image", style: "max-width: 100%; max-height: 100vh; margin: auto;", class: "rounded-4 fit") %>
+        </div>
+
+        <div class="d-flex justify-content-center mb-3 gap-2" data-controller="lightbox">
+          <% @car.image.each_with_index do |thumb_image, index| %>
+            <%= image_tag(thumb_image, width: 60, height: 60, class: "rounded-2 border thumb-image", 
+                          data: { fullImage: thumb_image }) %>
           <% end %>
         </div>
-        <div class="swiper-button-prev rounded"></div>
-        <div class="swiper-button-next rounded"></div>
-      </div>
-    </div>
-  </div>  
+      </aside>
+      <main class="col-lg-6">
+        <div class="ps-lg-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4 class="title text-dark">
+              <%= @car.name %>
+            </h4>
 
-  <div class="row mt-5 shadow p-2 mb-5">
-    <div class="col-lg-4 rounded mt-3">
-      <h4 class="d-flex justify-content-between align-items-center mb-3">
-        <span class="text-muted fw-bold">Car Details</span>
-      </h4>
-      <ul class="list-group mb-3">
-        <li class="list-group-item d-flex justify-content-between bg-light">
-          <h6 class="my-0">Brand</h6>
-          <small><%= @car.brand %></small>
-        </li>
-        <li class="list-group-item d-flex justify-content-between bg-light">
-          <h6 class="my-0">Availabe</h6>
-          <small><%= @car.availability %></small>
-        </li>
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <div>
-            <h6 class="my-0">Color</h6>
+            <div class="mb-3">
+              <span class="badge text-<%= @car.booked? ? 'bg-danger' : class_for_available(@car, 'bg') %>"><%= @car.is_available? %></span>
+            </div>
           </div>
-            <small style="color: <%= @car.color %>"><%= @car.color %></small>
-        </li>
-        <li class="list-group-item d-flex justify-content-between bg-light">
-          <h6 class="my-0">Mileage</h6>
-          <small><%= @car.mileage_in_km %></small>
-        </li>
-        <li class="list-group-item d-flex justify-content-between bg-light">
-          <h6 class="my-0">Location</h6>
-          <small><%= @car.location %></small>
-        </li>
-        <li class="list-group-item d-flex justify-content-between bg-light">
-          <h6 class="my-0">Insurance</h6>
-          <small><%= @car.insurance %></small>
-        </li>
-        <li class="list-group-item d-flex justify-content-between bg-light">
-          <h6 class="my-0">Type</h6>
-          <small><%= @car.car_type %></small>
-        </li>
-        <li class="list-group-item d-flex justify-content-between bg-light">
-          <h6 class="my-0">Policies</h6>
-          <small><%= link_to 'View Policies', car_policies_path(@car), data: { controller: 'bs-modal'} %></small>
-        </li>
-      </ul>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem iure harum corporis? Laboriosam cupiditate dignissimos quidem iste tenetur provident ut odio, recusandae delectus culpa perspiciatis, ratione soluta aut fugiat quos?
+            <br>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, necessitatibus minus. Maiores, sed error dolores reiciendis repellat tempora ad id sapiente eligendi exercitationem odio facilis tempore doloribus iste veniam rem.
+          </p>
+          <hr>
+        </div>
+      </main>
     </div>
-    <div class="col-lg-8 rounded col-md-12 mt-3">
-      <h4 class="d-flex justify-content-between align-items-center mb-3">
-        <span class="text-muted fw-bold">Comments</span>
-      </h4>
-      <%= turbo_stream_from "comments_#{dom_id(@car)}" %>
-      <div id="comment-form">
-        <%= render 'comments/form' %>
+  </div>
+</section>
+
+<section class="bg-light border-top py-4">
+  <div class="container">
+    <div class="row gx-4">
+      <div class="col-lg-8 mb-4">
+        <div class="border rounded-2 px-3 py-2 bg-white">
+          <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+            <li class="nav-item d-flex" role="presentation">
+              <a class="nav-link d-flex align-items-center justify-content-between w-100">Reviews & Comments <%= inline_svg_tag('svg/comment') %></a>
+            </li>
+          </ul>
+          <div class="tab-content" id="ex1-content">
+            <div>
+              <p>
+                With supporting text below as a natural lead-in to additional content. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam.
+              </p>
+              <div class="row mb-2">
+                <div class="col-12 col-md-12">
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <tbody>
+                        <tr>
+                          <th scope="row" class="col-3">Brand:</th>
+                          <td class="col-9"><%= @car.brand %></td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="col-3">Model:</th>
+                          <td class="col-9"><%= @car.model %></td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="col-3">Mileage:</th>
+                          <td class="col-9"><%= @car.mileage %></td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="col-3">Insurance:</th>
+                          <td class="col-9"><%= @car.insurance %></td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="col-3">Color:</th>
+                          <td class="col-9"><%= @car.color %></td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="col-3">Available:</th>
+                          <td class="col-9"><%= @car.availability %></td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="col-3">Policies:</th>
+                          <td class="col-9"><%= link_to 'View Policies', car_policies_path(@car), data: { controller: 'bs-modal'} %></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="col-12 col-md-12">
+                  <%= turbo_stream_from "comments_#{dom_id(@car)}" %>
+                  <div id="comment-form">
+                    <%= render 'comments/form' %>
+                  </div>
+                </div>
+              </div>
+              <div id="comments">
+                <% @comments.each do |comment| %>
+                  <%= render 'comments/comment', comment: comment %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div id="comments">
-        <% @comments.each do |comment| %>
-          <%= render 'comments/comment', comment: comment %>
-        <% end %>
+      <div class="col-lg-4">
+        <div class="px-0 rounded-2 position-sticky" style="top: 5rem;">
+          <div class="card">
+            <div class="card-body">
+              <% if @car.availability %>
+                <h5 class="card-title"><%= @car.price %></h5>
+                <hr>
+                <div class="mb-3 mt-3" id="car-booking-form">
+                  <% if current_user.bookings.exists?(car_id: @car.id) %>
+                    <%= render 'bookings/booked' %>
+                  <% else %>
+                    <%= render 'bookings/form' %>
+                  <% end %>
+                </div>
+              <% else %>
+                <%= render 'partials/error', message: 'Car Not Avaliable', paragraph: 'The car is currently unavailable for booking. Please try again once it becomes available.' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>

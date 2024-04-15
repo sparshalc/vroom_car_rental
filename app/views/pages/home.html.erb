@@ -14,11 +14,11 @@
         <hr class="text-white">
         <div class="d-grid gap-2 d-md-flex justify-content-md-start">
           <% if current_user %>
-            <%= link_to cars_path, class: 'btn btn-primary text-primary fs-5 btn-lg w-100 px-4 me-md-2 btn btn-light p-2 fw-bold' do %>
+            <%= link_to new_user_session_path, class: 'btn btn-white text-primary fs-5 btn-lg w-100 px-4 me-md-2 btn btn-light p-2 fw-bold' do %>
               <i class="bi bi-rocket-takeoff fa-beat-fade"></i> Get Started</button>
             <% end %>
           <% else %>
-            <%= link_to new_user_session_path, class: 'btn btn-primary text-primary fs-5 btn-lg w-100 px-4 me-md-2 btn btn-light p-2 fw-bold' do %>
+            <%= link_to new_user_session_path, class: 'btn btn-white text-primary fs-5 btn-lg w-100 px-4 me-md-2 btn btn-light p-2 fw-bold' do %>
               <i class="bi bi-box-arrow-in-right fa-beat-fade"></i> Start Booking</button>
             <% end %>
           <% end %>
@@ -73,7 +73,7 @@
         <h1 class="display-4 fw-bold lh-2 text-white">Renting a car now at your fingerprint.</h1>
         <p class="lead text-white mt-2 mb-2">Unlock the freedom of mobility with VROOM, where renting a car is as effortless as a touch of your fingerprint. Seamlessly navigate your journey with our user-friendly app, putting the power to explore in the palm of your hand.</p>
         <div class="mb-4 mb-lg-3">
-          <%= link_to cars_path, class: 'btn btn-primary text-primary fs-5 btn-lg w-100 px-4 me-md-2 btn btn-light p-2 fw-bold' do %>
+          <%= link_to cars_path, class: 'btn btn-white text-primary fs-5 btn-lg w-100 px-4 me-md-2 btn btn-light p-2 fw-bold' do %>
             <i class="bi bi-truck fa-beat-fade"></i> Discover
           <% end %>
         </div>
@@ -113,7 +113,7 @@
         <h1 class="display-4 fw-bold lh-2 text-white"><%= Car.count %>+ Cars</h1>
         <p class="lead text-white mt-2 mb-2">Welcome to Vroom, where automotive excellence meets customer satisfaction. As a premier online car retailer, we are dedicated to transforming the car-buying experience. Our journey began with a vision to simplify and enhance the process of purchasing a vehicle....</p>
         <div class="mb-4 mb-lg-3">
-          <%= link_to cars_path, class: 'btn btn-primary text-primary fs-5 btn-lg w-100 px-4 me-md-2 btn btn-light p-2 fw-bold' do %>
+          <%= link_to cars_path, class: 'btn btn-white text-primary fs-5 btn-lg w-100 px-4 me-md-2 btn btn-light p-2 fw-bold' do %>
             <i class="bi bi-eye fa-beat-fade"></i> View all
           <% end %>
         </div>
@@ -174,7 +174,6 @@
     </div>
   </div>
 </div>
-
 
 <div class="bg-primary">
   <div class="container my-5">

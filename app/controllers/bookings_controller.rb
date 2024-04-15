@@ -1,12 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: %i[edit update destroy ]
-  before_action :set_car, only: %i[ new  ]
   before_action :check_user_bookings, only: %i[ create ]
   before_action :verify_corrent_user, only: %i[edit update destroy ]
-
-  def new
-    @booking = Booking.new
-  end
 
   def edit
   end
@@ -18,7 +13,7 @@ class BookingsController < ApplicationController
       if @booking.save
         format.turbo_stream
       else
-        format.html { render :new, status: :unprocessable_entity }
+        redirect_to root_path
       end
     end
   end

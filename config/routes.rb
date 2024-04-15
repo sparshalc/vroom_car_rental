@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   delete 'notifications', to: 'notification#destroy_all'
 
   resources :cars do
-    resources :bookings, except: %i[index]
+    resources :bookings, except: %i[index new]
     resources :comments
     resources :policies, except: %i[edit update show]
   end

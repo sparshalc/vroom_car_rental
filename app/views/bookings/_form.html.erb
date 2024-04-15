@@ -1,15 +1,4 @@
-<%= form_with(model: current_user.bookings.build, url: car_bookings_path(@car)) do |form| %>
-  <% if @booking.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
-
-      <ul>
-        <% @booking.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_with(model: @booking, url: car_bookings_path(@car)) do |form| %>
 
   <div class="mt-2">
     <%= form.label :start_date, style: "display: block" %>
@@ -37,7 +26,7 @@
   </div>
 
   <div>
-    <%= form.hidden_field :car_id, value: params[:car_id] %>
+    <%= form.hidden_field :car_id, value: @car.id %>
   </div>
 
   <div>
