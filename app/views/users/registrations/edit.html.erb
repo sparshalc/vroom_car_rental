@@ -19,12 +19,23 @@
                 <%= f.file_field :avatar, autofocus: true, class: 'form-control' %>
             </div>
 
-            <div class="field mt-3">
-              <%= f.label :full_name %><br />
-              <%= f.text_field :full_name, autofocus: true, class: 'form-control' %>
+          <div class="row mt-2">
+            <div class="col">
+              <%= f.label :location, class: 'control-label' %>
+              <div class="input-group">
+                <%= f.text_field :location, type: 'text', class: 'form-control', placeholder: 'Enter your home location' %>
+                <button class="btn btn-primary" type="button" id="button-addon2"><i class="bi bi-geo-alt"></i></button>
+              </div>
             </div>
+            <div class="col-lg-5">
+              <div class="field">
+                <%= f.label :full_name %><br />
+                <%= f.text_field :full_name, autofocus: true, class: 'form-control' %>
+              </div>
+            </div>
+          </div>  
 
-            <div class="field mt-3">
+            <div class="field mt-2">
               <%= f.label :email %><br />
               <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
             </div>
@@ -33,7 +44,7 @@
               <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
             <% end %>
 
-            <div class="row mt-3 mb-3">
+            <div class="row mt-2 mb-3">
               <div class="col">
                 <div class="field">
                   <%= f.label :password %>
@@ -55,10 +66,7 @@
             </div>
 
             <div class="actions">
-              <%= f.submit "Update", class: 'btn btn-dark w-100 mt-3' %>
-              <%= link_to root_path, class: 'btn btn-outline-dark w-100 mt-3' do %>
-                Return Home
-              <% end %>
+              <%= f.submit "Update", class: 'btn btn-dark w-100 mt-2' %>
             </div>
           <% end %>
           
