@@ -1,18 +1,26 @@
 <%= form_with(model: @booking, url: car_bookings_path(@car)) do |form| %>
 
-  <div class="mt-2">
-    <%= form.label :start_date, style: "display: block" %>
-    <%= form.datetime_field :start_date, class: 'form-control' %>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="mt-2">
+        <%= form.label :start_date, style: "display: block" %>
+        <%= form.datetime_field :start_date, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="mt-2">
+        <%= form.label :end_date, style: "display: block" %>
+        <%= form.datetime_field :end_date, class: 'form-control' %>
+      </div>
+    </div>
   </div>
 
-  <div class="mt-2">
-    <%= form.label :end_date, style: "display: block" %>
-    <%= form.datetime_field :end_date, class: 'form-control' %>
-  </div>
-
-  <div class="mt-2">
-    <%= form.label :pickup_location, style: "display: block" %>
-    <%= form.text_field :pickup_location, class: 'form-control' %>
+  <div class="mt-2" data-controller="location">
+    <%= form.label :pickup_location %> <small class="mx-2 text-primary" id="location-message"></small>
+    <div class="input-group mb-3">
+      <%= form.text_field :pickup_location, value: current_user.location, class: 'form-control', placeholder: 'Enter your home location', id: "location-details" %>
+      <button class="btn btn-primary" type="button" id="get-location" data-action="click->location#initialize"><i class="bi bi-geo-alt"></i></button>
+    </div>
   </div>
 
   <div class="mt-2">

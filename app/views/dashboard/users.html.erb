@@ -25,7 +25,7 @@
                 <th scope="row"><%= user.id %></th>
                 <td><%= user.email %></td>
                 <td><%= user.cars.count %></td>
-                <td><%= image_tag(user_avatar(user), width: '30px', class: 'rounded-circle border') %></td>
+                <td><%= image_tag(user_avatar(user), width: '50px', height: '50px', class: 'rounded-circle border') %></td>
                 <td><%= user.created_by_invite? %></td>
               </tr>
             <% end %>

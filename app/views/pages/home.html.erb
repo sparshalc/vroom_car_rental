@@ -135,42 +135,16 @@
 
 <div class="container mt-3 mt-4">
   <h1 class="pb-2 main_header border-bottom mb-3">Frequently Asked Questions</h1>
-  <div class="accordion" id="accordionPanelsStayOpenExample">
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-          How do I book a car with Vroom?
-        </button>
-      </h2>
-      <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-        <div class="accordion-body">
-          <strong>To book a car with Vroom, follow these simple steps:</strong> Visit our website or mobile app, select your desired location and rental dates, choose the car that suits your needs, and proceed with the booking by entering your details. It's quick and easy!
-        </div>
-      </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <%= render 'accordion', id: 'One', question: 'How do I book a car with Vroom?', answer: "<strong> To book a car with Vroom, follow these simple steps:</strong> Visit our website or mobile app, select your desired location and rental dates, choose the car that suits your needs, and proceed with the booking by entering your details. It's quick and easy!"%>
+      <%= render 'accordion', id: 'Two', question: 'Can I modify or cancel my booking?', answer: "<strong>Yes, you can modify or cancel your booking:</strong> Log in to your Vroom account, go to your bookings, and follow the instructions to make changes or cancel your reservation. Please review our cancellation policy for more details."%>
+      <%= render 'accordion', id: 'Three', question: ' What payment methods do you accept?', answer: "<strong>We accept various payment methods:</strong> You can pay for your booking using credit cards, debit cards, or other online payment options available on our platform. Rest assured, your transactions are secure."%>
     </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-          Can I modify or cancel my booking?
-        </button>
-      </h2>
-      <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
-        <div class="accordion-body">
-          <strong>Yes, you can modify or cancel your booking:</strong> Log in to your Vroom account, go to your bookings, and follow the instructions to make changes or cancel your reservation. Please review our cancellation policy for more details.
-        </div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-          What payment methods do you accept?
-        </button>
-      </h2>
-      <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
-        <div class="accordion-body">
-          <strong>We accept various payment methods:</strong> You can pay for your booking using credit cards, debit cards, or other online payment options available on our platform. Rest assured, your transactions are secure.
-        </div>
-      </div>
+    <div class="col-lg-6">
+      <%= render 'accordion', id: 'Four', question: 'How do I book a car with Vroom?', answer: "<strong> To book a car with Vroom, follow these simple steps:</strong> Visit our website or mobile app, select your desired location and rental dates, choose the car that suits your needs, and proceed with the booking by entering your details. It's quick and easy!"%>
+      <%= render 'accordion', id: 'Five', question: 'Can I modify or cancel my booking?', answer: "<strong>Yes, you can modify or cancel your booking:</strong> Log in to your Vroom account, go to your bookings, and follow the instructions to make changes or cancel your reservation. Please review our cancellation policy for more details."%>
+      <%= render 'accordion', id: 'Six', question: ' What payment methods do you accept?', answer: "<strong>We accept various payment methods:</strong> You can pay for your booking using credit cards, debit cards, or other online payment options available on our platform. Rest assured, your transactions are secure."%>
     </div>
   </div>
 </div>
@@ -205,7 +179,7 @@
   <div class="row align-items-center g-lg-5 py-5">
       <div class="col-lg-12 text-center text-lg-start">
           <div class="embed-responsive embed-responsive-16by9">
-              <iframe id="mapIframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.168154184681!2d85.32819117630332!3d27.7120939761798!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb196de5da5741%3A0x652792640c70ede9!2sHerald%20College%20Kathmandu!5e0!3m2!1sen!2snp!4v1712347493812!5m2!1sen!2snp" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="embed-responsive-item"></iframe>
+            <iframe id="mapIframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.168154184681!2d85.32819117630332!3d27.7120939761798!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb196de5da5741%3A0x652792640c70ede9!2sHerald%20College%20Kathmandu!5e0!3m2!1sen!2snp!4v1712347493812!5m2!1sen!2snp" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="embed-responsive-item"></iframe>
           </div>
       </div>
   </div>
