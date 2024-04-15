@@ -27,7 +27,7 @@
             <%= f.label :rental_price %>
             <%= f.search_field :rental_price_eq, class: 'form-control' %>
 
-            <%= f.submit 'Find Cars', class: 'btn btn-dark mt-2 mb-3' %>
+            <%= f.submit 'Find Cars', class: 'btn btn-primary mt-2 mb-3' %>
           </div>
         <% end %>
       </div>
@@ -40,7 +40,7 @@
               <span class="text-muted"><%= @cars.count %> Search Results found</span>
             </div>
             <div class="search_clear">
-              <%= link_to 'Clear Results', cars_path, class: 'btn btn-dark-outline border', data: { turbo_frame: '_top' } %>
+              <%= link_to 'Clear Results', cars_path, class: 'btn border', data: { turbo_frame: '_top' } %>
             </div>
           </div>
         <% end %>

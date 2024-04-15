@@ -13,6 +13,14 @@
   }
 }
 
+.btn-primary{
+  background: rgb(10,44,132);
+  color: white;
+  &:hover{
+    background: rgb(10,44,132);
+  }
+}
+
 .btn-danger{
   background: linear-gradient(266deg, rgba(131,6,6,1) 0%, rgb(194, 15, 15) 100%); 
   color: white;

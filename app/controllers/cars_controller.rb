@@ -9,6 +9,7 @@ class CarsController < ApplicationController
   end
 
   def show
+    @booking = current_user.bookings.build
     @comments = @car.comments.all
     @car.update(views: @car.views + 1)
   end

@@ -4,7 +4,7 @@
       <div class="swiper-wrapper">
         <% car.image.each do |image| %>
           <a href="<%= car_path(car) %>" class="swiper-slide">
-            <%= image_tag(image, width: "200", height: "auto", class: "img-fluid") %>
+            <%= image_tag(image, class: "img-fluid w-75 rounded") %>
           </a>
         <% end %>
       </div>
@@ -15,7 +15,7 @@
   <div class="col-lg-8">
     <div class="car_details d-flex justify-content-between align-items-center mt-3">
       <div class="d-flex justify-content-between align-items-start flex-column">
-        <span class="badge text-<%= car.booked? ? 'bg-danger' : class_for_available(car, 'bg') %>"><%= car.is_available? ? 'Available' : 'Not Available' %></span>
+        <span class="badge text-<%= car.booked? ? 'bg-danger' : class_for_available(car, 'bg') %>"><%= car.is_available? %></span>
         <h3 class="mb-2 mt-2 display-6"><%= link_to car.name, car_path(car), class: 'text-decoration-none text-dark' %></h3>
         <p class="mb-2 text-muted"><i class="bi bi-speedometer2"></i> <%= car.mileage_in_km %> km</p>
         <p class="mb-2 text-muted"><i class="bi bi-ev-front"></i> <%= car.car_type %></p>
@@ -24,7 +24,7 @@
       <div class="car_booking d-none d-sm-block">
         <% unless car.booked? || !car.availability?  %>
           <h3 class="fw-bold"><%= car.price %></h3>
-          <%= link_to 'Book Now', new_car_booking_path(car),class: 'w-100 btn btn-dark mt-4', data: { turbo_frame: '_top', controller: 'bs-modal' } %>
+          <%= link_to 'Book Now', root_path,class: 'w-100 btn btn-primary mt-4', data: { turbo_frame: '_top', controller: 'bs-modal' } %>
           <small class="text-muted">*T & C applied</small>
         <% end %>
       </div>

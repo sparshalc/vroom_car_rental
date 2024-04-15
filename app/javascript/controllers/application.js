@@ -1,6 +1,9 @@
 import { Application } from "@hotwired/stimulus"
+import Lightbox from '@stimulus-components/lightbox'
 
 const application = Application.start()
+
+application.register('lightbox', Lightbox)
 
 application.debug = false
 
