@@ -20,11 +20,11 @@
             </div>
 
           <div class="row mt-2">
-            <div class="col">
-              <%= f.label :location, class: 'control-label' %>
-              <div class="input-group">
-                <%= f.text_field :location, type: 'text', class: 'form-control', placeholder: 'Enter your home location' %>
-                <button class="btn btn-primary" type="button" id="button-addon2"><i class="bi bi-geo-alt"></i></button>
+            <div class="col" data-controller="location">
+              <%= f.label :location, class: 'control-label' %> <small class="mx-2 text-primary" id="location-message"></small>
+              <div class="input-group mb-3">
+                <%= f.text_field :location, type: 'text', class: 'form-control', placeholder: 'Enter your home location', id: "location-details" %>
+                <button class="btn btn-primary" type="button" id="get-location" data-action="click->location#initialize"><i class="bi bi-geo-alt"></i></button>
               </div>
             </div>
             <div class="col-lg-5">
