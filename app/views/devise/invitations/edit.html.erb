@@ -1,9 +1,9 @@
 <section>
   <div class="row">
-    <div class="col-lg-6 col-12 col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
-      <%= inline_svg_tag('svg/complete_registrations.svg', width: '900px')%>
+    <div class="col-lg-6 col-12 col-sm-12 d-flex justify-content-center align-items-center">
+      <%= inline_svg_tag('svg/users.svg', width: '1000px')%>
     </div>
-    <div class="col-lg-6 col-12 col-sm-12 col-md-6">
+    <div class="col-lg-6 col-12 col-sm-12">
       <div class="d-flex justify-content-center flex-column align-items-center" style="height: 100vh;">
         <div>
           <h3 class="fw-bold">Complete Registrations</h3>
@@ -32,6 +32,14 @@
             <div class="field mt-2">
               <%= f.label :password %><br />
               <%= f.password_field :password, class: 'form-control' %>
+            </div>
+
+            <div class="col" data-controller="location">
+              <%= f.label :location, class: 'control-label' %> <small class="mx-2 text-primary" id="location-message"></small>
+              <div class="input-group mb-3">
+                <%= f.text_field :location, type: 'text', class: 'form-control', placeholder: 'Enter your home location', id: "location-details" %>
+                <button class="btn btn-primary" type="button" id="get-location" data-action="click->location#initialize"><i class="bi bi-geo-alt"></i></button>
+              </div>
             </div>
 
           <% end %>

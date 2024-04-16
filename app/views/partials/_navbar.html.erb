@@ -24,6 +24,11 @@
         </li>
         <% if current_user && current_user.seller_or_admin?%>
           <li class="nav-item">
+            <%= link_to dashboard_path, class: "nav-link d-flex justify-content-center align-items-center gap-2" do %>
+              <i class="bi bi-gear fs-5"></i> Dashboard
+            <% end %>
+          </li>
+          <li class="nav-item">
             <%= link_to notifications_path, class: 'nav-link d-flex justify-content-center align-items-center', data: { controller: 'bs-modal'} do%>
               <i class="bi h4 <%= active_link("notification", " bi-bell-fill", " bi-bell", "index") %> "></i>
                 <span class="translate-middle badge rounded-pill bg-primary" id="notification_count_<%= current_user.id%>">

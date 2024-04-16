@@ -30,6 +30,42 @@
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, necessitatibus minus. Maiores, sed error dolores reiciendis repellat tempora ad id sapiente eligendi exercitationem odio facilis tempore doloribus iste veniam rem.
           </p>
           <hr>
+          <div class="col-12 col-md-12">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <tbody>
+                  <tr>
+                    <th scope="row" class="col-3">Brand:</th>
+                    <td class="col-9"><%= @car.brand %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-3">Model:</th>
+                    <td class="col-9"><%= @car.model %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-3">Mileage:</th>
+                    <td class="col-9"><%= @car.mileage %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-3">Insurance:</th>
+                    <td class="col-9"><%= @car.insurance %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-3">Color:</th>
+                    <td class="col-9"><%= @car.color %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-3">Available:</th>
+                    <td class="col-9"><%= @car.availability %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="col-3">Policies:</th>
+                    <td class="col-9"><%= link_to 'View Policies', car_policies_path(@car), data: { controller: 'bs-modal'} %></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </main>
     </div>
@@ -39,7 +75,7 @@
 <section class="bg-light border-top py-4">
   <div class="container">
     <div class="row gx-4">
-      <div class="col-lg-8 mb-4">
+      <div class="col-lg-7 mb-4">
         <div class="border rounded-2 px-3 py-2 bg-white">
           <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
             <li class="nav-item d-flex" role="presentation">
@@ -53,42 +89,6 @@
                 enim ad minim veniam.
               </p>
               <div class="row mb-2">
-                <div class="col-12 col-md-12">
-                  <div class="table-responsive">
-                    <table class="table table-striped">
-                      <tbody>
-                        <tr>
-                          <th scope="row" class="col-3">Brand:</th>
-                          <td class="col-9"><%= @car.brand %></td>
-                        </tr>
-                        <tr>
-                          <th scope="row" class="col-3">Model:</th>
-                          <td class="col-9"><%= @car.model %></td>
-                        </tr>
-                        <tr>
-                          <th scope="row" class="col-3">Mileage:</th>
-                          <td class="col-9"><%= @car.mileage %></td>
-                        </tr>
-                        <tr>
-                          <th scope="row" class="col-3">Insurance:</th>
-                          <td class="col-9"><%= @car.insurance %></td>
-                        </tr>
-                        <tr>
-                          <th scope="row" class="col-3">Color:</th>
-                          <td class="col-9"><%= @car.color %></td>
-                        </tr>
-                        <tr>
-                          <th scope="row" class="col-3">Available:</th>
-                          <td class="col-9"><%= @car.availability %></td>
-                        </tr>
-                        <tr>
-                          <th scope="row" class="col-3">Policies:</th>
-                          <td class="col-9"><%= link_to 'View Policies', car_policies_path(@car), data: { controller: 'bs-modal'} %></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
                 <div class="col-12 col-md-12">
                   <%= turbo_stream_from "comments_#{dom_id(@car)}" %>
                   <div id="comment-form">
@@ -105,7 +105,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4">
+      <div class="col-lg-5">
         <div class="px-0 rounded-2 position-sticky" style="top: 5rem;">
           <div class="card">
             <div class="card-body">

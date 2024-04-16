@@ -10,7 +10,7 @@
             <div class="row p-4 mt-5">
               <div class="d-flex justify-content-between p-2 align-items-center border-bottom mb-4">
                 <h2 class="pb-2 text-white fw-bold">Overall Analysis</h2>
-                <i class="bi bi-speedometer2 fs-1 text-white"></i>
+                <i class="bi bi-speedometer2 fs-1 text-white fa-beat-fade"></i>
               </div>
               <% @cars_count = @cars.count %>
               <% @views_count = @cars.sum(:views) %>
@@ -81,8 +81,8 @@
                       <h4 class="p-2 fs-5 fw-bold rounded bg-success text-white">Bring them back?</h4>
                     </div>
                   <% else %>
-                    <div class="p-4 mb-4 card bg-success">
-                      <i class="bi bi-radioactive fs-2 text-white"></i>
+                    <div class="p-4 mb-4 card bg-success text-center">
+                      <i class="bi bi-radioactive fs-1 text-white fa-beat-fade"></i>
                       <small class="text-white">No Cars Found!</small>
                     </div>
                   <% end %>
@@ -95,8 +95,8 @@
                       <% if @car_with_highest_views.present? %>
                         <%= link_to image_tag(@car_with_highest_views.image.first, width: '300px'), car_path(@car_with_highest_views.id) %>
                       <% else %>
-                        <div class="p-5 mb-4 card" style="background-color: red;">
-                          <i class="bi bi-radioactive fs-2 text-white"></i>
+                        <div class="p-5 mb-4 card text-center" style="background-color: red;">
+                          <i class="bi bi-radioactive fs-2 text-white fa-beat-fade"></i>
                           <small class="text-white">No Cars Found!</small>
                         </div>
                       <% end %>

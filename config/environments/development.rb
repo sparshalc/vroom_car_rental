@@ -83,4 +83,7 @@ Rails.application.configure do
 
   config.action_mailer.raise_delivery_errors = false
 
+  config.hosts << "82f3-103-41-173-36.ngrok-free.app"
+
+  config.hosts << "82f3-103-41-173-36.ngrok-free.app"
 end

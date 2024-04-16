@@ -8,6 +8,9 @@ class Booking < ApplicationRecord
     rejected: 2
   }
 
+  scope :upcoming_bookings, -> { where("start_date > ?", Date.today).order(:start_date) }
+  scope :current_bookings, -> { where("end_date > ?", Date.today).where("start_date < ?", Date.today).order(:checkout_date) }
+
   before_validation :calculate_duration, on: :create
   after_create_commit :send_booking_mail
   after_update_commit :update_availability, :check_booking_status, :send_booking_status_mail

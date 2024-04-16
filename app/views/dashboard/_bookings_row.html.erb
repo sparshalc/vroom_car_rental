@@ -1,9 +1,9 @@
 <tr id="<%= dom_id(booking) %>">
   <th scope="row"><%= booking.id %></th>
-  <td><%= booking.start_date %></td>
-  <td><%= booking.end_date %></td>
+  <td><%= booking.start_date.to_date.strftime('%Y-%m-%d') %></td>
+  <td><%= booking.end_date.to_date.strftime('%Y-%m-%d') %></td>
   <td><%= booking.duration_in_days %></td>
-  <td><%= image_tag(booking.car.image.first, width: '40px', class: 'rounded-circle') %> <%= booking.car.name %></td>
+  <td><%= image_tag(booking.car.image.first, width: '50px', height: '50px', class: 'rounded-circle') %> <%= booking.car.name %></td>
   <td><%= booking.user.email %></td>
   <td><%= booking.car.user.email %></td>
   <td>

@@ -46,18 +46,20 @@
   font-weight: 800;
 }
 
-@keyframes fa-beat-fade {
-  0% {
-    opacity: 1; 
-  }
-  50% {
-    opacity: 0.5; 
-  }
-  100% {
-    opacity: 1;
-  }
+.fa-beat-fade {
+  animation: fa-beat-fade 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-.fa-beat-fade {
-  animation: fa-beat-fade 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite; /* Adjusted duration and timing function */
+@keyframes fa-beat-fade {
+  0%,
+  to {
+    opacity:.4;
+    -webkit-transform:scale(1);
+    transform:scale(1)
+  }
+  50% {
+    opacity:1;
+    -webkit-transform:scale(1.125);
+    transform:scale(1.125)
+  }
 }
