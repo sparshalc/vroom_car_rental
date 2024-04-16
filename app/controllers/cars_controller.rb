@@ -12,6 +12,9 @@ class CarsController < ApplicationController
     @booking = current_user.bookings.build
     @comments = @car.comments.all
     @car.update(views: @car.views + 1)
+
+    upcoming_reservations = @car.bookings.upcoming_bookings.pluck(:start_date, :end_date)
+    @blocked_dates = upcoming_reservations.map { |reservation| [reservation[0].to_s, (reservation[1] - 1.day).to_s] }
   end
 
   def new

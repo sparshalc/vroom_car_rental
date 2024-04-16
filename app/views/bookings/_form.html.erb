@@ -1,43 +1,75 @@
-<%= form_with(model: @booking, url: car_bookings_path(@car)) do |form| %>
+<%= form_with(model: @booking,
+              url: car_bookings_path(@car),
+              data: { controller: 'bookings', 
+              'blocked-dates': "#{ @blocked_dates }"},
+              ) do |form| %>
 
   <div class="row">
     <div class="col-lg-6">
       <div class="mt-2">
         <%= form.label :start_date, style: "display: block" %>
-        <%= form.datetime_field :start_date, class: 'form-control' %>
+        <%= form.datetime_field :start_date, class: 'form-control', data: { 'bookings-target': 'startDate'}, placeholder: 'Select start date' %>
       </div>
     </div>
     <div class="col-lg-6">
       <div class="mt-2">
         <%= form.label :end_date, style: "display: block" %>
-        <%= form.datetime_field :end_date, class: 'form-control' %>
+        <%= form.datetime_field :end_date, class: 'form-control', data: { 'bookings-target': 'endDate'}, placeholder: 'Select end date' %>
       </div>
     </div>
   </div>
 
-  <div class="mt-2" data-controller="location">
-    <%= form.label :pickup_location %> <small class="mx-2 text-primary" id="location-message"></small>
-    <div class="input-group mb-3">
-      <%= form.text_field :pickup_location, value: current_user.location, class: 'form-control', placeholder: 'Enter your home location', id: "location-details" %>
-      <button class="btn btn-primary" type="button" id="get-location" data-action="click->location#initialize"><i class="bi bi-geo-alt"></i></button>
+  <div class="row mt-3">
+      <div class="col-lg-6">
+          <div class="mt-2" data-controller="location">
+            <%= form.label :pickup_location %> <small class="mx-2 text-primary" id="location-message"></small>
+            <div class="input-group mb-3">
+              <%= form.text_field :pickup_location, value: current_user.location, class: 'form-control', placeholder: 'Enter your home location', id: "location-details" %>
+              <button class="btn btn-primary" type="button" id="get-location" data-action="click->location#initialize"><i class="bi bi-geo-alt"></i></button>
+            </div>
+          </div>
+      </div>
+    <div class="col-lg-6">
+      <div class="mt-2">
+        <%= form.label :drop_location, style: "display: block" %>
+        <%= form.text_field :drop_location, class: 'form-control' %>
+      </div>
     </div>
   </div>
 
   <div class="mt-2">
-    <%= form.label :drop_location, style: "display: block" %>
-    <%= form.text_field :drop_location, class: 'form-control' %>
-  </div>
-
-  <div class="mt-2">
     <%= form.label :comment, style: "display: block" %>
-    <%= form.text_area :comment, class: 'form-control' %>
+    <%= form.text_area :comment, class: 'form-control', placeholder: 'Drop if you have any other queries?' %>
   </div>
 
   <div>
     <%= form.hidden_field :car_id, value: @car.id %>
   </div>
 
-  <div>
-    <%= form.submit class: 'btn btn-primary w-100 mt-4' %>
+  <div data-bookings-target="calculations" class="d-none">
+    <li class="list-group-item d-flex justify-content-between mt-3">
+      <div class="calculations">
+        Rs. <span data-bookings-target="baseFair"><%= @car.rental_price %></span> * 
+        <span data-bookings-target="daysCount"></span><small class="text-muted"></small>
+      </div>
+      <div class="result">
+        <span class="text-danger" data-bookings-target="fairWithOutServiceFee"></span>
+      </div>
+    </li>
+      <li class="list-group-item d-flex justify-content-between mt-3">
+        <span>VROOM SERVICE FEE</span>
+        <span>10%</span>
+      </li>
+    <hr>
+    <ul class="list-group mb-3">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span>Total (Rs)</span>
+        <h4 class="fw-bold" data-bookings-target="totalFair"></h4>
+      </li>
+    </ul>
+  </div>
+
+  <div class="mt-2">
+    <%= form.submit 'Pay & Book Now', class: 'btn btn-primary w-100 mt-3' %>
   </div>
 <% end %>
