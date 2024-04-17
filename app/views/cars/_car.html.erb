@@ -24,7 +24,7 @@
       <div class="car_booking d-none d-sm-block">
         <% unless car.booked? || !car.availability?  %>
           <h3 class="fw-bold"><%= car.price %></h3>
-          <%= link_to 'Book Now', root_path,class: 'w-100 btn btn-primary mt-4', data: { turbo_frame: '_top', controller: 'bs-modal' } %>
+          <%= link_to 'Book Now', car_path(car),class: 'w-100 btn btn-primary mt-4', data: { turbo_frame: '_top'} %>
           <small class="text-muted">*T & C applied</small>
         <% end %>
       </div>

@@ -5,11 +5,9 @@
         <div class="rounded-4 mb-3 d-flex justify-content-center" data-controller="lightbox">
           <%= image_tag(@car.image.first, id: "main-image", style: "max-width: 100%; max-height: 100vh; margin: auto;", class: "rounded-4 fit") %>
         </div>
-
         <div class="d-flex justify-content-center mb-3 gap-2" data-controller="lightbox">
           <% @car.image.each_with_index do |thumb_image, index| %>
-            <%= image_tag(thumb_image, width: 60, height: 60, class: "rounded-2 border thumb-image", 
-                          data: { fullImage: thumb_image }) %>
+            <%= image_tag(thumb_image, width: 60, height: 60, class: "rounded-2 border thumb-image", data: { fullImage: thumb_image }) %>
           <% end %>
         </div>
       </aside>
@@ -19,7 +17,6 @@
             <h4 class="title text-dark">
               <%= @car.name %>
             </h4>
-
             <div class="mb-3">
               <span class="badge text-<%= @car.booked? ? 'bg-danger' : class_for_available(@car, 'bg') %>"><%= @car.is_available? %></span>
             </div>
@@ -60,7 +57,7 @@
                   </tr>
                   <tr>
                     <th scope="row" class="col-3">Policies:</th>
-                    <td class="col-9"><%= link_to 'View Policies', car_policies_path(@car), data: { controller: 'bs-modal'} %></td>
+                    <td class="col-9"><%= link_to 'View Policies', car_policies_path(@car), data: { controller: 'bs-modal' } %></td>
                   </tr>
                 </tbody>
               </table>
@@ -112,15 +109,67 @@
               <% if @car.availability %>
                 <h5 class="card-title"><%= @car.price %></h5>
                 <hr>
-                <div class="mb-3 mt-3" id="car-booking-form">
-                  <% if current_user.bookings.exists?(car_id: @car.id) %>
-                    <%= render 'bookings/booked' %>
-                  <% else %>
-                    <%= render 'bookings/form' %>
-                  <% end %>
-                </div>
+                <% if current_user.bookings.exists?(car_id: @car.id) %>
+                  <%= render 'bookings/booked' %>
+                <% else %>
+                  <div data-controller="bookings" data-blocked-dates="<%= @blocked_dates %>">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="d-flex flex-column mt-2">
+                          <label for="start_date">Start Date</label>
+                          <input class="form-control" type="text" name="start_date" id="start_date" value="" placeholder="Select start date" data-bookings-target="startDate">
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="d-flex flex-column mt-2">
+                          <label for="end_date">End Date</label>
+                          <input class="form-control" type="text" name="end_date" id="end_date" placeholder="Select end date" value="" data-bookings-target="endDate">
+                        </div>
+                      </div>
+                      <div class="col-lg-6 mt-3" data-controller="location">
+                        <label for="start_date">Pickup Location</label> <small class="mx-2 text-primary" id="location-message"></small>
+                        <div class="input-group">
+                          <input type="text" class="form-control" placeholder="Enter your home location" value="<%= current_user.location %>" name="user[location]" data-bookings-target="pickupLocation" id="location-details" >
+                          <button class="btn btn-primary" type="button" id="get-location" data-action="click->location#initialize"><i class="bi bi-geo-alt"></i></button>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="d-flex flex-column mt-3">
+                          <label for="drop_location">Drop Location</label>
+                          <input class="form-control" type="text" placeholder="Select Drop Location" name="drop_location" id="drop_location" data-bookings-target="dropLocation">
+                        </div>
+                      </div>
+                      <div class="d-flex flex-column mt-3">
+                        <label for="comment">Comment <span class="text-body-secondary">(Optional)</span></label>
+                        <textarea cols="2" rows="3" class="form-control" type="text" placeholder="Comment if any?" name="comment" id="comment" data-bookings-target="comment"></textarea>
+                      </div>
+                    </div>
+                    <button class="btn btn-primary w-100 mb-4 mt-4" data-reserve-property-url="<%= new_car_booking_path(@car) %>" type="submit" data-action="click->bookings#reserveProperty">Reserve</button>
+                    <div data-bookings-target="calculations" class="d-none">
+                      <li class="list-group-item d-flex justify-content-between mt-3">
+                        <div class="calculations">
+                          Rs. <span data-bookings-target="baseFair"><%= @car.rental_price %></span> * <span data-bookings-target="daysCount"></span><small class="text-muted"></small>
+                        </div>
+                        <div class="result">
+                          <span class="text-danger" data-bookings-target="fairWithOutServiceFee"></span>
+                        </div>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between mt-3">
+                        <span>VROOM SERVICE FEE</span>
+                        <span>10%</span>
+                      </li>
+                      <hr>
+                      <ul class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                          <span>Total (Rs)</span>
+                          <h4 class="fw-bold" data-bookings-target="totalFair"></h4>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                <% end %>
               <% else %>
-                <%= render 'partials/error', message: 'Car Not Avaliable', paragraph: 'The car is currently unavailable for booking. Please try again once it becomes available.' %>
+                <%= render 'partials/error', message: "#{@car_booked_by_current_user ? 'Booked!' : 'Car Not Available'}", paragraph: 'The car is currently unavailable for booking. Please try again once it becomes available.' %>
               <% end %>
             </div>
           </div>

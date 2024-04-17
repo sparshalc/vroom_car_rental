@@ -2,9 +2,9 @@ import { Controller } from "@hotwired/stimulus"
 import flatpickr from "flatpickr";
 
 export default class extends Controller {
-  static targets = ["startDate", "endDate", "baseFair", "daysCount", "fairWithServiceFee", "totalFair", "calculations", "fairWithOutServiceFee"]
+  static targets = ["startDate", "endDate", "baseFair", "daysCount", "fairWithServiceFee", "totalFair", "calculations", "fairWithOutServiceFee", "pickupLocation", "dropLocation", "comment"]
 
-  SERVICE_CHARGE_PERCENT = 0.1
+  SERVICE_CHARGE_PERCENT = 0.10
 
   disableDates = [];
 
@@ -67,6 +67,24 @@ export default class extends Controller {
   }
 
   calculatefairWithServiceFeePrice(days, price){
-    return this.calculatefairWithOutServiceFeePrice(days, price) + (this.SERVICE_CHARGE_PERCENT * price)
+    const priceWithoutServiceCharge = this.calculatefairWithOutServiceFeePrice(days, price)
+    return priceWithoutServiceCharge + (this.SERVICE_CHARGE_PERCENT * priceWithoutServiceCharge)
+  }
+
+  reserveProperty(e) {
+    e.preventDefault();
+
+    const paramsData = {
+      start_date: this.startDateTarget.value,
+      end_date: this.endDateTarget.value,
+      pickup_location: this.pickupLocationTarget.value,
+      drop_location: this.dropLocationTarget.value,
+      comment: this.commentTarget.value,
+    }
+
+    const paramsURL = (new URLSearchParams(paramsData)).toString();
+
+    const baseURL = e.target.dataset.reservePropertyUrl;
+    Turbo.visit(`${baseURL}?${paramsURL}`);
   }
 }

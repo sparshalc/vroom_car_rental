@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   delete 'notifications', to: 'notification#destroy_all'
 
   resources :cars do
-    resources :bookings, except: %i[index new]
+    resources :bookings, except: %i[index]
     resources :comments
     resources :policies, except: %i[edit update show]
   end
@@ -28,6 +28,9 @@ Rails.application.routes.draw do
   get 'dashboard/cars', to: 'dashboard#cars'
   get 'dashboard/users', to: 'dashboard#users'
   get 'dashboard/bookings', to: 'dashboard#bookings'
+
+  resources :booking_payments, only: %i[create]
+  get 'booking_payments/success', to: "booking_payments#success"
 
   get "up" => "rails/health#show", as: :rails_health_check
 
