@@ -1,0 +1,111 @@
+<div class="container" id="car-booking-form">
+  <main>
+    <div class="text-center">
+      <%= inline_svg_tag('svg/bookings', width: '200') %>
+      <h2>Confirm and Pay</h2>
+      <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+    </div>
+
+    <div class="row g-5 mb-4 mt-4">
+      <div class="col-md-5 rounded col-lg-4 order-md-last">
+        <div class="border rounded p-4">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-primary fw-bold">Booking Details</span>
+          </h4>
+          <hr>
+          <div class="d-flex justify-content-center align-items-center">
+            <%= image_tag(@car.image.first, id: "main-image", class: "rounded-4 fit w-75") %>
+          </div>
+          <ul class="list-group mb-3 mt-4">
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div>
+                <h6>Total Days</h6>
+              </div>
+              <span class="text-body-secondary"><%= @total_nights %></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div>
+                <h6>Total Price</h6>
+              </div>
+              <span class="text-body-secondary">Rs. <%= @base_fare %></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div>
+                <h6>VROOM Service Fee</h6>
+              </div>
+              <span class="text-body-secondary">10%</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div>
+                <h5>Total</h5>
+              </div>
+              <h3 class="text-danger fw-bold">Rs. <%= @total_amount %></h3>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-7 col-lg-8">
+        <h3 class="text-primary fw-bold">Complete Booking</h3>
+        <hr>
+        <form class="needs-validation" novalidate="">
+          <div class="row g-3">
+            <div class="col-sm-12">
+              <label for="firstName" class="form-label">First name</label>
+              <input type="text" class="form-control" id="firstName" placeholder="" value="<%= current_user.full_name %>" required="" disabled>
+            </div>
+
+            <div class="col-12">
+              <label for="email" class="form-label">Email </label>
+              <input type="email" class="form-control" id="email" placeholder="you@example.com" value="<%= current_user.email %>" disabled>
+            </div>
+
+            <div class="col-12">
+              <label for="email" class="form-label">Phone Number </label>
+              <input type="email" class="form-control" id="email" placeholder="you@example.com" value="<%= current_user.phone_number %>" disabled>
+            </div>
+
+          <div class="row mt-4">
+            <div class="col-lg-6">
+              <div class="col-12">
+                <label for="address" class="form-label">Pickup Location</label>
+                <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="" value="<%= @pickup_location %>" disabled>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="col-12">
+                <label for="address2" class="form-label">Drop Location</label>
+                <input type="text" class="form-control" id="address2" placeholder="Apartment or suite" value="<%= @drop_location %>" disabled>
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input">
+            <label class="form-check-label" for="same-address">All the details above are valid</label>
+          </div>
+          <hr class="my-4">
+        </form>
+        <div data-turbo="false">
+          <%= form_with url: booking_payments_path(
+              car_id: @car.id,
+              user_id: current_user.id,
+              start_date: @start_date,
+              end_date: @end_date,
+              base_fare: @base_fare,
+              pickup_location: @pickup_location,
+              drop_location: @drop_location,
+              comment: @comment,
+              total_amount: @total_amount,
+              service_fee: @service_fee,
+            ), method: :post do |form| %>
+
+            <%= form.submit "Confirm & Pay", class: 'btn btn-primary w-100' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

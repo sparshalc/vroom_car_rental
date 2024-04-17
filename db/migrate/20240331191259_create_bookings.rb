@@ -1,8 +1,8 @@
 class CreateBookings < ActiveRecord::Migration[7.1]
   def change
     create_table :bookings do |t|
-      t.datetime :start_date
-      t.datetime :end_date
+      t.date :start_date
+      t.date :end_date
       t.string :pickup_location
       t.string :drop_location
       t.integer :status, default: 0

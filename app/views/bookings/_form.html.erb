@@ -1,22 +1,10 @@
 <%= form_with(model: @booking,
               url: car_bookings_path(@car),
-              data: { controller: 'bookings', 
-              'blocked-dates': "#{ @blocked_dates }"},
               ) do |form| %>
 
-  <div class="row">
-    <div class="col-lg-6">
-      <div class="mt-2">
-        <%= form.label :start_date, style: "display: block" %>
-        <%= form.datetime_field :start_date, class: 'form-control', data: { 'bookings-target': 'startDate'}, placeholder: 'Select start date' %>
-      </div>
-    </div>
-    <div class="col-lg-6">
-      <div class="mt-2">
-        <%= form.label :end_date, style: "display: block" %>
-        <%= form.datetime_field :end_date, class: 'form-control', data: { 'bookings-target': 'endDate'}, placeholder: 'Select end date' %>
-      </div>
-    </div>
+  <div>
+    <%= form.hidden_field :start_date, class: 'form-control', value: @start_date %>
+    <%= form.hidden_field :end_date, class: 'form-control', value: @end_date %>
   </div>
 
   <div class="row mt-3">
@@ -44,29 +32,6 @@
 
   <div>
     <%= form.hidden_field :car_id, value: @car.id %>
-  </div>
-
-  <div data-bookings-target="calculations" class="d-none">
-    <li class="list-group-item d-flex justify-content-between mt-3">
-      <div class="calculations">
-        Rs. <span data-bookings-target="baseFair"><%= @car.rental_price %></span> * 
-        <span data-bookings-target="daysCount"></span><small class="text-muted"></small>
-      </div>
-      <div class="result">
-        <span class="text-danger" data-bookings-target="fairWithOutServiceFee"></span>
-      </div>
-    </li>
-      <li class="list-group-item d-flex justify-content-between mt-3">
-        <span>VROOM SERVICE FEE</span>
-        <span>10%</span>
-      </li>
-    <hr>
-    <ul class="list-group mb-3">
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <span>Total (Rs)</span>
-        <h4 class="fw-bold" data-bookings-target="totalFair"></h4>
-      </li>
-    </ul>
   </div>
 
   <div class="mt-2">

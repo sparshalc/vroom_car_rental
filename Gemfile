@@ -55,6 +55,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem 'dotenv'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -67,7 +68,10 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem 'dotenv'
 end
+
+gem 'stripe-rails'
 
 gem "devise"
 
@@ -86,5 +90,7 @@ gem "mailcatcher", "~> 0.2.4"
 gem "noticed", "~> 1.6"
 
 gem "faker", "~> 3.3"
+
+gem 'money-rails', '~> 1.12'
 
 gem "unsplash_image"

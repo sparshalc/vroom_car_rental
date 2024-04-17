@@ -1,0 +1,27 @@
+#stripe-form{
+  margin-top: 16px;
+  font-family: inherit;
+  label{
+    margin-bottom: 16px;
+    font-family: inherit;
+  }
+  #card-element{
+    border: 2px solid gray;
+    border-radius: 4px;
+    margin-top: 16px;
+  }
+  font: inherit;
+  input[type="submit"]{
+    background: rgb(10,44,132);
+    color: white;
+    border: 0;
+    padding: 12px 32px;
+    border-radius: 8px;
+    margin-top: 24px;
+    font-size: 16px;
+    font-weight: medium;
+    &:hover{
+      background: rgb(10,44,132);
+    }
+  }
+}

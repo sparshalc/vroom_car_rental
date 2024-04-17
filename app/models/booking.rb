@@ -1,6 +1,7 @@
 class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :car
+  has_one :payment, dependent: :destroy
 
   enum status: {
     pending: 0,
@@ -11,14 +12,13 @@ class Booking < ApplicationRecord
   scope :upcoming_bookings, -> { where("start_date > ?", Date.today).order(:start_date) }
   scope :current_bookings, -> { where("end_date > ?", Date.today).where("start_date < ?", Date.today).order(:checkout_date) }
 
-  before_validation :calculate_duration, on: :create
   after_create_commit :send_booking_mail
   after_update_commit :update_availability, :check_booking_status, :send_booking_status_mail
   after_destroy_commit :update_availability
 
   def send_booking_mail
     users_to_notify = [car.user]
-    users_to_notify << User.where(role: "admin") unless user == car.user && duration.nil?
+    users_to_notify << User.where(role: "admin") unless user == car.user
     users_to_notify.flatten.uniq.each do |recipient|
       NewBookingJob.perform_now(self, recipient)
     end
@@ -31,7 +31,7 @@ class Booking < ApplicationRecord
   end
 
   def duration_in_days
-    "#{duration} days"
+    "#{(end_date - start_date).to_f} days"
   end
 
   private
@@ -52,12 +52,5 @@ class Booking < ApplicationRecord
 
   def booking_rejected?
     status == "rejected"
-  end
-
-  def calculate_duration
-    return if start_date.nil? || end_date.nil?
-
-    time_in_seconds = (end_date - start_date).to_f
-    self.duration = (time_in_seconds / (24 * 60 * 60)).round(1)
   end
 end

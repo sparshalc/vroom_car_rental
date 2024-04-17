@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_15_080442) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_17_163422) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,13 +43,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_080442) do
   end
 
   create_table "bookings", force: :cascade do |t|
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.date "start_date"
+    t.date "end_date"
     t.string "pickup_location"
     t.string "drop_location"
     t.integer "status", default: 0
     t.text "comment"
-    t.float "duration"
     t.bigint "user_id", null: false
     t.bigint "car_id", null: false
     t.datetime "created_at", null: false
@@ -109,6 +108,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_080442) do
     t.index ["recipient_type", "recipient_id"], name: "index_notifications_on_recipient"
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.bigint "booking_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "base_fare", default: 0
+    t.integer "service_fee", default: 0
+    t.integer "total_amount", default: 0
+    t.index ["booking_id"], name: "index_payments_on_booking_id"
+  end
+
   create_table "policies", force: :cascade do |t|
     t.string "title"
     t.bigint "car_id", null: false
@@ -163,6 +172,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_080442) do
   add_foreign_key "comments", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "payments", "bookings"
   add_foreign_key "policies", "cars"
   add_foreign_key "policies", "users"
   add_foreign_key "rooms", "users"

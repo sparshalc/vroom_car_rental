@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :rooms, dependent: :destroy
   has_many :cars, dependent: :destroy
+  has_many :payments, through: :bookings, dependent: :destroy
   has_many :notifications, as: :recipient
 
   enum role: { user: 0, seller: 1, admin: 2 }

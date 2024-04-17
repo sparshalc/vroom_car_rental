@@ -15,6 +15,8 @@ class CarsController < ApplicationController
 
     upcoming_reservations = @car.bookings.upcoming_bookings.pluck(:start_date, :end_date)
     @blocked_dates = upcoming_reservations.map { |reservation| [reservation[0].to_s, (reservation[1] - 1.day).to_s] }
+
+    @car_booked_by_current_user = current_user.bookings.exists?(car_id: @car.id)
   end
 
   def new

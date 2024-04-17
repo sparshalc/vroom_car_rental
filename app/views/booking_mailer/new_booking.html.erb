@@ -12,9 +12,9 @@
     <li><strong>User:</strong> <%= @booking.user.email %></li>
     <li><strong>Car:</strong> <%= @booking.car.name %></li>
     <li><strong>Status:</strong> <%= @booking.status %></li>
-    <li><strong>Duration:</strong> <%= @booking.duration_in_days %></li>
-    <li><strong>Start Date:</strong> <%= @booking.start_date.to_date.strftime('%Y-%m-%d') %></li>
-    <li><strong>End Date:</strong> <%= @booking.end_date.to_date.strftime('%Y-%m-%d') %></li>
+    <li><strong>Duration:</strong> <%= @duration %></li>
+    <li><strong>Start Date:</strong> <%= @booking.start_date %></li>
+    <li><strong>End Date:</strong> <%= @booking.end_date %></li>
     <li><strong>Pickup Location:</strong> <%= @booking.pickup_location %></li>
     <li><strong>Drop Location:</strong> <%= @booking.drop_location %></li>
   </ul>
