@@ -13,6 +13,14 @@
   }
 }
 
+.btn-outline-primary{
+  border: 1px solid rgb(10,44,132) !important; 
+  &:hover{
+    background: rgb(10,44,132);
+    color: white !important;
+  }
+}
+
 .btn-primary{
   background: rgb(10,44,132);
   color: white;

@@ -7,11 +7,11 @@ module ApplicationHelper
     turbo_stream.prepend 'flash', partial: 'partials/flash'
   end
 
-  def is_devise_path?
+  def devise_path?
     params[:controller] == 'users/sessions' || params[:controller] == 'users/registrations' || params[:controller] == 'users/passwords'
   end
 
-  def is_dashboard_path?
+  def dashboard_path?
     params[:controller] == 'dashboard'
   end
 
