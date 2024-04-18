@@ -22,5 +22,8 @@ application.register("location", LocationController)
 import RemovalsController from "./removals_controller"
 application.register("removals", RemovalsController)
 
+import ShareController from "./share_controller"
+application.register("share", ShareController)
+
 import SidebarController from "./sidebar_controller"
 application.register("sidebar", SidebarController)

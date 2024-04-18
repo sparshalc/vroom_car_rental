@@ -17,8 +17,9 @@
             <h4 class="title text-dark">
               <%= @car.name %>
             </h4>
-            <div class="mb-3">
+            <div class="mb-3 d-flex gap-2 justify-content-center align-items-center">
               <span class="badge text-<%= @car.booked? ? 'bg-danger' : class_for_available(@car, 'bg') %>"><%= @car.is_available? %></span>
+              <small class="text-primary"><i class="bi bi-share mx-1"></i><%= link_to 'Share', share_car_path(@car), data: { controller: 'bs-modal'}, class: 'text-decoration-none' %></small>
             </div>
           </div>
           <p>
