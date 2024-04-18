@@ -16,6 +16,7 @@ class User < ApplicationRecord
   enum role: { user: 0, seller: 1, admin: 2 }
 
   validate :avatar_content_type, if: :avatar_attached?
+  validates :location, presence: true
   validates :full_name, presence: true, uniqueness: { message: "has already been taken try again with a new one." }
   validate :phone_number_format
 

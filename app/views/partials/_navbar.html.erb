@@ -17,11 +17,13 @@
             <i class="bi <%= active_link("cars", "bi-truck-front-fill", "bi-truck-front", "index")%> fs-5"></i> Cars
           <% end %>
         </li>
-        <li class="nav-item">
-          <%= link_to bookings_path, class: "nav-link d-flex justify-content-center align-items-center gap-2 #{ active_link("user", "fw-bold", "", "bookings") }" do %>
-            <i class="bi <%= active_link("user", "bi-bookmark-fill", "bi-bookmark", "bookings")%> fs-5"></i>Bookings
-          <% end %>
-        </li>
+        <% if current_user %>
+          <li class="nav-item">
+            <%= link_to bookings_path, class: "nav-link d-flex justify-content-center align-items-center gap-2 #{ active_link("user", "fw-bold", "", "bookings") }" do %>
+              <i class="bi <%= active_link("user", "bi-bookmark-fill", "bi-bookmark", "bookings")%> fs-5"></i>Bookings
+            <% end %>
+          </li>
+        <% end %>
         <li class="nav-item">
           <%= link_to guides_path, class: "nav-link d-flex justify-content-center align-items-center gap-2 #{ active_link("pages", "fw-bold", "", "guides") }" do %>
             <i class="bi <%= active_link("pages", "bi-journal-bookmark-fill", "bi-journal-bookmark", "guides")%> fs-5"></i> Guides

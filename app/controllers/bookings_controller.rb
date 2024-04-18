@@ -1,8 +1,9 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:edit, :update, :destroy]
-  before_action :set_car, only: [:new, :create]
-  before_action :check_user_bookings, only: [:new, :create]
-  before_action :verify_correct_user, only: [:edit, :update, :destroy]
+  before_action :set_booking, only: %i[edit update destroy]
+  before_action :set_car, only: %i[new create]
+  before_action :check_params, only: %i[new]
+  before_action :check_user_bookings, only: %i[new create]
+  before_action :verify_correct_user, only: %i[edit update destroy]
 
   def edit
   end
@@ -78,6 +79,12 @@ class BookingsController < ApplicationController
     @total_amount = @base_fare + @service_fee
 
     @booking = Booking.new
+  end
+
+  def check_params
+    if params[:start_date].blank? && params[:end_date].blank?
+      routing_exception
+    end
   end
 
   def booking_params
