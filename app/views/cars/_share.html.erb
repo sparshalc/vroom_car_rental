@@ -1,0 +1,34 @@
+<div class="container" 
+    data-controller="share"
+    data-share-url="<%= @share_url %>"
+    >
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="ctc shadow-lg border p-3 rounded" data-action="click->share#copyLink" style="cursor: pointer;">
+        <i class="bi bi-clipboard"></i>
+        Copy to clipboard
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="ctc shadow-lg border p-3 rounded" data-action="click->share#whatsappShare" style="cursor: pointer;">
+          <i class="bi bi-whatsapp"></i>
+          Share to whatsapp
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-lg-6">
+      <div class="ctc shadow-lg border p-3 rounded" style="cursor: pointer;" data-action="click->share#embedLink">
+        <i class="bi bi-link-45deg"></i>
+        Embeded Link
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="ctc shadow-lg border p-3 rounded" data-action="click->share#twitterShare" style="cursor: pointer;">
+          <i class="bi bi-twitter"></i>
+          Share to twitter
+      </div>
+    </div>
+  </div>
+</div>
+

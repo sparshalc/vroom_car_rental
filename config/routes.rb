@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   delete 'notifications', to: 'notification#destroy_all'
 
   resources :cars do
+    member do
+      get '/share', to: 'cars#share'
+    end
     resources :bookings, except: %i[index]
     resources :comments
     resources :policies, except: %i[edit update show]

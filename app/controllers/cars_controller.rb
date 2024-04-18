@@ -1,6 +1,6 @@
 class CarsController < ApplicationController
-  before_action :set_car, only: %i[ show edit update destroy ]
-  before_action :verify_seller_or_admin, except: %i[show index ]
+  before_action :set_car, only: %i[ show edit update destroy share]
+  before_action :verify_seller_or_admin, except: %i[show index share]
   before_action :verify_corrent_user,only: %i[edit update destroy]
   skip_before_action :authenticate_user!, only: %i[index]
 
@@ -44,6 +44,14 @@ class CarsController < ApplicationController
       else
         format.json { render json: @car.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def share
+    @share_url = car_url(@car)
+    if format_turbo_stream
+    else
+      routing_exception
     end
   end
 
