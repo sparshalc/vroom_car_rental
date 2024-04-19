@@ -41,6 +41,8 @@ class Booking < ApplicationRecord
   end
 
   def update_availability
+    return unless car.present?
+
     return car.update(availability: true) unless self.persisted? || self.booking_rejected?
 
     car.update(availability: !accepted?)

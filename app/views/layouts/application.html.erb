@@ -61,7 +61,7 @@
       <%= render 'partials/navbar' %>
     <% end %>
 
-    <div class="<%= dashboard_path? || devise_path? ? '' : 'navbar_margin' %>">
+    <div class="<%= dashboard_path? || params[:controller] == "cars" && params[:action] == "new" || devise_path? ? '' : 'navbar_margin' %>">
       <%= yield %>
     </div>
 

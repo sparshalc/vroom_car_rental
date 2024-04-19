@@ -7,7 +7,8 @@ User.create(
   password_confirmation: 'password',
   role: 0,
   phone_number: '9845454545',
-  full_name: 'VROOM USER'
+  full_name: 'VROOM USER',
+  location: 'Bharatpur-10, Chitwan'
 )
 
 User.create(
@@ -16,7 +17,8 @@ User.create(
   password_confirmation: 'password',
   role: 1,
   phone_number: '9845454545',
-  full_name: 'VROOM SELLER'
+  full_name: 'VROOM SELLER',
+  location: 'Bharatpur-10, Chitwan'
 )
 
 User.create(
@@ -25,7 +27,8 @@ User.create(
   password_confirmation: 'password',
   role: 2,
   phone_number: '9845454545',
-  full_name: 'VROOM ADMIN'
+  full_name: 'VROOM ADMIN',
+  location: 'Bharatpur-10, Chitwan'
 )
 
 10.times do
@@ -48,6 +51,3 @@ User.create(
 
   c.save
 end
-
-
-# TODO Add Flactpck gem

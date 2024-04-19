@@ -8,6 +8,8 @@ class Car < ApplicationRecord
 
   has_many_attached :image
 
+  has_rich_text :description
+
   enum car_type: {
     sedan: 0,
     suv: 1,

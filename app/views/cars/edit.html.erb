@@ -1,3 +1,15 @@
-<%= turbo_frame_tag @car do %>
-  <%= render "form", car: @car %>
-<% end %>
+<div class="wrapper" data-controller="sidebar">
+  <%= render 'partials/sidebar' %>
+  <div class="main">
+    <%= render 'partials/dashboard_navbar' %>
+
+    <main class="content px-3 py-2">
+      <div class="container" style="margin-top: 50px;">
+        <div class="container">
+          <%= render "form", car: @car %>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+

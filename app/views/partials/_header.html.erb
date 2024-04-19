@@ -5,6 +5,8 @@
     <%= paragraph %>
   </p>
   <% if invite_user %>
-    <%= link_to 'Invite User', new_user_invitation_path, class: 'btn btn-primary', data: { controller: 'bs-modal'} %>
+    <%= link_to 'Invite User', new_user_invitation_path, class: 'btn btn-primary w-50', data: { controller: 'bs-modal'} %>
+  <% elsif new_car %>
+    <%= link_to 'Add Car', new_car_path, class: 'btn btn-primary w-50' %>
   <% end %>
 </div>

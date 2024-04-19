@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     member do
       get '/share', to: 'cars#share'
     end
+    resource :cover_image, only: [:destroy], module: :cars
     resources :bookings, except: %i[index]
     resources :comments
     resources :policies, except: %i[edit update show]

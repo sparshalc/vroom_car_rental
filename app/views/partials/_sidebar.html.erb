@@ -5,10 +5,15 @@
     </button>
   </div>
   <div>
-    <div class="sidebar-logo">
-    <%= link_to image_tag('VROOM.png', style: 'filter: brightness(0) invert(1);', width: '150', height: 'auto'), dashboard_path %>
+    <div class="dashboard_sidebar_details border-bottom">
+      <div class="sidebar-logo mt-2 text-center text-white">
+        <%= link_to image_tag('vroom/logo_circular_inverted.png', width: '100', height: 'auto'), dashboard_path %>
+      </div>
+      <div class="sidebar_text_details mt-2 mb-3 text-center">
+        <small class="text-white">Seamlessly Handle & <br> Organize Your Site's Data.</small>
+      </div>
     </div>
-    <ul class="navbar-nav mt-5"> 
+    <ul class="navbar-nav mt-4"> 
       <li class="nav-item">
         <%= link_to dashboard_cars_path, class: "nav-link text-white d-flex justify-content-start mx-5 align-items-center gap-2 #{ active_link("dashboard", "fw-bold", "", "cars") }" do %>
           <i class="bi <%= active_link("dashboard", "bi-houses-fill", " bi-houses", "cars")%> fs-5"></i> Cars
