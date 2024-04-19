@@ -21,29 +21,19 @@ class CarsController < ApplicationController
   end
 
   def new
-    if format_turbo_stream
-      @car = Car.new
-    else
-      routing_exception
-    end
+    @car = Car.new
   end
 
   def edit
-    if format_turbo_stream
-    else
-      routing_exception
-    end
   end
 
   def create
     @car = Car.new(car_params)
 
-    respond_to do |format|
-      if @car.save
-        format.turbo_stream
-      else
-        format.json { render json: @car.errors, status: :unprocessable_entity }
-      end
+    if @car.save
+      redirect_to dashboard_cars_path, notice: 'Car added successfully!'
+    else
+      format.json { render json: @car.errors, status: :unprocessable_entity }
     end
   end
 
@@ -56,12 +46,10 @@ class CarsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @car.update(car_params)
-        format.turbo_stream
-      else
-        format.json { render json: @car.errors, status: :unprocessable_entity }
-      end
+    if @car.update(car_params)
+      redirect_to dashboard_cars_path, notice: 'Car updated successfully!'
+    else
+      format.json { render json: @car.errors,status: :unprocessable_entity }
     end
   end
 
@@ -80,7 +68,19 @@ class CarsController < ApplicationController
     end
 
     def car_params
-      params.require(:car).permit(:brand, :name, :model, :color, :mileage, :availability, :location, :rental_price, :insurance, :car_type, :user_id, image: [])
+      params.require(:car).permit(:brand,
+      :name,
+      :model,
+      :color,
+      :mileage,
+      :availability,
+      :location,
+      :rental_price,
+      :insurance,
+      :car_type,
+      :user_id,
+      :description,
+      image: [])
     end
 
     def verify_corrent_user

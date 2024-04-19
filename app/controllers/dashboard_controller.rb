@@ -4,8 +4,6 @@ class DashboardController < ApplicationController
 
   def index
     load_cars_and_bookings
-    @car_with_highest_views = @cars.max_by(&:views)
-    @cars_not_available = @cars.where(availability: false)
   end
 
   def cars
@@ -33,7 +31,7 @@ class DashboardController < ApplicationController
   end
 
   def load_cars
-    @cars = current_user.admin? ? Car.all : current_user.cars
+    @cars = current_user.admin? ? Car.all.except(:image) : current_user.cars
   end
 
   def load_bookings

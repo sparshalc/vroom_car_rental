@@ -61,54 +61,6 @@
           </div>
 
           <div class="row mt-5 mb-5">
-            <h2 class="pb-2 border-bottom main_header mb-4">Your Cars</h2>
-            <div class="col-lg-12">
-              <div class="row row-cols-1 row-cols-lg-3 g-3">
-                <div class="col-lg-6">
-                  <% if @cars_not_available.present? %>
-                    <div class="feature col text-center card p-3">
-                      <div class="feature-icon d-flex p-2 rounded align-items-center justify-content-center bg-success fs-2 mb-3 overflow-hidden">
-                        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000">
-                          <div class="carousel-inner">
-                            <% @cars_not_available.each_with_index do |car, index| %>
-                              <div class="carousel-item <%= index.zero? ? 'active' : '' %>">
-                                <%= image_tag(car.image.first, width: '300px', height: 'auto') %>
-                              </div>
-                            <% end %>
-                          </div>
-                        </div>
-                      </div>
-                      <h4 class="p-2 fs-5 fw-bold rounded bg-success text-white">Bring them back?</h4>
-                    </div>
-                  <% else %>
-                    <div class="p-4 mb-4 card bg-success text-center">
-                      <i class="bi bi-radioactive fs-1 text-white fa-beat-fade"></i>
-                      <small class="text-white">No Cars Found!</small>
-                    </div>
-                  <% end %>
-                </div>
-
-                <div class="col-lg-6">
-
-                  <div class="feature col text-center card p-3">
-                    <div class="feature-icon d-flex p-2 rounded align-items-center justify-content-center bg-primary fs-2 mb-3 overflow-hidden">
-                      <% if @car_with_highest_views.present? %>
-                        <%= link_to image_tag(@car_with_highest_views.image.first, width: '300px'), car_path(@car_with_highest_views.id) %>
-                      <% else %>
-                        <div class="p-5 mb-4 card text-center" style="background-color: red;">
-                          <i class="bi bi-radioactive fs-2 text-white fa-beat-fade"></i>
-                          <small class="text-white">No Cars Found!</small>
-                        </div>
-                      <% end %>
-                    </div>
-                    <h4 class="p-2 fs-5 fw-bold rounded bg-primary text-white">Most Viewed</h4>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row mt-5 mb-5">
             <h2 class="pb-2 border-bottom main_header mb-4">Total Bookings</h2>
             <div class="col-lg-6">
               <div class="card p-3 mt-2">
