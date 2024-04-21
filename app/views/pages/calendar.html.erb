@@ -1,0 +1,16 @@
+<div class="container" style="margin-top: 100px;">
+  <%= turbo_frame_tag "calendar", data: { turbo_action: 'advance'} do %>
+    <%= month_calendar(events: @bookings, attribute: :start_date, end_attribute: :end_date) do |date, bookings| %>
+        <div class="day p-2">
+          <%= date.strftime('%d') %>
+        </div>
+        <% bookings.each do |booking| %>
+          <%= link_to bookings_details_path(booking.id), data: { controller: 'bs-modal'}, class: 'text-white text-decoration-none' do %>
+            <span class="badge mt-1 align-items-start p-1 pe-2 text-dark border glassmorphism <%= status_background(booking)%>">
+              <%= image_tag(booking.car.image.first, class: 'me-1', width: '24', height: '24') %><small class="fw-lighter"><%= booking.drop_location %></small>
+            </span>
+          <% end %>
+        <% end %>
+    <% end %>
+  <% end %>
+</div>

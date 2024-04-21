@@ -8,11 +8,6 @@
     <div class="collapse navbar-collapse text-end" id="navbarSupportedContent"> 
       <ul class="navbar-nav mb-lg-0 gap-2 ms-auto"> 
         <li class="nav-item">
-          <%= link_to root_path, class: "nav-link d-flex justify-content-center align-items-center gap-2 #{ active_link("pages", "fw-bold", "", "home") }" do %>
-            <i class="bi <%= active_link("pages", "bi-houses-fill", " bi-houses", "home")%> fs-5"></i> Home
-          <% end %>
-        </li>
-        <li class="nav-item">
           <%= link_to cars_path, class: "nav-link d-flex justify-content-center align-items-center gap-2 #{ active_link("cars", "fw-bold", "", "index") }" do %>
             <i class="bi <%= active_link("cars", "bi-truck-front-fill", "bi-truck-front", "index")%> fs-5"></i> Cars
           <% end %>
@@ -21,6 +16,11 @@
           <li class="nav-item">
             <%= link_to bookings_path, class: "nav-link d-flex justify-content-center align-items-center gap-2 #{ active_link("user", "fw-bold", "", "bookings") }" do %>
               <i class="bi <%= active_link("user", "bi-bookmark-fill", "bi-bookmark", "bookings")%> fs-5"></i>Bookings
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to calendar_path, class: "nav-link d-flex justify-content-center align-items-center gap-2 #{ active_link("pages", "fw-bold", "", "calendar") }" do %>
+              <i class="bi <%= active_link("pages", "bi-calendar-range-fill", "bi-calendar-range", "calendar")%> fs-5"></i>Calendar
             <% end %>
           </li>
         <% end %>

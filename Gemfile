@@ -94,3 +94,5 @@ gem "faker", "~> 3.3"
 gem 'money-rails', '~> 1.12'
 
 gem "unsplash_image"
+
+gem "simple_calendar"

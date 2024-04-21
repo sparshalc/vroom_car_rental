@@ -1,0 +1,37 @@
+.simple-calendar {
+  font-family: 'Poppins', sans-serif;
+  .day {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  .wday-6 {
+    color:  red; 
+    font-weight: 700;
+  }
+
+  .today {
+    font-size: 1.3rem;
+    background-color: #2e7d32;
+    color: white;
+  }
+  .past {
+    font-weight: 400;
+    color: #b3b3b3;
+  }
+
+  .future {
+    background-color: white;
+  }
+
+  .start-date {}
+
+  .prev-month {}
+  .next-month { }
+  .current-month {}
+
+  .has-events {
+    font-weight: 700;
+  }
+
+}

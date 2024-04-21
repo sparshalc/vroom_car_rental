@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">User</th>
+          <th scope="col">Booked User</th>
+          <th scope="col">Start Date</th>
+          <th scope="col">End Date</th>
+          <th scope="col">Pickup Location</th>
+          <th scope="col">Drop Location</th>
+          <th scope="col">Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"><%= time_ago_in_words(@booking.created_at) + ' ago' %></th>
+          <td><%= @booking.user.full_name %></td>
+          <td><%= @booking.start_date %></td>
+          <td><%= @booking.end_date %></td>
+          <td><%= @booking.pickup_location %></td>
+          <td><%= @booking.drop_location %></td>
+          <td><%= @booking.duration_in_days %></td>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-center mt-4">
+    <%= link_to 'View all bookings', bookings_path, class: 'btn btn-primary'%>
+  </div>
+</div>
