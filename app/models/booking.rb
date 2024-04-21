@@ -31,7 +31,7 @@ class Booking < ApplicationRecord
   end
 
   def duration_in_days
-    "#{(end_date - start_date).to_f} days"
+    "#{(end_date - start_date).to_i} days"
   end
 
   private

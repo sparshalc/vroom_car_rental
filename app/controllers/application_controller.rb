@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new('Routing Error')
   end
 
+  def format_turbo_stream
+    request.headers['Accept']&.include?('text/vnd.turbo-stream.html')
+  end
+
   def redirect_to_error_page(exception)
     redirect_to '/404.html'
   end

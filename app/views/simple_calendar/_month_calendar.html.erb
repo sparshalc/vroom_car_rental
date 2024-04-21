@@ -1,0 +1,49 @@
+<div class="row justify-content-center" style="margin-top: 140px;">
+  <div class="col-lg-12 col-md-10">
+    <div class="simple-calendar">
+      <div class="calendar-heading d-flex justify-content-between align-items-center">
+        <i class="bi bi-calendar-day fs-1"></i>
+        <h3 class="fw-bold">
+          <time datetime="<%= start_date.strftime('%Y-%m') %>" class="calendar-title">
+            <%= t('date.month_names')[start_date.month] %> <%= start_date.year %>
+          </time>
+        </h3>
+
+        <nav>
+          <%= link_to calendar.url_for_previous_view, class: 'btn btn-primary' do %>
+            <i class="bi bi-caret-left-fill"></i>
+          <% end %>
+          <%= link_to t('simple_calendar.today', default: 'Today'), calendar.url_for_today_view, class: 'btn btn-primary' %>
+          <%= link_to calendar.url_for_next_view, class: 'btn btn-primary' do %>
+            <i class="bi bi-caret-right-fill"></i>
+          <% end %>
+        </nav>
+      </div>
+      <hr class="mt-3 mb-3">
+
+      <div class="table-responsive-sm table-responsive-lg">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <% date_range.slice(0, 7).each do |day| %>
+                <th><%= t('date.abbr_day_names')[day.wday] %></th>
+              <% end %>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% date_range.each_slice(7) do |week| %>
+              <tr>
+                <% week.each do |day| %>
+                  <td class="<%= calendar.td_classes_for(day).join(' ') %>">
+                    <% instance_exec(day, calendar.sorted_events_for(day), &passed_block) %>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

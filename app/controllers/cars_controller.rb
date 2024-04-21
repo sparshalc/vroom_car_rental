@@ -90,8 +90,4 @@ class CarsController < ApplicationController
     def verify_seller_or_admin
       routing_exception unless current_user.seller_or_admin?
     end
-
-    def format_turbo_stream
-      request.headers['Accept']&.include?('text/vnd.turbo-stream.html')
-    end
 end

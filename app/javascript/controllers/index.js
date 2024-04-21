@@ -19,9 +19,6 @@ application.register("hello", HelloController)
 import LocationController from "./location_controller"
 application.register("location", LocationController)
 
-import PreviewsController from "./previews_controller"
-application.register("previews", PreviewsController)
-
 import RemovalsController from "./removals_controller"
 application.register("removals", RemovalsController)
 
