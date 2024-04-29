@@ -26,9 +26,10 @@ Rails.application.routes.draw do
   end
 
   root "pages#home"
-  get '/guides', to: 'pages#guides', as: 'guides'
-  get '/calendar', to: 'pages#calendar', as: 'calendar'
-  get '/car/bookings/:id', to: 'pages#bookings', as: 'bookings_details'
+  get 'guides', to: 'pages#guides', as: 'guides'
+  get 'calendar', to: 'pages#calendar', as: 'calendar'
+  get 'car/bookings/:id', to: 'pages#bookings', as: 'bookings_details'
+  get 'payment/success', to: 'pages#payment_success', as: 'payment_success'
 
   get 'dashboard', to: 'dashboard#index'
   get 'dashboard/cars', to: 'dashboard#cars'
