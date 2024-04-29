@@ -1,10 +1,14 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, except: %i[calendar]
+  before_action :authenticate_user!, only: %i[payment_success]
   def home
     @car = Car.limit(3)
   end
 
   def guides; end
+
+  def payment_success
+  end
 
   def calendar
     start_date = params.fetch(:start_date, Date.today).to_date

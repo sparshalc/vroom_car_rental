@@ -3,7 +3,7 @@ class BookingPaymentsController < ApplicationController
     @car = Car.find(params[:car_id])
 
     stripe_price = Stripe::Price.create({
-      currency: 'usd',
+      currency: 'inr',
       unit_amount: Money.from_amount(BigDecimal(booking_payments_params[:total_amount])).cents,
       product_data: {
         name: @car.name
@@ -51,7 +51,7 @@ class BookingPaymentsController < ApplicationController
       total_amount: Money.from_amount(BigDecimal(booking_params[:total_amount])).to_i,
     )
 
-    redirect_to root_path, notice: "Thank you for booking! Your payment is confirmed. Your request is now pending admin approval. We'll notify you shortly."
+    redirect_to payment_success_path
   end
 
   private

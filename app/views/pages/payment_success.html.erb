@@ -1,0 +1,13 @@
+<div style="margin-top: 100px;">
+  <div class="px-4 py-5 my-5 text-center">
+    <%= inline_svg_tag('svg/payment_success', class: "d-block mx-auto mb-4", width: '400px', height: '400px') %>
+    <h1 class="display-5 fw-bold text-body-emphasis">Thank You for Choosing <br> Vrom Car Rentals!</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4 mt-2">Thank you for booking! Your payment is confirmed. Your request is now pending admin approval. We'll notify you shortly.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <%= link_to 'View Bookings', bookings_path, class: 'btn btn-primary btn-lg px-4 gap-3' %>
+        <%= link_to 'Return Home', root_path, class: 'btn btn-outline-primary btn-lg px-4' %>
+      </div>
+    </div>
+  </div>
+</div>
