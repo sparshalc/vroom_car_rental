@@ -12,12 +12,12 @@
             <i class="bi <%= active_link("cars", "bi-truck-front-fill", "bi-truck-front", "index")%> fs-5"></i> Cars
           <% end %>
         </li>
+        <li class="nav-item">
+          <%= link_to pricing_path, class: "nav-link d-flex justify-content-center align-items-center gap-2 #{ active_link("pages", "fw-bold", "", "pricing") }" do %>
+            <i class="bi <%= active_link("pages", "bi-wallet-fill", "bi-wallet", "pricing")%> fs-5"></i> Pricing
+          <% end %>
+        </li>
         <% if current_user %>
-          <li class="nav-item">
-            <%= link_to bookings_path, class: "nav-link d-flex justify-content-center align-items-center gap-2 #{ active_link("user", "fw-bold", "", "bookings") }" do %>
-              <i class="bi <%= active_link("user", "bi-bookmark-fill", "bi-bookmark", "bookings")%> fs-5"></i>Bookings
-            <% end %>
-          </li>
           <li class="nav-item">
             <%= link_to calendar_path, class: "nav-link d-flex justify-content-center align-items-center gap-2 #{ active_link("pages", "fw-bold", "", "calendar") }" do %>
               <i class="bi <%= active_link("pages", "bi-calendar-range-fill", "bi-calendar-range", "calendar")%> fs-5"></i>Calendar
@@ -29,7 +29,7 @@
             <i class="bi <%= active_link("pages", "bi-journal-bookmark-fill", "bi-journal-bookmark", "guides")%> fs-5"></i> Guides
           <% end %>
         </li>
-        <% if current_user && current_user.seller_or_admin?%>
+        <% if current_user&.seller_or_admin?%>
           <li class="nav-item">
             <%= link_to dashboard_path, class: "nav-link d-flex justify-content-center align-items-center gap-2" do %>
               <i class="bi bi-gear fs-5"></i> Dashboard
@@ -52,6 +52,11 @@
                 <%= image_tag(user_avatar(current_user), width: '32', height: '32', class: 'rounded-circle')%>
               </a>
               <ul class="dropdown-menu dropdown-menu-end text-small" aria-labelledby="navbarDropdown">
+                <li>
+                  <%= link_to bookings_path, class: " dropdown-item text-muted #{ active_link("user", "fw-bold", "", "bookings") }" do %>
+                  Bookings
+                  <% end %>
+                </li>
                 <li><%= link_to 'Edit Profile', edit_user_registration_path, class: 'dropdown-item text-muted' %></li>
                 <li><hr class="dropdown-divider"></li>
                 <%= button_to 'Logout', destroy_user_session_path, class: 'text-danger dropdown-item text-danger', method: :delete, data: { turbo_method: :delete, turbo_confirm: 'You sure?' } %>
