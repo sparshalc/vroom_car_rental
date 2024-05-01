@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get 'calendar', to: 'pages#calendar', as: 'calendar'
   get 'car/bookings/:id', to: 'pages#bookings', as: 'bookings_details'
   get 'payment/success', to: 'pages#payment_success', as: 'payment_success'
+  get 'pricing', to: 'pages#pricing', as: 'pricing'
 
   get 'dashboard', to: 'dashboard#index'
   get 'dashboard/cars', to: 'dashboard#cars'

@@ -7,8 +7,9 @@ class PagesController < ApplicationController
 
   def guides; end
 
-  def payment_success
-  end
+  def pricing; end
+
+  def payment_success; end
 
   def calendar
     start_date = params.fetch(:start_date, Date.today).to_date

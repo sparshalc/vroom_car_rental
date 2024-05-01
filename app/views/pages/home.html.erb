@@ -149,25 +149,19 @@
   </div>
 </div>
 
-<div class="bg-primary">
-  <div class="container my-5">
-    <div class="row rounded">
-      <div class="col-lg-7">
-        <div class="p-5 text-center">
-          <h1 class="text-white fw-bold">Subscribe to our Newsletter</h1>
-          <div class="mt-5">
-            <div class="d-flex justify-content-center align-items-center mb-4">
-              <input type="email" class="form-control" placeholder="Enter your email">
-            </div>
-            <button class="btn btn-success text-white p-3 w-100" type="button">
-              <i class="bi bi-save fa-beat-fade"></i> Subscribe now
-            </button>
-          </div>
-        </div>
+<div style="height: auto;" class="mb-4 mt-4 bg-primary">
+  <div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <%= image_tag('calendar.png', class: 'd-block mx-lg-auto img-fluid p-3', style: 'border: 5px solid white')%>
       </div>
-      <div class="col-lg-5 d-flex justify-content-center align-items-center">
-        <div class="m-auto">
-          <%= image_tag('vroom/logo.png', width: '300px', class: 'mb-3 p-3 d-lg-block d-none img-fluid', style: 'background-color: white; mix-blend-mode: lighten;') %>
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold text-white lh-2 mb-3">Upgrade to Vroom Deluxe</h1>
+        <p class="lead text-white">Unlock the full potential of your rental experience with Vroom Car Rental's Deluxe Edition! Upgrade now to gain access to our advanced calendar feature, allowing you to plan your trips with precision and ease.</p>
+        <div>
+          <%= link_to pricing_path, class: 'btn btn-white text-primary fs-5 btn-lg w-100 px-4 btn btn-light p-2 fw-bold' do %>
+            <i class="bi bi-coin fa-beat-fade"></i> View Pricings
+          <% end %>
         </div>
       </div>
     </div>
@@ -182,5 +176,31 @@
             <iframe id="mapIframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.168154184681!2d85.32819117630332!3d27.7120939761798!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb196de5da5741%3A0x652792640c70ede9!2sHerald%20College%20Kathmandu!5e0!3m2!1sen!2snp!4v1712347493812!5m2!1sen!2snp" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="embed-responsive-item"></iframe>
           </div>
       </div>
+  </div>
+</div>
+
+
+<div class="bg-primary">
+  <div class="container my-5">
+    <div class="row rounded">
+      <div class="col-lg-7">
+        <div class="p-5 text-center">
+          <h1 class="text-white fw-bold">Subscribe to our Newsletter</h1>
+          <div class="mt-5">
+            <div class="d-flex justify-content-center align-items-center mb-4">
+              <input type="email" class="form-control" placeholder="Enter your email">
+            </div>
+            <button class="btn btn-success text-white w-100 p-2" type="button">
+              <i class="bi bi-save fa-beat-fade"></i> Subscribe now
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 d-flex justify-content-center align-items-center">
+        <div class="m-auto">
+          <%= image_tag('vroom/logo.png', width: '300px', class: 'mb-3 p-3 d-lg-block d-none img-fluid', style: 'background-color: white; mix-blend-mode: lighten;') %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
