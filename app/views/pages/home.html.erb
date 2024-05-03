@@ -179,28 +179,32 @@
   </div>
 </div>
 
-
-<div class="bg-primary">
-  <div class="container my-5">
-    <div class="row rounded">
-      <div class="col-lg-7">
-        <div class="p-5 text-center">
-          <h1 class="text-white fw-bold">Subscribe to our Newsletter</h1>
-          <div class="mt-5">
-            <div class="d-flex justify-content-center align-items-center mb-4">
-              <input type="email" class="form-control" placeholder="Enter your email">
+<div id="subscribe_to_newsletter">
+  <% unless current_user&.subscribed_to_newsletter%>
+    <div class="bg-primary">
+      <div class="container my-5">
+        <div class="row rounded">
+          <div class="col-lg-7">
+            <div class="p-5 text-start">
+              <h1 class="text-white fw-bold">Subscribe to our Newsletter</h1>
+              <div class="mt-2 text-start">
+                <% if user_signed_in? %>
+                  <p class="lead text-white fs-5">You will be subscribed as <b class="fw-bold"><%= current_user&.email %></b></p>
+                <% end %>
+                  <%= link_to subscribe_to_newsletter_path, class: 'btn btn-success text-white w-100 p-2', method: :post, data: { turbo_method: :post } do %>
+                    <i class="bi bi-save fa-beat-fade"></i> Subscribe now
+                  <% end %>
+              </div>
             </div>
-            <button class="btn btn-success text-white w-100 p-2" type="button">
-              <i class="bi bi-save fa-beat-fade"></i> Subscribe now
-            </button>
+          </div>
+          <div class="col-lg-5 d-flex justify-content-center align-items-center flex-column">
+            <p class="lead text-white fs-5">Be the first one to know which car has been added!</p>
+            <%= image_tag('vroom/logo.png', width: '300px', class: 'mb-3 p-3 d-lg-block d-none img-fluid', style: 'background-color: white; mix-blend-mode: lighten;') %>
           </div>
         </div>
       </div>
-      <div class="col-lg-5 d-flex justify-content-center align-items-center">
-        <div class="m-auto">
-          <%= image_tag('vroom/logo.png', width: '300px', class: 'mb-3 p-3 d-lg-block d-none img-fluid', style: 'background-color: white; mix-blend-mode: lighten;') %>
-        </div>
-      </div>
     </div>
-  </div>
+  <% else %>
+    <%= render 'pages/newsletter' %>
+  <% end %>
 </div>
