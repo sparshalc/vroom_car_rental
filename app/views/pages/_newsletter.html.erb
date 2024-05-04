@@ -1,0 +1,22 @@
+<div class="bg-primary">
+  <div class="container my-5">
+    <div class="row rounded">
+      <div class="col-lg-7">
+        <div class="p-5 text-start">
+          <h1 class="text-white fw-bold">Thanks for subscribing! 🎉</h1>
+          <div class="mt-2 text-start">
+            <% if user_signed_in? %>
+              <p class="lead text-white fs-5">Get ready to stay in the loop with all the latest updates, promotions, and exclusive offers straight to your inbox. Whether you're planning your next road trip, looking for the best deals on rental cars, or seeking helpful tips for your journeys, our newsletter has you covered!</p>
+            <% end %>
+            <%= link_to pricing_path, class: 'btn btn-white text-primary fs-5 btn-lg w-100 px-4 btn btn-light p-2 fw-bold' do %>
+              <i class="bi bi-coin fa-beat-fade"></i> Upgrade to Deluxe
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 d-flex justify-content-center align-items-center flex-column">
+        <%= inline_svg_tag('svg/subscribed', class: 'w-75')%>
+      </div>
+    </div>
+  </div>
+</div>

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   }
 
   get 'bookings', to: 'user#bookings'
+  post 'subscribe_to_newsletter', to: 'user#subscribe_to_newsletter', as: 'subscribe_to_newsletter'
 
   resources :rooms do
     resources :messages
