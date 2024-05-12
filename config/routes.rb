@@ -38,6 +38,9 @@ Rails.application.routes.draw do
   get 'dashboard/users', to: 'dashboard#users'
   get 'dashboard/bookings', to: 'dashboard#bookings'
 
+  resources :deluxe_subscriptions, only: %i[create]
+  get 'deluxe_subscriptions/success', to: "deluxe_subscriptions#success"
+
   resources :booking_payments, only: %i[create]
   get 'booking_payments/success', to: "booking_payments#success"
 

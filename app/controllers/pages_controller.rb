@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, except: %i[calendar]
-  before_action :authenticate_user!, only: %i[payment_success]
+  before_action :authenticate_user!, only: %i[payment_success calendar]
   def home
     @car = Car.limit(3)
   end
@@ -12,6 +12,8 @@ class PagesController < ApplicationController
   def payment_success; end
 
   def calendar
+    routing_exception unless current_user.verified?
+
     start_date = params.fetch(:start_date, Date.today).to_date
     if current_user.admin?
       @bookings = Booking.where(start_date: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week)

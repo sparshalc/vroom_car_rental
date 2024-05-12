@@ -75,7 +75,7 @@ class BookingsController < ApplicationController
     @total_nights = (@end_date - @start_date).to_i
     @per_night = @car.rental_price
     @base_fare = @per_night * @total_nights
-    @service_fee = @base_fare * 0.1
+    @service_fee = current_user.verified ? 0 : @base_fare * 0.1
     @total_amount = @base_fare + @service_fee
 
     @booking = Booking.new
