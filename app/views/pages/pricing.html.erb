@@ -37,13 +37,27 @@
           <h4 class="my-0 fw-bold">Deluxe</h4>
         </div>
         <div class="card-body">
-          <h1 class="card-title pricing-card-title">$29<small class="text-body-secondary fw-light">/mo</small></h1>
+          <h1 class="card-title pricing-card-title">₹ 99<small class="text-body-secondary fw-light">/mo</small></h1>
           <ul class="list-unstyled mt-3 mb-4">
             <li>Calendar</li>
             <li>24/7 Customer Care</li>
             <li>Smart Bookings & more..</li>
           </ul>
-          <button type="button" class="w-100 btn btn-lg btn-primary"><i class="bi bi-clock-history fa-beat-fade fs-5 mx-2"></i>Enroll Now</button>
+          <% unless current_user&.verified? %>
+            <div data-turbo="false">
+              <%= form_with url: deluxe_subscriptions_path(
+                  user_id: current_user&.id,
+                  total_amount: '99.99',
+                ), method: :post do |form| %>
+
+                <button type="submit" class="w-100 btn btn-lg btn-primary">
+                  <i class="bi bi-clock-history fa-beat-fade fs-5 mx-2"></i>Enroll Now
+                </button>
+              <% end %>
+            </div>
+          <% else %>
+            <button type="button" class="w-100 btn btn-lg btn-primary"><i class="bi bi-check2-circle fa-beat-fade fs-5 mx-2"></i>Already Enrolled</button>
+          <% end %>
         </div>
       </div>
     </div>

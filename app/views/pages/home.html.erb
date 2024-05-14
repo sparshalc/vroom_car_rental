@@ -149,26 +149,28 @@
   </div>
 </div>
 
-<div style="height: auto;" class="mb-4 mt-4 bg-primary">
-  <div class="container col-xxl-8 px-4 py-5">
-    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-      <div class="col-10 col-sm-8 col-lg-6">
-        <%= image_tag('calendar.png', class: 'd-block mx-lg-auto img-fluid p-3', style: 'border: 5px solid white')%>
-      </div>
-      <div class="col-lg-6">
-        <h1 class="display-5 fw-bold text-white lh-2 mb-3">Upgrade to Vroom Deluxe</h1>
-        <p class="lead text-white">Unlock the full potential of your rental experience with Vroom Car Rental's Deluxe Edition! Upgrade now to gain access to our advanced calendar feature, allowing you to plan your trips with precision and ease.</p>
-        <div>
-          <%= link_to pricing_path, class: 'btn btn-white text-primary fs-5 btn-lg w-100 px-4 btn btn-light p-2 fw-bold' do %>
-            <i class="bi bi-coin fa-beat-fade"></i> View Pricings
-          <% end %>
+<% unless current_user&.verified? %>
+  <div style="height: auto;" class="mb-4 mt-4 bg-primary">
+    <div class="container col-xxl-8 px-4 py-5">
+      <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-10 col-sm-8 col-lg-6">
+          <%= image_tag('calendar.png', class: 'd-block mx-lg-auto img-fluid p-3', style: 'border: 5px solid white')%>
+        </div>
+        <div class="col-lg-6">
+          <h1 class="display-5 fw-bold text-white lh-2 mb-3">Upgrade to Vroom Deluxe</h1>
+          <p class="lead text-white">Unlock the full potential of your rental experience with Vroom Car Rental's Deluxe Edition! Upgrade now to gain access to our advanced calendar feature, allowing you to plan your trips with precision and ease.</p>
+          <div>
+            <%= link_to pricing_path, class: 'btn btn-white text-primary fs-5 btn-lg w-100 px-4 btn btn-light p-2 fw-bold' do %>
+              <i class="bi bi-coin fa-beat-fade"></i> View Pricings
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+<% end %>
 
-<div class="container px-0">
+<div class="container px-0 mt-3">
   <h1 class="pb-2 border-bottom main_header container">Explore our location</h1>
   <div class="row align-items-center g-lg-5 py-5">
       <div class="col-lg-12 text-center text-lg-start">

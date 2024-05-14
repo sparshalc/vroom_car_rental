@@ -4,7 +4,7 @@ import flatpickr from "flatpickr";
 export default class extends Controller {
   static targets = ["startDate", "endDate", "baseFair", "daysCount", "fairWithServiceFee", "totalFair", "calculations", "fairWithOutServiceFee", "pickupLocation", "dropLocation", "comment"]
 
-  SERVICE_CHARGE_PERCENT = 0.10
+  SERVICE_CHARGE_PERCENT = this.element.dataset.userVerified == "true" ? 0 : 0.1;
 
   disableDates = [];
 

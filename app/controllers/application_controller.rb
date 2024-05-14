@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def verified?
+    verified?
+  end
+
   def routing_exception
     raise ActionController::RoutingError.new('Routing Error')
   end

@@ -8,8 +8,14 @@
             <% if user_signed_in? %>
               <p class="lead text-white fs-5">Get ready to stay in the loop with all the latest updates, promotions, and exclusive offers straight to your inbox. Whether you're planning your next road trip, looking for the best deals on rental cars, or seeking helpful tips for your journeys, our newsletter has you covered!</p>
             <% end %>
-            <%= link_to pricing_path, class: 'btn btn-white text-primary fs-5 btn-lg w-100 px-4 btn btn-light p-2 fw-bold' do %>
-              <i class="bi bi-coin fa-beat-fade"></i> Upgrade to Deluxe
+            <% unless current_user&.verified? %>
+              <%= link_to pricing_path, class: 'btn btn-white text-primary fs-5 btn-lg w-100 px-4 btn btn-light p-2 fw-bold' do %>
+                <i class="bi bi-coin fa-beat-fade"></i> Upgrade to Deluxe
+              <% end %>
+            <% else %>
+              <%= link_to cars_path, class: 'btn btn-white text-primary fs-5 btn-lg w-100 px-4 btn btn-light p-2 fw-bold' do %>
+                Start Booking
+              <% end %>
             <% end %>
           </div>
         </div>

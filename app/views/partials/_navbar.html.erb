@@ -17,7 +17,7 @@
             <i class="bi <%= active_link("pages", "bi-wallet-fill", "bi-wallet", "pricing")%> fs-5"></i> Pricing
           <% end %>
         </li>
-        <% if current_user %>
+        <% if current_user&.verified? %>
           <li class="nav-item">
             <%= link_to calendar_path, class: "nav-link d-flex justify-content-center align-items-center gap-2 #{ active_link("pages", "fw-bold", "", "calendar") }" do %>
               <i class="bi <%= active_link("pages", "bi-calendar-range-fill", "bi-calendar-range", "calendar")%> fs-5"></i>Calendar
