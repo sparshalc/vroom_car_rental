@@ -14,6 +14,7 @@ class PagesController < ApplicationController
   def calendar
     routing_exception unless current_user.verified?
 
+    @events = Booking.where("start_date >= ?", Date.today)
     start_date = params.fetch(:start_date, Date.today).to_date
     if current_user.admin?
       @bookings = Booking.where(start_date: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week)

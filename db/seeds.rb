@@ -8,7 +8,9 @@ User.create(
   role: 0,
   phone_number: '9845454545',
   full_name: 'VROOM USER',
-  location: 'Bharatpur-10, Chitwan'
+  location: 'Bharatpur-10, Chitwan',
+  subscribed_to_newsletter: false,
+  verified: false
 )
 
 User.create(
@@ -18,7 +20,9 @@ User.create(
   role: 1,
   phone_number: '9845454545',
   full_name: 'VROOM SELLER',
-  location: 'Bharatpur-10, Chitwan'
+  location: 'Bharatpur-10, Chitwan',
+  subscribed_to_newsletter: false,
+  verified: false
 )
 
 User.create(
@@ -28,7 +32,9 @@ User.create(
   role: 2,
   phone_number: '9845454545',
   full_name: 'VROOM ADMIN',
-  location: 'Bharatpur-10, Chitwan'
+  location: 'Bharatpur-10, Chitwan',
+  subscribed_to_newsletter: false,
+  verified: false
 )
 
 10.times do

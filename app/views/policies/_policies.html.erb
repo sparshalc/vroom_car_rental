@@ -1,6 +1,6 @@
 <% if correct_user_or_admin(@car)%>
   <%= turbo_frame_tag Policy.new, class: ' p-3' %>
-  <%= link_to 'New', new_car_policy_path(@car), class: 'btn btn-dark w-100 mt-1', data: { turbo_frame: dom_id(Policy.new) }%>
+  <%= link_to 'New', new_car_policy_path(@car), class: 'btn btn-primary w-100 mt-1', data: { turbo_frame: dom_id(Policy.new) }%>
   <hr>
 <% end %>
 <div id="policies">
