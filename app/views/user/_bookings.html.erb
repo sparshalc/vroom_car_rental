@@ -1,18 +1,21 @@
-<tr id="<%= dom_id(booking) %>">
-  <th scope="row"><%= booking.id %></th>
+<tr id="<%= dom_id(booking) %>" class=" <%= table_background(booking) %>">
   <td><%= booking.start_date %></td>
   <td><%= booking.end_date %></td>
   <td><%= booking.duration_in_days %></td>
-  <td><%= image_tag(booking.car.image.first, width: '40px', class: 'rounded-circle') %> <%= booking.car.name %></td>
+  <td><%= image_tag(booking.car.image.first, width: '25px', height: '25px', class: 'rounded-circle') %> <%= booking.car.name %></td>
   <td><%= booking.car.user.email %></td>
-  <td class="w-bold">
-    <div class="<%= status_background(booking) %> mt-1 text-center rounded">
-      <%= booking.status %>
-    </div>
+  <td class="fw-bold">
+    <%= booking.status.capitalize %>
   </td>
   <td>
-    <%= button_to car_booking_path(booking.car.id, booking.id), method: :delete, data: { turb_method: :delete }, class: 'btn btn-danger' do %>
-      <%= inline_svg_tag('svg/trash.svg') %>
-    <% end %>
+    <div class="dropdown">
+      <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer;">
+      </a>
+      <ul class="dropdown-menu">
+        <%= button_to car_booking_path(booking.car.id, booking.id), method: :delete, data: { turb_method: :delete, turbo_confirm: "Once the booking is cancelled it can't be undone!" }, class: 'dropdown-item btn btn-danger w-100 text-light' do %>
+          Cancel <%= inline_svg_tag('svg/trash.svg') %>
+        <% end %>
+      </ul>
+    </div>
   </td>
 </tr>

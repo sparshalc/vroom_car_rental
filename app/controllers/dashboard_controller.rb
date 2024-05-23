@@ -31,7 +31,7 @@ class DashboardController < ApplicationController
   end
 
   def load_cars
-    @cars = current_user.admin? ? Car.all.except(:image) : current_user.cars
+    @cars = current_user.admin? ? Car.order("Created_at Asc") : current_user.cars
   end
 
   def load_bookings

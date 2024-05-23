@@ -38,6 +38,12 @@ module ApplicationHelper
   def status_background(status)
     return '' if status.pending?
 
-    status.accepted? ? 'bg-success text-white' : 'bg-danger text-white'
+    status.accepted? ? 'bg-success' : 'bg-danger text-white'
+  end
+
+  def table_background(status)
+    return '' if status.pending?
+
+    status.accepted? ? 'table-success table-hover' : 'table-danger'
   end
 end
