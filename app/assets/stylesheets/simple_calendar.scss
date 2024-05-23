@@ -1,5 +1,6 @@
 .simple-calendar {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif;
+  
   .day {
     text-align: center;
     font-size: 1.2rem;
@@ -11,12 +12,27 @@
   }
 
   .today {
+    position: relative;
     font-size: 1.3rem;
-    background-color: #2e7d32;
+    z-index: 1;
     color: white;
   }
+  .today::before{
+    border-radius: 50%;
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-color: rgb(10,44,132);
+    top: 35%;
+    left: 50%;
+    content: '';
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  }
+
   .past {
     font-weight: 400;
+    color: rgba(128, 128, 128, 0.673);
   }
 
   .future {
