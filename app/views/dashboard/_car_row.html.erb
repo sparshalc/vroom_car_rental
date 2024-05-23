@@ -6,21 +6,25 @@
   <td><%= car.location  %></td>
   <td><%= car.car_type  %></td>
   <td><%= car.policies.count  %></td>
-  <td><%= image_tag(car.image.first, width: '50px', height: '50px', class: 'rounded-circle') if car.image.attached? %></td>
+  <td><%= image_tag(car.image.first, width: '30px', height: '30px', class: 'rounded-circle') if car.image.attached? %></td>
   <td>
-    <div class="d-flex gap-2">
-      <%= link_to car_path(car), class: 'btn btn-dark' do %>
-        <%= inline_svg_tag('svg/eye.svg') %>
-      <% end %>
-      <%= link_to edit_car_path(car), class: 'btn btn-dark' do %>
-        <%= inline_svg_tag('svg/pen.svg') %>
-      <% end %>
-      <%= link_to car_policies_path(car), class: 'btn btn-dark', data: { controller: 'bs-modal'} do %>
-        <i class="bi bi-journal-text"></i>
-      <% end %>
-      <%= button_to car_path(car), class: 'btn btn-danger', method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
-        <%= inline_svg_tag('svg/trash.svg') %>
-      <% end %>
+    <div class="dropdown">
+      <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer;">
+      </a>
+      <ul class="dropdown-menu">
+        <%= link_to car_path(car), class: 'dropdown-item text-dark' do %>
+          <%= inline_svg_tag('svg/eye.svg') %> View
+        <% end %>
+        <%= link_to edit_car_path(car), class: 'dropdown-item text-dark' do %>
+          <%= inline_svg_tag('svg/pen.svg') %> Edit
+        <% end %>
+        <%= link_to car_policies_path(car), class: 'dropdown-item text-dark', data: { controller: 'bs-modal'} do %>
+          <i class="bi bi-journal-text"></i> Add Policy
+        <% end %>
+        <%= button_to car_path(car), class: 'btn btn-danger dropdown-item text-white', method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
+          <%= inline_svg_tag('svg/trash.svg') %> Remove
+        <% end %>
+      </ul>
     </div>
   </td>
 </tr>

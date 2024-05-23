@@ -39,7 +39,7 @@ class BookingsController < ApplicationController
   def destroy
     @booking.destroy
     respond_to do |format|
-      format.turbo_stream { flash.now[:notice] = "Booking Removed!" }
+      format.turbo_stream { flash.now[:notice] = "Booking Cancelled" }
     end
   end
 
