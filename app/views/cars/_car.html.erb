@@ -2,9 +2,15 @@
   <div class="col-lg-4 d-flex justify-content-center align-items-center">
     <div class="swiper car_basics_details">
       <div class="swiper-wrapper">
-        <% car.image.each do |image| %>
+        <% if car.image.attached? %>
+          <% car.image.each do |image| %>
+            <a href="<%= car_path(car) %>" class="swiper-slide">
+              <%= image_tag(image, class: "img-fluid w-75 rounded") %>
+            </a>
+          <% end %>
+        <% else %>
           <a href="<%= car_path(car) %>" class="swiper-slide">
-            <%= image_tag(image, class: "img-fluid w-75 rounded") %>
+            <%= image_tag('svg/error', class: "img-fluid w-75 rounded") %>
           </a>
         <% end %>
       </div>

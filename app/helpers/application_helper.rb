@@ -1,6 +1,6 @@
 module ApplicationHelper
   def user_avatar(user)
-    user.avatar.attached? ? user.avatar : 'https://github.com/sparshalc.png'
+    user.avatar.attached? ? user.avatar : 'svg/unDraw/avatar.svg'
   end
 
   def render_turbo_stream_flash_messages
