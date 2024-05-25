@@ -33,7 +33,7 @@ class CarsController < ApplicationController
     if @car.save
       redirect_to dashboard_cars_path, notice: 'Car added successfully!'
     else
-      format.json { render json: @car.errors, status: :unprocessable_entity }
+      render :new, status: :unprocessable_entity
     end
   end
 

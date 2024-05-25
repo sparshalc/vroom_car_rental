@@ -7,6 +7,11 @@
       <small class="text-white"><%= current_user.email %></small>
     </div>
     <ul class="navbar-nav mb-lg-0 gap-2 ms-auto"> 
+      <li class="nav-item">
+        <%= link_to root_path, class: 'nav-link text-white mt-1' do %>
+          <i class="bi bi-house mx-2 fs-5"></i>Home
+        <% end %>
+      </li>
       <li class="nav-item d-flex justify-content-center align-items-center">
         <div class="dropdown">
           <a class="nav-link d-block link0-body-emphasis text-decoration-none dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

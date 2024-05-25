@@ -1,21 +1,16 @@
-<%= form_with(model: @car, class: "p-4 p-md-5 bg-body-tertiary") do |form| %>
-  <% if @car.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(@car.errors.count, "error") %> prohibited this car from being saved:</h2>
-
-      <ul>
-        <% @car.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= form_with(model: @car,
+              class: "p-4 p-md-5 bg-body-tertiary",
+              ) do |form| %>
   <div class="row">
     <div class="col-lg">
       <div class="mb-3">
         <%= form.label :name, class: "form-label", style: "display: block" %>
         <%= form.text_field :name, class: "form-control" %>
+        <% if @car.errors.any? %>
+          <% @car.errors.full_messages_for(:name).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        <% end %>
       </div>
     </div>
     <div class="col-lg">
@@ -31,12 +26,22 @@
       <div class="mb-3">
         <%= form.label :brand, class: "form-label", style: "display: block" %>
         <%= form.text_field :brand, class: "form-control" %>
+        <% if @car.errors.any? %>
+          <% @car.errors.full_messages_for(:brand).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        <% end %>
       </div>
     </div>
     <div class="col-lg">
       <div class="mb-3">
         <%= form.label :model, class: "form-label", style: "display: block" %>
         <%= form.text_field :model, class: "form-control" %>
+        <% if @car.errors.any? %>
+          <% @car.errors.full_messages_for(:model).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
@@ -46,6 +51,11 @@
     <div class="mb-3">
       <%= form.label :mileage_per_km, class: "form-label", style: "display: block" %>
       <%= form.number_field :mileage, class: "form-control" %>
+      <% if @car.errors.any? %>
+        <% @car.errors.full_messages_for(:mileage).each do |message| %>
+          <div class="text-danger"><%= message %></div>
+        <% end %>
+      <% end %>
     </div>
     </div>
     <div class="col-lg-6">
@@ -58,15 +68,15 @@
 
   <div class="row">
     <div class="col-lg-6">
-      <div class="mb-3">
-        <%= form.label :availability, class: "form-label", style: "display: block" %>
-        <%= form.check_box :availability, class: "form-check-input" %>
+      <div class="mb-3 form-check form-switch">
+        <%= form.label :availability, class: "form-check-label", for: "flexSwitchCheckChecked" %>
+        <%= form.check_box :availability, class:"form-check-input", type:"checkbox", id:"flexSwitchCheckChecked", checked: true %>
       </div>
     </div>
     <div class="col-lg-6">
-      <div class="mb-3">
-        <%= form.label :insurance, class: "form-label", style: "display: block" %>
-        <%= form.check_box :insurance, class: "form-check-input" %>
+      <div class="mb-3 form-check form-switch">
+        <%= form.label :insurance, class: "form-check-label", for: "flexSwitchCheckChecked" %>
+        <%= form.check_box :insurance, class:"form-check-input", type:"checkbox", id:"flexSwitchCheckChecked" %>
       </div>
     </div>
   </div>
@@ -74,16 +84,31 @@
   <div class="mb-3">
     <%= form.label :description, class: "form-label", style: "display: block" %>
     <%= form.rich_text_area :description, class: "form-control" %>
+    <% if @car.errors.any? %>
+      <% @car.errors.full_messages_for(:description).each do |message| %>
+        <div class="text-danger"><%= message %></div>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="mb-3">
     <%= form.label :location, class: "form-label", style: "display: block" %>
     <%= form.text_field :location, class: "form-control" %>
+    <% if @car.errors.any? %>
+      <% @car.errors.full_messages_for(:location).each do |message| %>
+        <div class="text-danger"><%= message %></div>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="mb-3">
     <%= form.label :rental_price, class: "form-label", style: "display: block" %>
     <%= form.text_field :rental_price, class: "form-control" %>
+    <% if @car.errors.any? %>
+      <% @car.errors.full_messages_for(:rental_price).each do |message| %>
+        <div class="text-danger"><%= message %></div>
+      <% end %>
+    <% end %>
   </div>
 
     <div class="mb-3">

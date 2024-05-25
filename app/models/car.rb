@@ -6,9 +6,14 @@ class Car < ApplicationRecord
   has_many :bookings, dependent: :destroy
   has_many :payments, through: :bookings, dependent: :destroy
 
+  has_rich_text :description
+
   has_many_attached :image
 
-  has_rich_text :description
+  after_create_commit :create_default_policies
+
+  validates :brand, :model, :mileage, :location, :name, :description, presence: true
+  validates :rental_price, presence: true, numericality: {greater_than_or_equal_to: 0}
 
   enum car_type: {
     sedan: 0,
@@ -22,6 +27,10 @@ class Car < ApplicationRecord
     electric_vehicle: 8,
     hybrid_vehicle: 9
   }
+
+  def create_default_policies
+    Policy.create(title: 'Non-Refundable', car_id: id, user_id: user.id)
+  end
 
   def self.ransackable_attributes(auth_object = nil)
     ["availability", "brand", "color", "created_at", "id", "id_value", "image", "insurance", "location", "mileage", "model", "name", "rental_price", "car_type", "updated_at", "user_id"]
