@@ -13,7 +13,7 @@ class Booking < ApplicationRecord
   scope :current_bookings, -> { where("end_date > ?", Date.today).where("start_date < ?", Date.today).order(:checkout_date) }
 
   after_create_commit :send_booking_mail
-  after_update_commit :update_availability, :check_booking_status, :send_booking_status_mail
+  before_save :update_availability, :check_booking_status, :send_booking_status_mail
   after_destroy_commit :update_availability
 
   def send_booking_mail
@@ -25,7 +25,7 @@ class Booking < ApplicationRecord
   end
 
   def send_booking_status_mail
-    if (booking_accepted? || booking_rejected?)
+    if (booking_accepted? || booking_rejected?) && status_changed?
       BookingStatusJob.perform_now(self)
     end
   end

@@ -5,13 +5,11 @@
 </head>
 <body>
   <h2>Booking Status Update</h2>
-  <p>Hello <%= @booking.user.email %>,</p>
-  <p>Your booking status for <%= @booking.car.name %> has been updated.</p>
+  <p>Hello <%= @booking.user.full_name %>,</p>
+  <p>Your booking status for <b><%= @booking.car.name %></b> has been updated.</p>
   <p><strong>Updated Details:</strong></p>
   <ul>
     <li><strong>Status:</strong> <%= @booking.status %></li>
   </ul>
-  
-  <p>You can view the details of your booking.</p>
 </body>
 </html>

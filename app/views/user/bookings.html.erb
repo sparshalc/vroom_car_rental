@@ -33,9 +33,9 @@
   <% else %>
     <div class="d-flex justify-content-center align-items-center" style="height: 70vh;">
       <div class="text-center">
-        <h2 class="fw-bold main_header">No Booking's Found!</h2>
-        <%= inline_svg_tag('svg/bookings', width: '300') %></br>
-        <span class="text-muted">You can start booking </br> the link below</span>
+        <h1 class="fw-bold main_header">No Booking's Found!</h1>
+        <%= inline_svg_tag('svg/not_found', width: '300', height: '300') %></br>
+        <span class="text-muted text-lead">It looks like there are no bookings at the moment. <br> Don't miss out on securing your spot for an unforgettable experience! <br>Start your booking now and take advantage of our special offers and discounts</span>
         <br>
         <p class="mt-3"><%= link_to 'Start Booking', cars_path %></p>
       </div>

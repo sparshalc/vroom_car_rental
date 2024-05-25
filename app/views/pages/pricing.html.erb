@@ -43,20 +43,27 @@
             <li>24/7 Customer Care</li>
             <li>Smart Bookings & more..</li>
           </ul>
-          <% unless current_user&.verified? %>
-            <div data-turbo="false">
-              <%= form_with url: deluxe_subscriptions_path(
-                  user_id: current_user&.id,
-                  total_amount: '99.99',
-                ), method: :post do |form| %>
-
-                <button type="submit" class="w-100 btn btn-lg btn-primary">
-                  <i class="bi bi-clock-history fa-beat-fade fs-5 mx-2"></i>Enroll Now
-                </button>
-              <% end %>
-            </div>
+          <% if user_signed_in? && current_user %>
+            <% if current_user.verified? %>
+              <button type="button" class="w-100 btn btn-lg btn-primary">
+                <i class="bi bi-check2-circle fa-beat-fade fs-5 mx-2"></i>Already Enrolled
+              </button>
+            <% else %>
+              <div data-turbo="false">
+                <%= form_with url: deluxe_subscriptions_path(
+                    user_id: current_user.id,
+                    total_amount: '99.99'
+                  ), method: :post do |form| %>
+                  <button type="submit" class="w-100 btn btn-lg btn-primary">
+                    <i class="bi bi-clock-history fa-beat-fade fs-5 mx-2"></i>Enroll Now
+                  </button>
+                <% end %>
+              </div>
+            <% end %>
           <% else %>
-            <button type="button" class="w-100 btn btn-lg btn-primary"><i class="bi bi-check2-circle fa-beat-fade fs-5 mx-2"></i>Already Enrolled</button>
+            <%= link_to new_user_session_path, class: 'w-100 btn btn-lg btn-primary' do %>
+              <i class="bi bi-box-arrow-in-right fa-beat-fade fs-5 mx-2"></i> Login to Enroll
+            <% end  %>
           <% end %>
         </div>
       </div>

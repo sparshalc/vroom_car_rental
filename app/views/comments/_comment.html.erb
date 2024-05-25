@@ -1,7 +1,7 @@
 <%= turbo_frame_tag dom_id(comment) do %>
   <div class="d-flex justify-content-between mt-5">
     <div class="comment-details d-flex">
-      <div class="flex-shrink-0"><%= image_tag(user_avatar(comment.user), width: "32px", class: 'rounded-circle border')%></div>
+      <div class="flex-shrink-0"><%= image_tag(user_avatar(comment.user), width: "52", height: '52', class: 'rounded-circle border', style: 'object-fit: cover;')%></div>
       <div class="ms-3">
         <div><%= comment.user.email %> <small class="fw-light mx-1"> (<%= time_ago_in_words(comment.created_at) + ' ago'%>)</small></div>
         <span class="fw-bold"><%= comment.title %></span>
