@@ -1,0 +1,7 @@
+<tr id="<%= dom_id(payment) %>">
+  <td><%= time_ago_in_words(payment.created_at) + ' ago' %></td>
+  <td><%= payment.booking_id %></td>
+  <td><%= payment.name %></td>
+  <td><%= payment.total_amount %></td>
+  <td class="bg-success-subtle">Success</td>
+</tr>

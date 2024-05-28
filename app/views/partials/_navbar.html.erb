@@ -54,7 +54,12 @@
               <ul class="dropdown-menu dropdown-menu-end text-small" aria-labelledby="navbarDropdown">
                 <li>
                   <%= link_to bookings_path, class: " dropdown-item text-muted #{ active_link("user", "fw-bold", "", "bookings") }" do %>
-                  Bookings
+                  My Bookings
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to payments_path, class: " dropdown-item text-muted #{ active_link("user", "fw-bold", "", "payments") }" do %>
+                  My Payments
                   <% end %>
                 </li>
                 <li><%= link_to 'Edit Profile', edit_user_registration_path, class: 'dropdown-item text-muted' %></li>

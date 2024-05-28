@@ -45,6 +45,7 @@ class BookingPaymentsController < ApplicationController
     )
 
     Payment.create!(
+      name: "Payment for #{car.name}",
       booking_id: reservation.id,
       base_fare: Money.from_amount(BigDecimal(booking_params[:base_fare])).to_i,
       service_fee: Money.from_amount(BigDecimal(booking_params[:service_fee])).to_i,

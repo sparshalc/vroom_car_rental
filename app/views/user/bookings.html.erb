@@ -1,35 +1,35 @@
 <div class="container">
-  <% if current_user.bookings.present? %>
-  <div class="row justify-content-center">
-    <div class="col text-center ">
-      <h1 class="fw-bold mt-5">Manage Bookings</h1>
-    </div>
-  </div>
-  <hr>
-  <div class="row mt-4">
-    <div class="col">
-      <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Start Date</th>
-              <th scope="col">End Date</th>
-              <th scope="col">Duration</th>
-              <th scope="col">Car Details</th>
-              <th scope="col">Requested To</th>
-              <th scope="col">Status</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-          <tbody id="bookings">
-            <% @bookings.each do |booking| %>
-              <%= render 'user/bookings', booking: booking %>
-            <% end %>
-          </tbody>
-        </table>
+  <% if @bookings.count > 0  %>
+    <div class="row justify-content-center">
+      <div class="col text-center ">
+        <%= render 'partials/header', title: 'Manage Bookings', paragraph: "Welcome to the Manage Bookings section of Vroom. Here, as an user, you have full control over your bookings.", svg_name: 'unDraw/book', invite_user: false, new_car: false %>
       </div>
     </div>
-  </div>
+    <hr>
+    <div class="row mt-4">
+      <div class="col">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Car Details</th>
+                <th scope="col">Requested To</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody id="bookings">
+              <% @bookings.each do |booking| %>
+                <%= render 'user/bookings', booking: booking %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   <% else %>
     <div class="d-flex justify-content-center align-items-center" style="height: 70vh;">
       <div class="text-center">
