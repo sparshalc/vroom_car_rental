@@ -3,6 +3,10 @@ class UserController < ApplicationController
     @bookings = current_user.bookings.all
   end
 
+  def payments
+    @payments = current_user.payments.all
+  end
+
   def subscribe_to_newsletter
     current_user.update(subscribed_to_newsletter: true)
     NewsletterMailer.subscribed_to_newsletter(current_user).deliver_now

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_07_183103) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_28_184413) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -126,6 +126,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_07_183103) do
     t.integer "base_fare", default: 0
     t.integer "service_fee", default: 0
     t.integer "total_amount", default: 0
+    t.string "name"
     t.index ["booking_id"], name: "index_payments_on_booking_id"
   end
 
