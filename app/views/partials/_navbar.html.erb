@@ -48,7 +48,7 @@
         <% if current_user %>
           <li class="nav-item d-flex justify-content-center align-items-center">
             <div class="dropdown">
-              <a href="#" class="nav-link d-block link-body-emphasis text-decoration-none dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link d-block link-body-emphasis text-decoration-none dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <%= image_tag(user_avatar(current_user), width: '32', height: '32', class: 'rounded-circle')%>
               </a>
               <ul class="dropdown-menu dropdown-menu-end text-small" aria-labelledby="navbarDropdown">

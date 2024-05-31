@@ -4,6 +4,10 @@ class RoomsController < ApplicationController
   before_action :user_to_stream, only: %i[index show create update]
   before_action :verify_correct_user, only: %i[edit update destroy]
 
+  def index
+    @car_with_availability_and_no_room = Car.where(availability: true).left_outer_joins(:room).where(room: { id: nil })
+  end
+
   def show
     @messages = @room.messages.all.order('Created_at Asc')
     @message = Message.new
@@ -45,6 +49,7 @@ class RoomsController < ApplicationController
   private
 
     def index_params
+      @car_with_availability_and_no_room = Car.where(availability: true).left_outer_joins(:room).where(room: { id: nil })
       @rooms = Room.order("Created_at Desc")
       @new_room = Room.new
       user_online = Kredis.unique_list "users_online"
@@ -65,6 +70,6 @@ class RoomsController < ApplicationController
     end
 
     def room_params
-      params.require(:room).permit(:name, :user_id)
+      params.require(:room).permit(:name, :user_id, :car_id)
     end
 end

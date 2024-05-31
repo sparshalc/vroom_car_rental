@@ -31,7 +31,7 @@
           <p>
             <%= @car.description %>
             <br>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, necessitatibus minus. Maiores, sed error dolores reiciendis repellat tempora ad id sapiente eligendi exercitationem odio facilis tempore doloribus iste veniam rem.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, necessitatibus minus. Maiores, sed error dolores reiciendis repellat.
           </p>
           <hr>
           <div class="col-12 col-md-12">
@@ -69,6 +69,12 @@
                 </tbody>
               </table>
             </div>
+            <% if @car.room.present? %>
+              <div class="bg-primary-subtle p-3 rounded">
+                <p>Have questions about your car? Our support center is here to help! Click below to chat with us for more details.</p>
+                <%= link_to 'Suppot Center', room_path(@car.room.first.id),class: "btn btn-primary w-100" %>
+              </div>
+            <% end %>
           </div>
         </div>
       </main>
@@ -180,7 +186,7 @@
                   </div>
                 <% end %>
               <% else %>
-                <%= render 'partials/error', message: "#{@car_booked_by_current_user ? 'Booked!' : 'Car Not Available'}", paragraph: 'The car is currently unavailable for booking. Please try again once it becomes available.' %>
+                <%= render 'partials/error', message: "#{@booked_by_user ? 'The car has been Reserved.' : 'Car Not Available.'}", paragraph: "#{@booked_by_user ? 'Since the car has already been reserved, it cannot be booked twice. You have the option to cancel the request and make a new one.' : 'At the moment, the car cannot be booked. Please try again when it becomes available.'}", booked_by_user: @booked_by_user  %>
               <% end %>
             </div>
           </div>
