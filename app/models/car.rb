@@ -5,12 +5,15 @@ class Car < ApplicationRecord
   has_many :policies,dependent: :destroy
   has_many :bookings, dependent: :destroy
   has_many :payments, through: :bookings, dependent: :destroy
+  has_many :room
 
   has_rich_text :description
 
   has_many_attached :image
 
   after_create_commit :create_default_policies
+  after_create_commit :create_room
+  after_create_commit :create_default_message
 
   validates :brand, :model, :mileage, :location, :name, :description, presence: true
   validates :rental_price, presence: true, numericality: {greater_than_or_equal_to: 0}
@@ -30,6 +33,14 @@ class Car < ApplicationRecord
 
   def create_default_policies
     Policy.create(title: 'Non-Refundable', car_id: id, user_id: user.id)
+  end
+
+  def create_room
+    Room.create(name: "#{self.name} Enquiry", car_id: self.id, user_id: self.user.id )
+  end
+
+  def create_default_message
+    Message.create(user_id: self.user.id, room_id: self.room.first.id, content: "Welcome to #{self.name} Help Center! Do you need any assistance getting started with #{self.name}?")
   end
 
   def self.ransackable_attributes(auth_object = nil)
