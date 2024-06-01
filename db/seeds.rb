@@ -41,12 +41,13 @@ User.create(
   c = Car.new(
     brand: Faker::Vehicle.make,
     name: Faker::Vehicle.model,
+    description: Faker::Lorem.paragraph(sentence_count: 2),
     model: Faker::Vehicle.model,
     color: Faker::Vehicle.color,
     mileage: Faker::Vehicle.mileage,
     availability: Faker::Boolean.boolean,
     location: Faker::Address.city,
-    rental_price: Faker::Number.between(from: 50, to: 500),
+    rental_price: Faker::Number.between(from: 500, to: 1000),
     insurance: Faker::Boolean.boolean,
     car_type: Car.car_types.keys.sample,
     user_id: User.last.id
@@ -55,5 +56,5 @@ User.create(
   image_file = UnsplashImage.tempfile(size: '500x500', tags: 'car')
   c.image.attach(io: image_file, filename: 'image.jpg', content_type: 'image/jpeg')
 
-  c.save
+  c.save!
 end

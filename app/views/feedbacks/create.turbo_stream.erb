@@ -1,0 +1,5 @@
+<%= turbo_stream.replace "feedback_form_#{current_user.id}" do %>
+  <%= render 'feedbacks/success' %>
+<% end %>
+
+<%= render_turbo_stream_flash_messages %>

@@ -1,10 +1,12 @@
-<%= form_with(model: room) do |form| %>
-  <div class="d-flex gap-1">
-    <%= form.text_field :name, class: 'form-control' %>
-    <%= form.select :car_id, options_for_select(@car_with_availability_and_no_room.all.map { |car| [car.name, car.id] }), {}, class: 'form-control' %>
-  </div>
-    <%= form.hidden_field :user_id, value: current_user.id, id: 'room_user_id', class: 'form-control' %>
-  <div>
-    <%= form.submit class: 'btn btn-dark-subtle w-100 mt-2 btn-sm' %>
-  </div>
+<% if @car_with_availability_and_no_room.present? %>
+  <%= form_with(model: room) do |form| %>
+    <div class="d-flex gap-1">
+      <%= form.text_field :name, class: 'form-control' %>
+      <%= form.select :car_id, options_for_select(@car_with_availability_and_no_room.all.map { |car| [car.name, car.id] }), {}, class: 'form-control' %>
+    </div>
+      <%= form.hidden_field :user_id, value: current_user.id, id: 'room_user_id', class: 'form-control' %>
+    <div>
+      <%= form.submit class: 'btn btn-dark-subtle w-100 mt-2 btn-sm' %>
+    </div>
+  <% end %>
 <% end %>

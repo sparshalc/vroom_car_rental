@@ -1,0 +1,46 @@
+<%= form_with(model: feedback) do |form| %>
+  <div class="row">
+    <div class="col-lg-6">
+      <div>
+        <%= form.label :name, style: "display: block" %>
+        <%= form.text_field :name, class: 'form-control', value: current_user.full_name, readonly: true %>
+        <%= form.hidden_field :name, value: current_user.email %>
+        <% if @feedback.errors.any? %>
+          <% @feedback.errors.full_messages_for(:name).each do |message| %>
+            <div class="text-danger"><%= message %></div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div>
+        <%= form.label :email, style: "display: block" %>
+        <%= form.text_field :email, class: 'form-control', value: current_user.email, readonly: true %>
+          <% if @feedback.errors.any? %>
+            <% @feedback.errors.full_messages_for(:email).each do |message| %>
+              <div class="text-danger"><%= message %></div>
+            <% end %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="mt-4">
+    <%= form.label :message, style: "display: block" %>
+    <%= form.text_area :message, class: 'form-control', rows: 3 %>
+    <% if @feedback.errors.any? %>
+      <% @feedback.errors.full_messages_for(:message).each do |message| %>
+        <div class="text-danger"><%= message %></div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="mb-3 mt-4 form-check form-switch">
+    <%= form.label :send_Privately, class: "form-check-label", for: "flexSwitchCheckChecked" %>
+      <small class="text-muted">
+        (Setting to private will make your details visible only to the admin.)
+      </small>
+    <%= form.check_box :private, class:"form-check-input", type:"checkbox", id:"flexSwitchCheckChecked" %>
+  </div>
+  <div class="mt-2">
+    <%= form.submit 'Submit', class: 'btn btn-primary w-100' %>
+  </div>
+<% end %>

@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     resources :messages
   end
 
+  resources :feedbacks,only: %i[create destroy index]
+
   root "pages#home"
   get 'guides', to: 'pages#guides', as: 'guides'
   get 'calendar', to: 'pages#calendar', as: 'calendar'

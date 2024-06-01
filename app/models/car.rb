@@ -11,9 +11,7 @@ class Car < ApplicationRecord
 
   has_many_attached :image
 
-  after_create_commit :create_default_policies
-  after_create_commit :create_room
-  after_create_commit :create_default_message
+  after_create_commit :create_default_policies, :create_room, :create_default_message
 
   validates :brand, :model, :mileage, :location, :name, :description, presence: true
   validates :rental_price, presence: true, numericality: {greater_than_or_equal_to: 0}
@@ -36,11 +34,11 @@ class Car < ApplicationRecord
   end
 
   def create_room
-    Room.create(name: "#{self.name} Enquiry", car_id: self.id, user_id: self.user.id )
+    Room.create(name: "#{name} Enquiry", car_id: id, user_id: user.id )
   end
 
   def create_default_message
-    Message.create(user_id: self.user.id, room_id: self.room.first.id, content: "Welcome to #{self.name} Help Center! Do you need any assistance getting started with #{self.name}?")
+    Message.create(user_id: user.id, room_id: room.first.id, content: "Welcome to #{name} Help Center! Do you need any assistance getting started with #{name}?")
   end
 
   def self.ransackable_attributes(auth_object = nil)
@@ -52,10 +50,10 @@ class Car < ApplicationRecord
   end
 
   def is_available?
-    return self.update(availability: false) && 'booked' if self.booked?
-    return self.update(availability: true) && 'available' if self.is_rejected? || self.is_pending?
+    return update(availability: false) && 'booked' if booked?
+    return update(availability: true) && 'available' if is_rejected? || is_pending?
 
-    self.availability ? 'available' : 'not-available'
+    availability ? 'available' : 'not-available'
   end
 
   def booked?
@@ -71,10 +69,10 @@ class Car < ApplicationRecord
   end
 
   def price
-    "Rs. #{self.rental_price.to_i}/day"
+    "Rs. #{rental_price.to_i}/day"
   end
 
   def mileage_in_km
-    "#{self.mileage} km/hr"
+    "#{mileage} km/hr"
   end
 end

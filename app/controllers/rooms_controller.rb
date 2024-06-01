@@ -5,7 +5,7 @@ class RoomsController < ApplicationController
   before_action :verify_correct_user, only: %i[edit update destroy]
 
   def index
-    @car_with_availability_and_no_room = Car.where(availability: true).left_outer_joins(:room).where(room: { id: nil })
+    car_with_availability_and_no_room
   end
 
   def show
@@ -13,6 +13,10 @@ class RoomsController < ApplicationController
     @message = Message.new
 
     render 'index'
+  end
+
+  def edit
+    car_with_availability_and_no_room
   end
 
   def create
@@ -47,6 +51,10 @@ class RoomsController < ApplicationController
   end
 
   private
+
+    def car_with_availability_and_no_room
+      @car_with_availability_and_no_room = Car.where(availability: true).left_outer_joins(:room).where(room: { id: nil })
+    end
 
     def index_params
       @car_with_availability_and_no_room = Car.where(availability: true).left_outer_joins(:room).where(room: { id: nil })
