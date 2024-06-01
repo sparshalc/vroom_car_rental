@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Feedback Notification</title>
+</head>
+<body>
+  <h2>New Feedback Alert</h2>
+  <p>Dear <%= @admin_email %>,</p>
+  <p>We are pleased to inform you that <%= @full_name %> has submitted feedback.</p>
+
+  <p>You can <a href="http://localhost:3000/dashboard/feedbacks/">view or delete the feedback here</a>.</p>
+</body>
+</html>
