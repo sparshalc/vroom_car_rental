@@ -1,0 +1,12 @@
+<div class="container" style="margin-top: 100px;">
+  <div  id="feedback_form_<%= current_user.id %>">
+    <div class="col text-center">
+      <%= render 'partials/header', title: 'VROOM Feedback', paragraph: "Your feedback helps us to continually improve our services. Please take a moment to share your experience with us.", svg_name: 'unDraw/book', invite_user: false, new_car: false %>
+    </div>
+    <div class="col shadow-sm rounded">
+      <div class="form mt-3 p-5">
+        <%= render 'feedbacks/form', feedback: @feedback %>
+      </div>
+    </div>
+  </div>
+</div>
