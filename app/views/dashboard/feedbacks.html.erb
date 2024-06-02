@@ -1,0 +1,27 @@
+<div class="wrapper" data-controller="sidebar">
+  <%= render 'partials/sidebar' %>
+  <div class="main">
+    <%= render 'partials/dashboard_navbar' %>
+
+    <main class="content px-3 py-2">
+      <div class="container" style="margin-top: 100px;">
+        <div class="row justify-content-center">
+          <div class="col text-center ">
+            <%= render 'partials/header', title: 'Feedbacks', paragraph: "Welcome to the Manage Feedbacks section of Vroom. Here, as an admin, you have full control over users feedback.", svg_name: 'unDraw/review', invite_user: false, new_car: false %>
+          </div>
+        </div>
+        <hr>
+        <div class="row mt-5">
+          <div class="col">
+            <div class="p-3 bg-body">
+            <h6 class="border-bottom pb-2 mb-0">Recent Reviews</h6>
+              <% @feedbacks.each do |feedback| %>
+                <%= render 'dashboard/feedbacks', feedback:  %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

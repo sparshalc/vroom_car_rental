@@ -11,4 +11,8 @@ class Feedback < ApplicationRecord
       FeedbackMailer.new_feedback(name, admin.email).deliver_now
     end
   end
+
+  def status
+    private ? 'Private' : 'Public'
+  end
 end

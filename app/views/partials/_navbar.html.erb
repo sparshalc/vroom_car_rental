@@ -29,6 +29,11 @@
             <i class="bi <%= active_link("pages", "bi-journal-bookmark-fill", "bi-journal-bookmark", "guides")%> fs-5"></i> Guides
           <% end %>
         </li>
+        <li class="nav-item">
+          <%= link_to feedbacks_path, class: "nav-link d-flex justify-content-center align-items-center gap-2 #{ active_link("feedbacks", "fw-bold", "", "index") }" do %>
+            <i class="bi <%= active_link("feedbacks", "bi-chat-square-heart-fill", "bi-chat-square-heart", "index")%> fs-5"></i>Feedback
+          <% end %>
+        </li>
         <% if current_user&.seller_or_admin?%>
           <li class="nav-item">
             <%= link_to dashboard_path, class: "nav-link d-flex justify-content-center align-items-center gap-2" do %>

@@ -1,0 +1,14 @@
+<%= turbo_frame_tag feedback do %>
+  <div class="d-flex text-body-secondary pt-3 mt-2 p-2">
+    <%= image_tag(user_avatar(feedback.user), class: 'bd-placeholder-img flex-shrink-0 me-2 rounded', width: '32', height: '32')%>
+    <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+      <div class="d-flex justify-content-between">
+        <strong class="text-gray-dark"><%= feedback.user.email %><span class="badge mx-1 text-<%= feedback.private? ? 'bg-danger' : 'bg-success' %>"><%= feedback.status %></span></strong>
+        <%= button_to feedback_path(feedback), class: 'btn', method: :delete, data: { turbo_metho: :delete, turbo_confirm: 'You sure?' } do %>
+          <i class="bi bi-x-circle fs-6"></i>
+        <% end %>
+      </div>
+      <span class="d-block"><%= feedback.message %></span>
+    </div>
+  </div>
+<% end %>
