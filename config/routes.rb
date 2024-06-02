@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   get 'dashboard/cars', to: 'dashboard#cars'
   get 'dashboard/users', to: 'dashboard#users'
   get 'dashboard/bookings', to: 'dashboard#bookings'
+  get 'dashboard/feedbacks', to: 'dashboard#feedbacks'
 
   resources :deluxe_subscriptions, only: %i[create]
   get 'deluxe_subscriptions/success', to: "deluxe_subscriptions#success"

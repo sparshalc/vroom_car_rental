@@ -22,8 +22,7 @@ class FeedbacksController < ApplicationController
     @feedback.destroy!
 
     respond_to do |format|
-      format.html { redirect_to feedbacks_url, notice: "Feedback was successfully destroyed." }
-      format.json { head :no_content }
+      format.turbo_stream { flash[:now] = "Feedback destroyed!"}
     end
   end
 

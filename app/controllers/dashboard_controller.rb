@@ -14,6 +14,10 @@ class DashboardController < ApplicationController
     @users = User.all
   end
 
+  def feedbacks
+    @feedbacks = Feedback.order("Created_at DESC")
+  end
+
   def bookings
     load_bookings
   end

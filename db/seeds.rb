@@ -1,5 +1,6 @@
 User.delete_all
 Car.delete_all
+Feedback.delete_all
 
 User.create(
   email: 'user@vroom.com',
@@ -57,4 +58,13 @@ User.create(
   c.image.attach(io: image_file, filename: 'image.jpg', content_type: 'image/jpeg')
 
   c.save!
+end
+
+10.times do
+  Feedback.create(
+    user_id: User.last.id,
+    name: User.last.full_name,
+    email: User.last.email,
+    message: Faker::Lorem.paragraph(sentence_count: 5)
+  )
 end

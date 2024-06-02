@@ -30,6 +30,11 @@
             <i class="bi <%= active_link("dashboard", "bi bi-people-fill", "bi bi-people", "users")%> fs-5"></i> Users
           <% end %>
         </li>
+        <li class="nav-item">
+          <%= link_to dashboard_feedbacks_path, class: "nav-link text-white mt-3 d-flex justify-content-start mx-5 align-items-center gap-2 #{ active_link("dashboard", "fw-bold", "", "feedbacks") }" do %>
+            <i class="bi <%= active_link("dashboard", "bi-chat-square-heart-fill", "bi-chat-square-heart", "feedbacks")%> fs-5"></i> Feedbacks
+          <% end %>
+        </li>
       <% end %>
     </ul>
   </div>
