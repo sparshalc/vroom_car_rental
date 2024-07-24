@@ -1,16 +1,34 @@
-<div class="container">
-  <%= turbo_frame_tag "calendar", data: { turbo_action: 'advance'} do %>
-    <%= month_calendar(events: @bookings, attribute: :start_date, end_attribute: :end_date) do |date, bookings| %>
-        <div class="day p-4">
-          <%= date.strftime('%d') %>
+
+<div class="d-flex">
+  <div class="events w-25 p-4 mx-3 rounded" style="margin-top: 70px; background-color: #f2f2f2;">
+    <span class="text-primary ls-4 fs-5" style="letter-spacing: 6px;">UPCOMING EVENTS</span>
+    <h1 class="fw-bold mt-4"><%= Date.today.strftime("%A, %B %d") %></h1>
+    <h1 class="text-primary fs-3 mt-5 fw-bolder"><%= @bookings.count %> Events</h1>
+    <div class="mt-5">
+      <% @bookings.limit(3).each do |event|%>
+        <div class="mt-3">
+          <span class="fw-light fs-5"><%= event.start_date %> - <%= event.end_date %><small>(<%= event.status %>)</small></span>
+          <br>
+          <span class="fw-light fs-5 fw-semibold"><%= event.pickup_location %> - <%= event.drop_location %></span>
         </div>
-        <% bookings.each do |booking| %>
-          <%= link_to bookings_details_path(booking.id), data: { controller: 'bs-modal'}, class: 'text-white text-decoration-none' do %>
-            <span class="w-100 fw-bold <%= status_background(booking)%> d-flex justify-content-center align-item-center mt-1" style="height: 18px !important; font-size: 11px; overflow: hidden;">
-              <%= booking.drop_location %>
-            </span>
+      <% end %>
+    </div>
+    <%= link_to 'Book More', cars_path, class: 'btn btn-primary w-100 mt-5' %>
+  </div>
+  <div class="calendar w-75 mx-5">
+    <%= turbo_frame_tag "calendar", data: { turbo_action: 'advance'} do %>
+      <%= month_calendar(events: @bookings, attribute: :start_date, end_attribute: :end_date) do |date, bookings| %>
+          <div class="day p-4">
+            <%= date.strftime('%d') %>
+          </div>
+          <% bookings.each do |booking| %>
+            <%= link_to bookings_details_path(booking.id), data: { controller: 'bs-modal'}, class: 'text-white text-decoration-none' do %>
+              <span class="w-100 fw-bold <%= status_background(booking)%> d-flex justify-content-center align-item-center" style="height: 18px !important; font-size: 11px; overflow: hidden;">
+                <%= booking.drop_location %>
+              </span>
+            <% end %>
           <% end %>
-        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>

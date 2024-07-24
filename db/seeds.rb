@@ -54,7 +54,7 @@ User.create(
     user_id: User.last.id
   )
 
-  image_file = UnsplashImage.tempfile(size: '500x500', tags: 'car')
+  image_file = File.open('app/assets/images/placeholder.jpg')
   c.image.attach(io: image_file, filename: 'image.jpg', content_type: 'image/jpeg')
 
   c.save!
